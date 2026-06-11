@@ -1,155 +1,19 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Electrical Jankari</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; }
-  .header { background-color: #0056b3; color: #ffffff; padding: 20px; text-align: center; }
-  .top-bar { font-size: 32px; font-weight: bold; margin-bottom: 10px; color: #ffffff; }
-  .main-title { font-size: 20px; color: #a8d1ff; }
-  .container { max-width: 800px; margin: 20px auto; background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-  section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #ddd; }
-  h2 { color: #333; font-size: 22px; }
-  select, input, button { width: 100%; padding: 12px; margin-top: 10px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-  button { background-color: #0056b3; color: white; border: none; cursor: pointer; font-size: 16px; font-weight: bold; }
-  button:hover { background-color: #004494; }
-  .content-box { background-color: #e9f1f7; padding: 15px; border-left: 4px solid #0056b3; margin-top: 10px; display: none; }
-  .example { font-style: italic; color: #555; margin-top: 5px; }
-</style>
-</head>
-<body>
-
-<div class="header">
-  <div class="top-bar">Welcome to Electrical Jankari</div>
-  <div class="main-title">सही जानकारी, सही सुरक्षा और ज्ञान</div>
-</div>
-
-<div class="container">
-  
-  <section>
-    <h2>इलेक्ट्रिकल फॉर्मूलाज़ (100+ मॉड्यूल्स)</h2>
-    <select id="formulaSelect" onchange="showFormula()">
-      <option value="">-- फॉर्मूला चुनें --</option>
-      <!-- यहाँ 100 फॉर्मूलाज़ के विकल्प जोड़े जा सकते हैं, कुछ उदाहरण नीचे दिए गए हैं -->
-      <option value="ohm">ओम का नियम (Ohm's Law)</option>
-      <option value="power">इलेक्ट्रिकल पावर (Electrical Power)</option>
-      <option value="energy">इलेक्ट्रिकल एनर्जी</option>
-      <option value="res_series">रेसिस्टर्स इन सीरीज़</option>
-      <option value="res_parallel">रेसिस्टर्स इन पैरेलल</option>
-      <option value="kva_kw">kVA to kW</option>
-    </select>
-    <div id="formulaDisplay" class="content-box"></div>
-  </section>
-
-  <section>
-    <h2>इलेक्ट्रिकल कैलकुलेटर (50+ मॉड्यूल्स)</h2>
-    <select id="calcSelect" onchange="showCalculator()">
-      <option value="">-- कैलकुलेटर चुनें --</option>
-      <!-- यहाँ 50+ कैलकुलेटर के विकल्प जोड़े जा सकते हैं, कुछ उदाहरण नीचे दिए गए हैं -->
-      <option value="kwToAmps">kW to Amps</option>
-      <option value="hpToKw">HP to kW</option>
-      <option value="voltageDrop">वोल्टेज ड्रॉप कैलकुलेटर</option>
-      <option value="wattsToAmps">Watts to Amps</option>
-    </select>
+<section style="text-align: center; border: none; background: #ffffff; padding: 30px; border-radius: 8px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    <h2 style="border: none; color: #333;">सुझाव या टिप्पणी दें</h2>
+    <p style="color: #555; font-size: 16px; margin-bottom: 20px;">
+      क्या आपके पास कोई सुझाव है, या आप किसी फॉर्मूले के बारे में पूछना चाहते हैं? सीधे मुझसे Instagram पर जुड़ें और मैसेज करें!
+    </p>
     
-    <div id="calcInputs" style="display:none;">
-      <div id="inputsContent"></div>
-      <button onclick="calculate()">कैलकुलेट करें</button>
-      <div id="resultOutput" style="font-weight:bold; margin-top:10px;"></div>
-    </div>
-  </section>
-
-</div>
-
-<script>
-  function showFormula() {
-    var select = document.getElementById("formulaSelect");
-    var display = document.getElementById("formulaDisplay");
-    var formulas = {
-      "ohm": {
-        "text": "ओम का नियम: V = I x R (जहाँ V=Voltage, I=Current, R=Resistance)",
-        "example": "उदाहरण: यदि किसी सर्किट में करंट (I) 2 Amps है और रेजिस्टेंस (R) 10 Ohms है, तो वोल्टेज (V) = 2 x 10 = 20 Volts होगा।"
-      },
-      "power": {
-        "text": "इलेक्ट्रिकल पावर: P = V x I (जहाँ P=Power, V=Voltage, I=Current)",
-        "example": "उदाहरण: यदि वोल्टेज (V) 220 Volts है और करंट (I) 5 Amps है, तो पावर (P) = 220 x 5 = 1100 Watts होगा।"
-      },
-      "energy": {
-        "text": "इलेक्ट्रिकल एनर्जी: E = P x t (जहाँ E=Energy, P=Power, t=time in hours)",
-        "example": "उदाहरण: यदि पावर (P) 1 kW है और समय (t) 2 घंटे है, तो एनर्जी (E) = 1 x 2 = 2 kWh होगा।"
-      },
-      "res_series": {
-        "text": "रेसिस्टर्स इन सीरीज़: R_total = R1 + R2 + ...",
-        "example": "उदाहरण: यदि दो रेसिस्टर 5 Ohms और 10 Ohms के सीरीज़ में हैं, तो कुल रेजिस्टेंस = 5 + 10 = 15 Ohms होगा।"
-      },
-      "res_parallel": {
-        "text": "रेसिस्टर्स इन पैरेलल: 1/R_total = 1/R1 + 1/R2",
-        "example": "उदाहरण: यदि दो रेसिस्टर 10 Ohms और 10 Ohms के पैरेलल में हैं, तो कुल रेजिस्टेंस = (10 x 10) / (10 + 10) = 5 Ohms होगा।"
-      },
-      "kva_kw": {
-        "text": "kVA और kW का संबंध: kW = kVA x पावर फैक्टर",
-        "example": "उदाहरण: यदि 10 kVA लोड है और पावर फैक्टर 0.8 है, तो वास्तविक पावर (kW) = 10 x 0.8 = 8 kW होगा।"
-      }
-    };
+    <a href="https://ig.me/m/electrical_jankari1" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 12px 25px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; transition: transform 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+      
+      Instagram पर मैसेज करें
+    </a>
     
-    if (formulas[select.value]) {
-      display.innerHTML = '<div>' + formulas[select.value].text + '</div><div class="example">' + formulas[select.value].example + '</div>';
-      display.style.display = "block";
-    } else {
-      display.style.display = "none";
-    }
-  }
-
-  function showCalculator() {
-    var select = document.getElementById("calcSelect");
-    var calcInputs = document.getElementById("calcInputs");
-    var inputsContent = document.getElementById("inputsContent");
-    if (select.value === "") { calcInputs.style.display = "none"; return; }
-    var html = "";
-    if (select.value === "kwToAmps") {
-      html = '<label>kW दर्ज करें:</label><input type="number" id="kwInput" placeholder="उदा. 5">' +
-             '<label>वोल्टेज दर्ज करें:</label><input type="number" id="voltInput" placeholder="उदा. 220">';
-    } else if (select.value === "hpToKw") {
-      html = '<label>HP दर्ज करें:</label><input type="number" id="hpInput" placeholder="उदा. 10">';
-    } else if (select.value === "voltageDrop") {
-      html = '<label>करंट (Amps) दर्ज करें:</label><input type="number" id="vdAmps" placeholder="उदा. 15">' +
-             '<label>केबल की लंबाई (मीटर) दर्ज करें:</label><input type="number" id="vdLength" placeholder="उदा. 50">';
-    } else if (select.value === "wattsToAmps") {
-      html = '<label>Watts दर्ज करें:</label><input type="number" id="wattsInput" placeholder="उदा. 1000">' +
-             '<label>वोल्टेज दर्ज करें:</label><input type="number" id="wattsVoltInput" placeholder="उदा. 220">';
-    }
-    inputsContent.innerHTML = html;
-    calcInputs.style.display = "block";
-  }
-
-  function calculate() {
-    var select = document.getElementById("calcSelect");
-    var resultOutput = document.getElementById("resultOutput");
-    if (select.value === "kwToAmps") {
-      var kw = parseFloat(document.getElementById("kwInput").value);
-      var volt = parseFloat(document.getElementById("voltInput").value);
-      if (!isNaN(kw) && !isNaN(volt) && volt !== 0) {
-        var amps = (kw * 1000) / volt;
-        resultOutput.innerHTML = "परिणाम: " + amps.toFixed(2) + " Amps";
-      } else { resultOutput.innerHTML = "कृपया सही मान दर्ज करें।"; }
-    } else if (select.value === "hpToKw") {
-      var hp = parseFloat(document.getElementById("hpInput").value);
-      if (!isNaN(hp)) {
-        var kw = hp * 0.7457;
-        resultOutput.innerHTML = "परिणाम: " + kw.toFixed(2) + " kW";
-      } else { resultOutput.innerHTML = "कृपया सही HP दर्ज करें।"; }
-    } else if (select.value === "wattsToAmps") {
-      var watts = parseFloat(document.getElementById("wattsInput").value);
-      var volt = parseFloat(document.getElementById("wattsVoltInput").value);
-      if (!isNaN(watts) && !isNaN(volt) && volt !== 0) {
-        var amps = watts / volt;
-        resultOutput.innerHTML = "परिणाम: " + amps.toFixed(2) + " Amps";
-      } else { resultOutput.innerHTML = "कृपया सही मान दर्ज करें।"; }
-    }
-  }
-</script>
-
-</body>
-</html>
+    <p style="font-size: 14px; color: #999; margin-top: 15px;">(मुझसे सीधे जुड़ने के लिए ऊपर दिए गए बटन पर क्लिक करें)</p>
+  </section>
