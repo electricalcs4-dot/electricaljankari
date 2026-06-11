@@ -3,25 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Electrical Jankari</title>
+<title>Electrical Jankari - Formulas & Calculators</title>
 <style>
   body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; }
+  
+  /* Header Design */
   .header { background-color: #0044cc; color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 5px solid #002266; }
   .top-bar { font-size: 42px; font-weight: 900; margin-bottom: 10px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
   .main-title { font-size: 22px; color: #e6f0ff; font-weight: bold; }
+  
+  /* Main Container */
   .container { max-width: 900px; margin: 30px auto; background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
   section { margin-bottom: 40px; padding-bottom: 30px; border-bottom: 2px dashed #ddd; }
   section:last-child { border-bottom: none; }
   h2 { color: #0044cc; font-size: 26px; border-left: 5px solid #ff9900; padding-left: 10px; }
+  
+  /* Inputs and Buttons */
   select, input, button { width: 100%; padding: 14px; margin-top: 12px; margin-bottom: 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
-  select { background-color: #f9f9f9; font-weight: bold; color: #333; }
-  button { background-color: #ff9900; color: #000; border: none; cursor: pointer; font-size: 18px; font-weight: bold; transition: background 0.3s; }
-  button:hover { background-color: #e68a00; color: #fff; }
+  select { background-color: #f9f9f9; font-weight: bold; color: #333; cursor: pointer; }
+  button.calc-btn { background-color: #ff9900; color: #000; border: none; cursor: pointer; font-size: 18px; font-weight: bold; transition: background 0.3s; }
+  button.calc-btn:hover { background-color: #e68a00; color: #fff; }
+  
+  /* Display Boxes */
   .content-box { background-color: #eef5fa; padding: 20px; border-left: 5px solid #0044cc; margin-top: 15px; display: none; border-radius: 0 6px 6px 0; }
-  .formula-text { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 10px; }
+  .formula-text { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 10px; line-height: 1.6; }
   .example { font-style: italic; color: #005500; margin-top: 10px; background: #e6ffe6; padding: 10px; border-radius: 4px; border-left: 4px solid #00cc00;}
   .result-box { background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; font-size: 18px; font-weight: bold; margin-top: 15px; text-align: center; border: 1px solid #c3e6cb; }
   label { font-weight: bold; color: #555; display: block; margin-top: 10px; }
+  
+  /* Instagram Floating Button */
+  .ig-float {
+    position: fixed;
+    width: 65px;
+    height: 65px;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: transform 0.3s;
+  }
+  .ig-float:hover { transform: scale(1.1); }
 </style>
 </head>
 <body>
@@ -40,319 +68,238 @@
       <option value="">-- फॉर्मूला चुनें --</option>
       <optgroup label="Basic Laws & Power">
         <option value="ohm">1. ओम का नियम (Ohm's Law)</option>
-        <option value="dc_power">2. DC पावर (DC Power)</option>
+        <option value="dc_power">2. DC पावर (DC Circuit)</option>
         <option value="ac1_power">3. AC सिंगल फेज़ पावर</option>
         <option value="ac3_power">4. AC थ्री फेज़ पावर</option>
-        <option value="power_factor">5. पावर फैक्टर (Power Factor)</option>
-        <option value="energy">6. एनर्जी कंजम्पशन (kWh)</option>
+        <option value="apparent_power">5. Apparent, Active & Reactive Power</option>
+        <option value="power_factor">6. पावर फैक्टर (Power Factor)</option>
+        <option value="energy">7. एनर्जी कंजम्पशन (kWh)</option>
       </optgroup>
-      <optgroup label="Resistance & Circuits">
-        <option value="resistance">7. रेजिस्टेंस (Resistance R = ρL/A)</option>
-        <option value="res_series">8. सीरीज़ रेजिस्टेंस (Series)</option>
-        <option value="res_parallel">9. पैरेलल रेजिस्टेंस (Parallel)</option>
-        <option value="volt_divider">10. वोल्टेज डिवाइडर रूल</option>
+      <optgroup label="Resistance, Circuits & Inductance">
+        <option value="resistance">8. रेजिस्टेंस (Resistance)</option>
+        <option value="res_series">9. सीरीज़ रेजिस्टेंस (Series)</option>
+        <option value="res_parallel">10. पैरेलल रेजिस्टेंस (Parallel)</option>
+        <option value="volt_divider">11. वोल्टेज डिवाइडर रूल</option>
+        <option value="capacitor">12. कैपेसिटर (Capacitance)</option>
+        <option value="inductor">13. इंडक्टर (Inductance)</option>
+        <option value="impedance">14. इम्पीडेंस (Z)</option>
+        <option value="frequency">15. फ्रीक्वेंसी और RPM</option>
       </optgroup>
-      <optgroup label="Capacitor, Inductor & Frequency">
-        <option value="capacitor">11. कैपेसिटर और कैपेसिटिव रिएक्टेंस</option>
-        <option value="inductor">12. इंडक्टर और इंडक्टिव रिएक्टेंस</option>
-        <option value="impedance">13. इम्पीडेंस (Impedance - Z)</option>
-        <option value="frequency">14. फ्रीक्वेंसी और RPM</option>
-      </optgroup>
-      <optgroup label="Motors & Transformers">
-        <option value="transformer_ratio">15. ट्रांसफार्मर टर्न्स और वोल्टेज रेश्यो</option>
-        <option value="motor_sync">16. मोटर सिंक्रोनस स्पीड (Ns)</option>
-        <option value="motor_slip">17. मोटर स्लिप प्रतिशत (Slip %)</option>
-        <option value="efficiency">18. मोटर/मशीन एफिशिएंसी (Efficiency)</option>
-      </optgroup>
-      <optgroup label="Industrial & Plant Calculations">
-        <option value="battery">19. बैटरी बैकअप टाइम (Battery Backup)</option>
-        <option value="volt_drop">20. वोल्टेज ड्रॉप (Voltage Drop)</option>
-        <option value="cable_size">21. केबल साइज (Thumb Rule)</option>
-        <option value="dg_calc">22. जनरेटर (DG) करंट और फ्यूल</option>
-        <option value="apfc">23. APFC पैनल (Required kVAR)</option>
-        <option value="demand">24. मैक्सिमम डिमांड और लोड फैक्टर</option>
+      <optgroup label="Motors, Transformers & Plant">
+        <option value="transformer_ratio">16. ट्रांसफार्मर टर्न्स और वोल्टेज रेश्यो</option>
+        <option value="motor_sync">17. सिंक्रोनस स्पीड (Ns)</option>
+        <option value="motor_slip">18. मोटर स्लिप प्रतिशत (Slip %)</option>
+        <option value="efficiency">19. मोटर एफिशिएंसी (Efficiency)</option>
+        <option value="hp_conv">20. Horsepower Conversion (HP to kW)</option>
+        <option value="battery">21. बैटरी बैकअप टाइम (Battery Backup)</option>
+        <option value="volt_drop">22. वोल्टेज ड्रॉप (Voltage Drop)</option>
+        <option value="cable_size">23. केबल साइज थंब रूल</option>
+        <option value="dg_calc">24. जनरेटर (DG) फॉर्मूले</option>
+        <option value="apfc">25. APFC पैनल (Required kVAR)</option>
+        <option value="demand">26. मैक्सिमम डिमांड और लोड फैक्टर</option>
+        <option value="plc">27. PLC Basics & Scaling</option>
       </optgroup>
     </select>
     <div id="formulaDisplay" class="content-box"></div>
   </section>
 
   <section>
-    <h2>एडवांस इलेक्ट्रिकल कैलकुलेटर (50+ प्रैक्टिकल कैलकुलेशन्स)</h2>
-    <p style="color: #666;">अपनी आवश्यकता के अनुसार कैलकुलेटर चुनें और सीधे वैल्यू डालकर परिणाम पाएं:</p>
+    <h2>एडवांस इलेक्ट्रिकल कैलकुलेटर</h2>
+    <p style="color: #666;">अपनी आवश्यकता के अनुसार कैलकुलेटर चुनें, वैल्यू डालें और रिजल्ट पाएं:</p>
     <select id="calcSelect" onchange="showCalculator()">
       <option value="">-- कैलकुलेटर चुनें --</option>
-      <option value="kw_to_amp_3ph">1. kW से Amps (3-Phase, 415V)</option>
-      <option value="kw_to_amp_1ph">2. kW से Amps (1-Phase, 230V)</option>
-      <option value="kva_to_amp_3ph">3. kVA से Amps (3-Phase)</option>
-      <option value="hp_to_kw">4. HP से kW और kW से HP कन्वर्शन</option>
-      <option value="sync_speed">5. मोटर सिंक्रोनस स्पीड (RPM) कैलकुलेटर</option>
+      <option value="kw_to_amp_3ph">1. kW से Amps (3-Phase)</option>
+      <option value="kw_to_amp_1ph">2. kW से Amps (1-Phase)</option>
+      <option value="kva_to_amp_3ph">3. kVA से Amps (3-Phase Full Load)</option>
+      <option value="hp_to_kw">4. HP से kW और kW से HP</option>
+      <option value="sync_speed">5. मोटर सिंक्रोनस स्पीड (RPM)</option>
       <option value="motor_slip">6. मोटर स्लिप (%) कैलकुलेटर</option>
-      <option value="battery_backup">7. बैटरी बैकअप टाइम कैलकुलेटर</option>
+      <option value="battery_backup">7. बैटरी बैकअप टाइम (Hours)</option>
       <option value="transformer_kva">8. ट्रांसफार्मर kVA रेटिंग (3-Phase)</option>
-      <option value="volt_drop_3ph">9. 3-Phase वोल्टेज ड्रॉप कैलकुलेटर</option>
-      <option value="apfc_kvar">10. APFC Required Capacitor (kVAR) कैलकुलेटर</option>
+      <option value="volt_drop_3ph">9. 3-Phase वोल्टेज ड्रॉप (Volts)</option>
+      <option value="apfc_kvar">10. APFC Required Capacitor (kVAR)</option>
     </select>
     
     <div id="calcInputs" style="display:none; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
       <div id="inputsContent"></div>
-      <button onclick="calculate()">कैलकुलेट करें</button>
+      <button class="calc-btn" onclick="executeCalculation()">कैलकुलेट करें</button>
       <div id="resultOutput" style="display:none;"></div>
     </div>
   </section>
 
+  <section style="text-align: center; border: none; background: #eef5fa; padding: 30px; border-radius: 8px; margin-top: 20px;">
+    <h2 style="border: none; color: #0044cc; margin-top: 0;">सुझाव या टिप्पणी दें</h2>
+    <p style="color: #555; font-size: 16px; margin-bottom: 20px;">
+      क्या आपके पास कोई सुझाव है, या आप किसी फॉर्मूले के बारे में पूछना चाहते हैं? सीधे मुझसे Instagram पर जुड़ें!
+    </p>
+    <a href="https://ig.me/m/electrical_jankari1" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 12px 25px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      @electrical_jankari1 को मैसेज करें
+    </a>
+  </section>
+
 </div>
 
+<a href="https://ig.me/m/electrical_jankari1" target="_blank" class="ig-float" title="Instagram पर मैसेज करें">
+  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+</a>
+
 <script>
-  // 1. फॉर्मूला डेटाबेस (आपके द्वारा दिए गए लिस्ट के अनुसार)
+  // -- 1. Formulas Database --
   const formulas = {
-    "ohm": {
-      "text": "ओम का नियम (Ohm's Law)<br>V = I &times; R<br>I = V / R<br>R = V / I",
-      "example": "उदाहरण: यदि वोल्टेज (V) 24V है और रेजिस्टेंस (R) 12 &Omega; है, तो करंट I = 24 / 12 = 2 Amps."
-    },
-    "dc_power": {
-      "text": "DC पावर (DC Circuit)<br>P = V &times; I<br>P = I&sup2;R<br>P = V&sup2;/R",
-      "example": "उदाहरण: 12V की बैटरी से 5A करंट फ्लो हो रहा है, तो P = 12 &times; 5 = 60 Watts."
-    },
-    "ac1_power": {
-      "text": "AC सिंगल फेज़ पावर<br>P = V &times; I &times; PF (Cos&phi;)",
-      "example": "उदाहरण: V=230V, I=10A, PF=0.8 है, तो पावर (Watts) = 230 &times; 10 &times; 0.8 = 1840W या 1.84 kW."
-    },
-    "ac3_power": {
-      "text": "AC थ्री फेज़ पावर<br>P = &radic;3 &times; V &times; I &times; PF<br>kVA = (&radic;3 &times; V &times; I) / 1000",
-      "example": "उदाहरण: 415V, 20A और 0.85 PF पर, P = 1.732 &times; 415 &times; 20 &times; 0.85 = 12219W (12.2 kW)."
-    },
-    "power_factor": {
-      "text": "पावर फैक्टर (Power Factor)<br>PF = kW / kVA<br>PF = Cos&phi;",
-      "example": "उदाहरण: यदि एक्टिव पावर 80 kW है और अपेरेंट पावर 100 kVA है, तो PF = 80 / 100 = 0.8."
-    },
-    "energy": {
-      "text": "एनर्जी कंजम्पशन (Energy)<br>Energy (kWh) = Power (kW) &times; Time (Hours)<br>1 Unit = 1 kWh",
-      "example": "उदाहरण: एक 5 kW की मोटर दिन में 4 घंटे चलती है, तो यूनिट्स = 5 &times; 4 = 20 kWh (20 यूनिट)."
-    },
-    "resistance": {
-      "text": "रेजिस्टेंस (Resistance)<br>R = &rho;L / A (जहाँ &rho;=Resistivity, L=Length, A=Area)",
-      "example": "उदाहरण: तार की लंबाई बढ़ने पर रेजिस्टेंस बढ़ता है, और मोटाई (Area) बढ़ने पर रेजिस्टेंस घटता है।"
-    },
-    "res_series": {
-      "text": "सीरीज़ रेजिस्टेंस<br>Rt = R1 + R2 + R3",
-      "example": "उदाहरण: 10&Omega;, 15&Omega; और 5&Omega; सीरीज़ में जुड़े हैं, तो कुल = 10 + 15 + 5 = 30&Omega;."
-    },
-    "res_parallel": {
-      "text": "पैरेलल रेजिस्टेंस<br>1/Rt = 1/R1 + 1/R2 + 1/R3",
-      "example": "उदाहरण: 10&Omega; और 10&Omega; पैरेलल में हैं, तो 1/Rt = 1/10 + 1/10 = 2/10. इसलिए Rt = 10/2 = 5&Omega;."
-    },
-    "volt_divider": {
-      "text": "वोल्टेज डिवाइडर रूल<br>Vx = V &times; (Rx / Rt)",
-      "example": "उदाहरण: 24V सप्लाई में 10&Omega; और 20&Omega; सीरीज़ (कुल 30&Omega;) में हैं। 10&Omega; पर वोल्टेज = 24 &times; (10/30) = 8V."
-    },
-    "capacitor": {
-      "text": "कैपेसिटिव रिएक्टेंस (Xc)<br>Xc = 1 / (2&pi;fC)",
-      "example": "उदाहरण: AC सर्किट में कैपेसिटर करंट के फ्लो को अपोज़ करता है, फ्रीक्वेंसी (f) बढ़ने पर Xc कम होता है।"
-    },
-    "inductor": {
-      "text": "इंडक्टिव रिएक्टेंस (XL)<br>XL = 2&pi;fL",
-      "example": "उदाहरण: मोटर की कॉइल (Inductor) में फ्रीक्वेंसी (f) बढ़ने पर XL (रुकावट) बढ़ जाती है।"
-    },
-    "impedance": {
-      "text": "इम्पीडेंस (Z)<br>Z = &radic;(R&sup2; + X&sup2;) (जहाँ X = XL - Xc)",
-      "example": "उदाहरण: AC सर्किट का कुल रेजिस्टेंस (Impedance) रेजिस्टेंस और रिएक्टेंस दोनों पर निर्भर करता है।"
-    },
-    "frequency": {
-      "text": "फ्रीक्वेंसी (f) और RPM<br>f = 1 / T<br>RPM = (120 &times; f) / Poles",
-      "example": "उदाहरण: भारत में फ्रीक्वेंसी 50Hz है। 4 पोल मोटर की स्पीड = (120 &times; 50) / 4 = 1500 RPM."
-    },
-    "transformer_ratio": {
-      "text": "ट्रांसफार्मर वोल्टेज और करंट रेश्यो<br>V1 / V2 = N1 / N2<br>I1 / I2 = N2 / N1",
-      "example": "उदाहरण: स्टेप-डाउन ट्रांसफार्मर में प्राइमरी टर्न्स (N1) ज्यादा होते हैं, इसलिए सेकेंडरी वोल्टेज (V2) कम होता है, लेकिन करंट (I2) बढ़ जाता है।"
-    },
-    "motor_sync": {
-      "text": "सिंक्रोनस स्पीड (Ns)<br>Ns = (120 &times; f) / P",
-      "example": "उदाहरण: 50Hz सप्लाई और 2 पोल मोटर के लिए: Ns = (120 &times; 50) / 2 = 3000 RPM."
-    },
-    "motor_slip": {
-      "text": "मोटर स्लिप (Slip %)<br>Slip(%) = [(Ns - Nr) / Ns] &times; 100",
-      "example": "उदाहरण: सिंक्रोनस स्पीड (Ns)=1500 RPM और रोटर स्पीड (Nr)=1440 RPM है, तो स्लिप = [(1500-1440)/1500] &times; 100 = 4%."
-    },
-    "efficiency": {
-      "text": "मशीन/मोटर एफिशिएंसी (&eta;)<br>&eta; = (Output Power / Input Power) &times; 100",
-      "example": "उदाहरण: मोटर 10kW इनपुट लेती है और 9kW मैकेनिकल आउटपुट देती है, तो &eta; = (9/10) &times; 100 = 90%."
-    },
-    "battery": {
-      "text": "बैटरी बैकअप टाइम<br>Backup Time (Hrs) = (Ah &times; V &times; &eta;) / Load(W)",
-      "example": "उदाहरण: 150Ah, 12V बैटरी, 80%(&eta;=0.8) एफिशिएंसी और 400W लोड: Time = (150 &times; 12 &times; 0.8) / 400 = 3.6 घंटे."
-    },
-    "volt_drop": {
-      "text": "थ्री फेज़ वोल्टेज ड्रॉप<br>VD = &radic;3 &times; I &times; L &times; R",
-      "example": "उदाहरण: लिमिट: लाइटिंग के लिए 3% और पावर के लिए 5% से अधिक वोल्टेज ड्रॉप नहीं होना चाहिए।"
-    },
-    "cable_size": {
-      "text": "केबल साइज थंब रूल (Thumb Rule)<br>Copper: 1 Sq.mm &approx; 4-6 Amps<br>Aluminium: 1 Sq.mm &approx; 2.5-4 Amps",
-      "example": "उदाहरण: अगर लोड 40 Amps है, तो कॉपर केबल 40/4 = 10 Sq.mm या उससे अधिक की आवश्यकता होगी।"
-    },
-    "dg_calc": {
-      "text": "जनरेटर (DG) फॉर्मूले<br>kVA = kW / PF<br>DG Current (Amps) = (kVA &times; 1000) / (&radic;3 &times; V)",
-      "example": "उदाहरण: 500 kVA DG (415V) का फुल लोड करंट = (500 &times; 1000) / (1.732 &times; 415) = लगभग 695 Amps."
-    },
-    "apfc": {
-      "text": "APFC कैपेसिटर बैंक रेटिंग (kVAR)<br>Required kVAR = kW &times; (Tan&phi;1 - Tan&phi;2)",
-      "example": "उदाहरण: पावर फैक्टर को 0.75 से 0.99 तक सुधारने के लिए मौजूदा kW के आधार पर कैपेसिटर (kVAR) निकाला जाता है।"
-    },
-    "demand": {
-      "text": "मैक्सिमम डिमांड और लोड फैक्टर<br>Demand Factor = Max Demand / Connected Load<br>Load Factor = Average Load / Max Demand",
-      "example": "उदाहरण: यदि प्लांट का कनेक्टेड लोड 1000kW है लेकिन मैक्सिमम डिमांड केवल 600kW है, तो डिमांड फैक्टर = 0.6 या 60%."
-    }
+    "ohm": { "text": "Voltage (V) = Current (I) &times; Resistance (R)<br>V = I &times; R<br>I = V / R<br>R = V / I", "example": "उदाहरण: यदि V=24V और R=12&Omega; है, तो I = 24/12 = 2 Amps." },
+    "dc_power": { "text": "DC Circuit Power<br>P = V &times; I<br>P = I&sup2;R<br>P = V&sup2;/R", "example": "उदाहरण: 12V की बैटरी से 5A करंट है, तो P = 12 &times; 5 = 60W." },
+    "ac1_power": { "text": "AC Single Phase Power<br>P = V &times; I &times; PF", "example": "उदाहरण: V=230V, I=10A, PF=0.8 है, तो P = 230 &times; 10 &times; 0.8 = 1840W." },
+    "ac3_power": { "text": "AC Three Phase Power<br>P = &radic;3 &times; V &times; I &times; PF", "example": "उदाहरण: 415V, 20A, 0.85 PF पर, P = 1.732 &times; 415 &times; 20 &times; 0.85 = 12219W (12.2 kW)." },
+    "apparent_power": { "text": "Active (kW) = (V &times; I &times; PF) / 1000<br>Apparent (kVA) = (V &times; I) / 1000<br>Reactive (kVAR) = (V &times; I &times; Sin&phi;) / 1000", "example": "kVA और kW ट्रांसफार्मर और जनरेटर के लिए महत्वपूर्ण हैं।" },
+    "power_factor": { "text": "Power Factor (PF) = kW / kVA<br>PF = Cos&phi;", "example": "उदाहरण: Active Power 80 kW और Apparent Power 100 kVA है, तो PF = 80/100 = 0.8." },
+    "energy": { "text": "Energy (kWh) = Power (kW) &times; Time (hr)<br>1 Unit = 1 kWh", "example": "उदाहरण: 5 kW मोटर 4 घंटे चलती है = 5 &times; 4 = 20 kWh." },
+    "resistance": { "text": "R = &rho;L / A<br>(&rho;=Resistivity, L=Length, A=Area)", "example": "लंबाई बढ़ने पर Resistance बढ़ता है।" },
+    "res_series": { "text": "Series: Rt = R1 + R2 + R3", "example": "उदाहरण: 10&Omega; और 15&Omega; सीरीज़ में = 25&Omega;." },
+    "res_parallel": { "text": "Parallel: 1/Rt = 1/R1 + 1/R2", "example": "उदाहरण: 10&Omega; और 10&Omega; पैरेलल में = 5&Omega;." },
+    "volt_divider": { "text": "Vx = V &times; (Rx / Rt)", "example": "सीरीज़ सर्किट में वोल्टेज ड्रॉप निकालने के लिए।" },
+    "capacitor": { "text": "C = Q / V<br>Xc = 1 / (2&pi;fC)", "example": "फ्रीक्वेंसी बढ़ने पर कैपेसिटिव रिएक्टेंस कम होता है।" },
+    "inductor": { "text": "XL = 2&pi;fL", "example": "फ्रीक्वेंसी बढ़ने पर इंडक्टिव रिएक्टेंस बढ़ता है।" },
+    "impedance": { "text": "Z = &radic;(R&sup2; + X&sup2;)<br>(Where X = XL - Xc)", "example": "AC सर्किट का कुल रेजिस्टेंस।" },
+    "frequency": { "text": "f = 1 / T<br>RPM = (120 &times; f) / Poles", "example": "उदाहरण: 50Hz, 4 पोल = (120 &times; 50)/4 = 1500 RPM." },
+    "transformer_ratio": { "text": "V1/V2 = N1/N2<br>I1/I2 = N2/N1", "example": "वोल्टेज कम होने पर करंट बढ़ता है (Step Down)." },
+    "motor_sync": { "text": "Ns = (120 &times; f) / P", "example": "उदाहरण: 50Hz, 2 पोल = 3000 RPM." },
+    "motor_slip": { "text": "Slip(%) = [(Ns - Nr) / Ns] &times; 100", "example": "उदाहरण: Ns=1500, Nr=1440, स्लिप = 4%." },
+    "efficiency": { "text": "&eta; = (Output Power / Input Power) &times; 100", "example": "मशीन की दक्षता (Efficiency) का प्रतिशत।" },
+    "hp_conv": { "text": "1 HP = 746 W<br>kW = HP &times; 0.746", "example": "उदाहरण: 10 HP = 7.46 kW." },
+    "battery": { "text": "Time = (Ah &times; V &times; &eta;) / Load(W)", "example": "उदाहरण: 150Ah, 12V, 0.8 दक्षता, 400W लोड = 3.6 घंटे." },
+    "volt_drop": { "text": "3-Phase VD = &radic;3 &times; I &times; L &times; R", "example": "केबल की लंबाई के साथ वोल्टेज कम होता है।" },
+    "cable_size": { "text": "Cu: 1 mm&sup2; &approx; 4-6A<br>Al: 1 mm&sup2; &approx; 2.5-4A", "example": "करंट के आधार पर तार की मोटाई।" },
+    "dg_calc": { "text": "kVA = kW / PF<br>I = (kVA &times; 1000) / (&radic;3 &times; V)", "example": "जनरेटर का फुल लोड करंट।" },
+    "apfc": { "text": "kVAR = kW &times; (Tan&phi;1 - Tan&phi;2)", "example": "पावर फैक्टर (PF) को सुधारने के लिए।" },
+    "demand": { "text": "Demand Factor = Max Demand / Connected Load", "example": "इलेक्ट्रिसिटी बिल कैलकुलेशन के लिए।" },
+    "plc": { "text": "Scaling = [(URV-LRV)/(Input-LRV)] &times; Span", "example": "सेंसर के 4-20mA सिग्नल को कन्वर्ट करना।" }
   };
 
   function showFormula() {
-    var select = document.getElementById("formulaSelect");
-    var display = document.getElementById("formulaDisplay");
-    var key = select.value;
-    
-    if (key && formulas[key]) {
-      display.innerHTML = '<div class="formula-text">' + formulas[key].text + '</div><div class="example">' + formulas[key].example + '</div>';
+    let select = document.getElementById("formulaSelect").value;
+    let display = document.getElementById("formulaDisplay");
+    if (select && formulas[select]) {
+      display.innerHTML = '<div class="formula-text">' + formulas[select].text + '</div><div class="example">' + formulas[select].example + '</div>';
       display.style.display = "block";
     } else {
       display.style.display = "none";
     }
   }
 
-  // 2. कैलकुलेटर यूआई जनरेटर
+  // -- 2. Dynamic Calculator Inputs Generation --
   function showCalculator() {
-    var select = document.getElementById("calcSelect").value;
-    var calcInputs = document.getElementById("calcInputs");
-    var inputsContent = document.getElementById("inputsContent");
-    var resultOutput = document.getElementById("resultOutput");
+    let select = document.getElementById("calcSelect").value;
+    let calcInputs = document.getElementById("calcInputs");
+    let inputsContent = document.getElementById("inputsContent");
+    let resultOutput = document.getElementById("resultOutput");
     
-    resultOutput.style.display = "none";
+    resultOutput.style.display = "none"; // Hide previous result
     if (select === "") { calcInputs.style.display = "none"; return; }
     
-    var html = "";
-    switch(select) {
-      case "kw_to_amp_3ph":
-        html = '<label>Power (kW):</label><input type="number" id="c_kw" placeholder="उदा. 10">' +
-               '<label>Voltage (V):</label><input type="number" id="c_v" value="415">' +
-               '<label>Power Factor (PF):</label><input type="number" id="c_pf" value="0.8" step="0.01">';
-        break;
-      case "kw_to_amp_1ph":
-        html = '<label>Power (kW):</label><input type="number" id="c_kw" placeholder="उदा. 5">' +
-               '<label>Voltage (V):</label><input type="number" id="c_v" value="230">' +
-               '<label>Power Factor (PF):</label><input type="number" id="c_pf" value="0.9" step="0.01">';
-        break;
-      case "kva_to_amp_3ph":
-        html = '<label>Apparent Power (kVA):</label><input type="number" id="c_kva" placeholder="उदा. 500">' +
-               '<label>Voltage (V):</label><input type="number" id="c_v" value="415">';
-        break;
-      case "hp_to_kw":
-        html = '<label>Motor Power (HP):</label><input type="number" id="c_hp" placeholder="उदा. 10">';
-        break;
-      case "sync_speed":
-        html = '<label>Frequency (Hz):</label><input type="number" id="c_f" value="50">' +
-               '<label>Number of Poles (P):</label><input type="number" id="c_p" placeholder="उदा. 4">';
-        break;
-      case "motor_slip":
-        html = '<label>Synchronous Speed Ns (RPM):</label><input type="number" id="c_ns" placeholder="उदा. 1500">' +
-               '<label>Rotor Speed Nr (RPM):</label><input type="number" id="c_nr" placeholder="उदा. 1440">';
-        break;
-      case "battery_backup":
-        html = '<label>Battery Capacity (Ah):</label><input type="number" id="c_ah" placeholder="उदा. 150">' +
-               '<label>Battery Voltage (V):</label><input type="number" id="c_v" value="12">' +
-               '<label>Load (Watts):</label><input type="number" id="c_load" placeholder="उदा. 400">' +
-               '<label>Inverter Efficiency (0.1 to 1.0):</label><input type="number" id="c_eff" value="0.8" step="0.1">';
-        break;
-      case "transformer_kva":
-        html = '<label>Primary/Secondary Voltage (V):</label><input type="number" id="c_v" value="415">' +
-               '<label>Full Load Current (Amps):</label><input type="number" id="c_amp" placeholder="उदा. 1390">';
-        break;
-      case "volt_drop_3ph":
-        html = '<label>Current (Amps):</label><input type="number" id="c_amp" placeholder="उदा. 50">' +
-               '<label>Cable Length (Meters):</label><input type="number" id="c_len" placeholder="उदा. 100">' +
-               '<label>Cable Resistance (Ohms/meter):</label><input type="number" id="c_res" value="0.001" step="0.0001">';
-        break;
-      case "apfc_kvar":
-        html = '<label>Active Power (kW):</label><input type="number" id="c_kw" placeholder="उदा. 100">' +
-               '<label>Current PF (e.g. 0.75):</label><input type="number" id="c_pf1" placeholder="उदा. 0.75" step="0.01">' +
-               '<label>Target PF (e.g. 0.99):</label><input type="number" id="c_pf2" value="0.99" step="0.01">';
-        break;
+    let html = "";
+    if(select === "kw_to_amp_3ph") {
+      html = '<label>Power (kW):</label><input type="number" id="val1" placeholder="उदा. 10"><label>Voltage (V):</label><input type="number" id="val2" value="415"><label>Power Factor (PF):</label><input type="number" id="val3" value="0.8" step="0.01">';
+    } else if(select === "kw_to_amp_1ph") {
+      html = '<label>Power (kW):</label><input type="number" id="val1" placeholder="उदा. 5"><label>Voltage (V):</label><input type="number" id="val2" value="230"><label>Power Factor (PF):</label><input type="number" id="val3" value="0.9" step="0.01">';
+    } else if(select === "kva_to_amp_3ph") {
+      html = '<label>Apparent Power (kVA):</label><input type="number" id="val1" placeholder="उदा. 500"><label>Voltage (V):</label><input type="number" id="val2" value="415">';
+    } else if(select === "hp_to_kw") {
+      html = '<label>Motor Power (HP/kW की वैल्यू डालें):</label><input type="number" id="val1" placeholder="उदा. 10">';
+    } else if(select === "sync_speed") {
+      html = '<label>Frequency (Hz):</label><input type="number" id="val1" value="50"><label>Number of Poles (P):</label><input type="number" id="val2" placeholder="उदा. 4">';
+    } else if(select === "motor_slip") {
+      html = '<label>Sync Speed Ns (RPM):</label><input type="number" id="val1" placeholder="उदा. 1500"><label>Rotor Speed Nr (RPM):</label><input type="number" id="val2" placeholder="उदा. 1440">';
+    } else if(select === "battery_backup") {
+      html = '<label>Battery (Ah):</label><input type="number" id="val1" placeholder="उदा. 150"><label>Voltage (V):</label><input type="number" id="val2" value="12"><label>Load (W):</label><input type="number" id="val3" placeholder="उदा. 400"><label>Efficiency:</label><input type="number" id="val4" value="0.8" step="0.1">';
+    } else if(select === "transformer_kva") {
+      html = '<label>Voltage (V):</label><input type="number" id="val1" value="415"><label>Current (Amps):</label><input type="number" id="val2" placeholder="उदा. 1390">';
+    } else if(select === "volt_drop_3ph") {
+      html = '<label>Current (Amps):</label><input type="number" id="val1" placeholder="उदा. 50"><label>Length (Meters):</label><input type="number" id="val2" placeholder="उदा. 100"><label>Resistance (&Omega;/m):</label><input type="number" id="val3" value="0.001" step="0.0001">';
+    } else if(select === "apfc_kvar") {
+      html = '<label>Active Power (kW):</label><input type="number" id="val1" placeholder="उदा. 100"><label>Current PF:</label><input type="number" id="val2" placeholder="उदा. 0.75" step="0.01"><label>Target PF:</label><input type="number" id="val3" value="0.99" step="0.01">';
     }
+    
     inputsContent.innerHTML = html;
     calcInputs.style.display = "block";
   }
 
-  // 3. कैलकुलेशन लॉजिक
-  function calculate() {
-    var select = document.getElementById("calcSelect").value;
-    var resBox = document.getElementById("resultOutput");
-    var out = "";
+  // -- 3. Execute Calculation Core Logic --
+  function executeCalculation() {
+    let select = document.getElementById("calcSelect").value;
+    let resBox = document.getElementById("resultOutput");
+    let out = "";
+    let error = false;
 
-    try {
-      if (select === "kw_to_amp_3ph") {
-        var kw = parseFloat(document.getElementById("c_kw").value);
-        var v = parseFloat(document.getElementById("c_v").value);
-        var pf = parseFloat(document.getElementById("c_pf").value);
-        var amp = (kw * 1000) / (1.732 * v * pf);
-        out = "3-Phase Current (I) = " + amp.toFixed(2) + " Amps";
-      } 
-      else if (select === "kw_to_amp_1ph") {
-        var kw = parseFloat(document.getElementById("c_kw").value);
-        var v = parseFloat(document.getElementById("c_v").value);
-        var pf = parseFloat(document.getElementById("c_pf").value);
-        var amp = (kw * 1000) / (v * pf);
-        out = "1-Phase Current (I) = " + amp.toFixed(2) + " Amps";
-      }
-      else if (select === "kva_to_amp_3ph") {
-        var kva = parseFloat(document.getElementById("c_kva").value);
-        var v = parseFloat(document.getElementById("c_v").value);
-        var amp = (kva * 1000) / (1.732 * v);
-        out = "Full Load Current (Amps) = " + amp.toFixed(2) + " Amps";
-      }
-      else if (select === "hp_to_kw") {
-        var hp = parseFloat(document.getElementById("c_hp").value);
-        var kw = hp * 0.746;
-        var reverse_hp = hp / 0.746; // If input was kW, this shows HP
-        out = hp + " HP = " + kw.toFixed(3) + " kW <br><span style='font-size:14px; color:#555;'>(नोट: यदि आपने kW डाला है, तो यह " + reverse_hp.toFixed(2) + " HP होगा)</span>";
-      }
-      else if (select === "sync_speed") {
-        var f = parseFloat(document.getElementById("c_f").value);
-        var p = parseFloat(document.getElementById("c_p").value);
-        var ns = (120 * f) / p;
-        out = "Synchronous Speed (Ns) = " + ns.toFixed(0) + " RPM";
-      }
-      else if (select === "motor_slip") {
-        var ns = parseFloat(document.getElementById("c_ns").value);
-        var nr = parseFloat(document.getElementById("c_nr").value);
-        var slip = ((ns - nr) / ns) * 100;
-        out = "Motor Slip = " + slip.toFixed(2) + " %";
-      }
-      else if (select === "battery_backup") {
-        var ah = parseFloat(document.getElementById("c_ah").value);
-        var v = parseFloat(document.getElementById("c_v").value);
-        var load = parseFloat(document.getElementById("c_load").value);
-        var eff = parseFloat(document.getElementById("c_eff").value);
-        var time = (ah * v * eff) / load;
-        out = "अनुमानित बैकअप टाइम = " + time.toFixed(2) + " Hours (घंटे)";
-      }
-      else if (select === "transformer_kva") {
-        var v = parseFloat(document.getElementById("c_v").value);
-        var amp = parseFloat(document.getElementById("c_amp").value);
-        var kva = (1.732 * v * amp) / 1000;
-        out = "Transformer Rating = " + kva.toFixed(2) + " kVA";
-      }
-      else if (select === "volt_drop_3ph") {
-        var amp = parseFloat(document.getElementById("c_amp").value);
-        var len = parseFloat(document.getElementById("c_len").value);
-        var res = parseFloat(document.getElementById("c_res").value);
-        var vd = 1.732 * amp * len * res;
-        out = "Total Voltage Drop = " + vd.toFixed(2) + " Volts";
-      }
-      else if (select === "apfc_kvar") {
-        var kw = parseFloat(document.getElementById("c_kw").value);
-        var pf1 = parseFloat(document.getElementById("c_pf1").value);
-        var pf2 = parseFloat(document.getElementById("c_pf2").value);
-        // Calculate angles in radians, then tan
-        var tan1 = Math.tan(Math.acos(pf1));
-        var tan2 = Math.tan(Math.acos(pf2));
-        var kvar = kw * (tan1 - tan2);
-        out = "Required Capacitor Bank = " + kvar.toFixed(2) + " kVAR";
-      }
+    // Helper to safely get value
+    function getV(id) { 
+        let el = document.getElementById(id);
+        return el && el.value ? parseFloat(el.value) : NaN;
+    }
 
-      if(isNaN(out) && out.indexOf("NaN") !== -1) {
+    let v1 = getV("val1"), v2 = getV("val2"), v3 = getV("val3"), v4 = getV("val4");
+
+    if(select === "kw_to_amp_3ph") {
+      if(v1 && v2 && v3) out = "3-Phase Current (I) = " + ((v1 * 1000) / (1.732 * v2 * v3)).toFixed(2) + " Amps";
+      else error = true;
+    } 
+    else if(select === "kw_to_amp_1ph") {
+      if(v1 && v2 && v3) out = "1-Phase Current (I) = " + ((v1 * 1000) / (v2 * v3)).toFixed(2) + " Amps";
+      else error = true;
+    }
+    else if(select === "kva_to_amp_3ph") {
+      if(v1 && v2) out = "Full Load Current = " + ((v1 * 1000) / (1.732 * v2)).toFixed(2) + " Amps";
+      else error = true;
+    }
+    else if(select === "hp_to_kw") {
+      if(v1) out = v1 + " HP = " + (v1 * 0.746).toFixed(2) + " kW <br><small>(" + v1 + " kW = " + (v1 / 0.746).toFixed(2) + " HP)</small>";
+      else error = true;
+    }
+    else if(select === "sync_speed") {
+      if(v1 && v2) out = "Sync Speed (Ns) = " + ((120 * v1) / v2).toFixed(0) + " RPM";
+      else error = true;
+    }
+    else if(select === "motor_slip") {
+      if(v1 && v2) out = "Motor Slip = " + (((v1 - v2) / v1) * 100).toFixed(2) + " %";
+      else error = true;
+    }
+    else if(select === "battery_backup") {
+      if(v1 && v2 && v3 && v4) out = "बैकअप टाइम = " + ((v1 * v2 * v4) / v3).toFixed(2) + " Hours (घंटे)";
+      else error = true;
+    }
+    else if(select === "transformer_kva") {
+      if(v1 && v2) out = "Transformer = " + ((1.732 * v1 * v2) / 1000).toFixed(2) + " kVA";
+      else error = true;
+    }
+    else if(select === "volt_drop_3ph") {
+      if(v1 && v2 && v3) out = "Voltage Drop = " + (1.732 * v1 * v2 * v3).toFixed(2) + " Volts";
+      else error = true;
+    }
+    else if(select === "apfc_kvar") {
+      if(v1 && v2 && v3) {
+        let tan1 = Math.tan(Math.acos(v2));
+        let tan2 = Math.tan(Math.acos(v3));
+        out = "Required Capacitor = " + (v1 * (tan1 - tan2)).toFixed(2) + " kVAR";
+      } else error = true;
+    }
+
+    // Display Result or Error
+    if(error || out.includes("NaN")) {
+      resBox.innerHTML = "कृपया सभी बॉक्स में सही नंबर डालें!";
+      resBox.style.color = "red";
+      resBox.style.backgroundColor = "#ffe6e6";
+      resBox.style.borderColor = "#ffcccc";
+    } else {
+      resBox.innerHTML = out;
+      resBox.style.color = "#155724";
+      resBox.style.backgroundColor = "#d4edda";
+      resBox.style.borderColor = "#c3e6cb";
+    }
+    
+    resBox.style.display = "block";
+    resBox.className = "result-box";
+  }
+</script>
+
+</body>
+</html>
