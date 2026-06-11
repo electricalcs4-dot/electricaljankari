@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Jankari</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        header { background-color: #004080; color: #fff; padding: 1.5rem 0; text-align: center; }
+        main { padding: 2rem; max-width: 800px; margin: 1.5rem auto; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { color: #004080; border-bottom: 2px solid #004080; padding-bottom: 0.5rem; }
+        h2 { color: #0080ff; margin-top: 1.5rem; }
+        ul { list-style-type: square; padding-left: 1.5rem; }
+        .formula { background-color: #e6f2ff; padding: 1rem; border-left: 4px solid #004080; margin: 0.5rem 0; font-family: monospace; }
+        .calculator { background-color: #f9f9f9; padding: 1.5rem; border: 1px solid #ccc; border-radius: 5px; margin-top: 1.5rem; }
+        .calculator input { padding: 0.5rem; margin: 0.5rem 0; width: 100%; box-sizing: border-box; }
+        .calculator button { background-color: #004080; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; }
+        .result { margin-top: 1rem; font-weight: bold; color: #004080; }
+    </style>
+    <script>
+        function kwToAmps() {
+            var kw = parseFloat(document.getElementById('kw').value);
+            var v = parseFloat(document.getElementById('voltage').value);
+            // मान लेते हैं कि यह सिंगल फेज है और पावर फैक्टर 0.8 है
+            var amps = (kw * 1000) / (v * 0.8);
+            document.getElementById('res_amps').innerText = "परिणाम: " + amps.toFixed(2) + " Amps";
+        }
+        function hpToKw() {
+            var hp = parseFloat(document.getElementById('hp').value);
+            var kw = hp * 0.746;
+            document.getElementById('res_kw').innerText = "परिणाम: " + kw.toFixed(2) + " kW";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Electrical Jankari</h1>
+        <p>सही जानकारी, सही सुरक्षा और ज्ञान</p>
+    </header>
+    <main>
+        <h1>Welcome to Electrical Jankari</h1>
+        
+        <h2>इलेक्ट्रिकल सुरक्षा टिप्स (Electrical Safety Tips)</h2>
+        <ul>
+            <li>किसी भी उपकरण पर काम करने से पहले हमेशा मेन पावर को ऑफ कर दें।</li>
+            <li>गीले हाथों से कभी भी स्विच या बिजली के तारों को न छुएं।</li>
+            <li>हमेशा अच्छे इन्सुलेशन वाले औजारों का इस्तेमाल करें।</li>
+            <li>खराब या कटी हुई तारों को तुरंत बदल दें।</li>
+            <li>अर्थिंग की जाँच हमेशा करते रहें।</li>
+        </ul>
+
+        <h2>महत्वपूर्ण इलेक्ट्रिकल फार्मूलाज़</h2>
+        <p>1. ओहम का नियम (Ohm's Law):</p>
+        <div class="formula">V = I × R</div>
+        <p>2. इलेक्ट्रिकल पावर:</p>
+        <div class="formula">P = V × I</div>
+
+        <h2>इलेक्ट्रिकल कैलकुलेटर (Electrical Calculators)</h2>
+        
+        <div class="calculator">
+            <h3>kW to Amps कैलकुलेटर (सिंगल फेज)</h3>
+            <label>kW दर्ज करें:</label><input type="number" id="kw" placeholder="उदा. 5">
+            <label>वोल्टेज दर्ज करें:</label><input type="number" id="voltage" placeholder="उदा. 220">
+            <button onclick="kwToAmps()">कैलकुलेट करें</button>
+            <div class="result" id="res_amps"></div>
+        </div>
+
+        <div class="calculator">
+            <h3>HP to kW कैलकुलेटर</h3>
+            <label>HP दर्ज करें:</label><input type="number" id="hp" placeholder="उदा. 10">
+            <button onclick="hpToKw()">कैलकुलेट करें</button>
+            <div class="result" id="res_kw"></div>
+        </div>
+    </main>
+</body>
+</html>
