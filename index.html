@@ -7,13 +7,47 @@
 <style>
   body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; }
   
-  /* Header Design */
-  .header { background-color: #0044cc; color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 5px solid #002266; }
+  /* --- New Background Slider CSS Start --- */
+  .bg-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #000;
+  }
+  .bg-slider .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeSlide 20s infinite;
+  }
+  /* 4 Images for HT/LT Panels, Transformers & Industrial Setup */
+  .bg-slider .slide-1 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000&auto=format&fit=crop'); animation-delay: 0s; }
+  .bg-slider .slide-2 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558451121-50e5837e?q=80&w=1000&auto=format&fit=crop'); animation-delay: 5s; }
+  .bg-slider .slide-3 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1544724569-5f546fd6f2b6?q=80&w=1000&auto=format&fit=crop'); animation-delay: 10s; }
+  .bg-slider .slide-4 { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1000&auto=format&fit=crop'); animation-delay: 15s; }
+
+  @keyframes fadeSlide {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    25% { opacity: 1; }
+    35% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  /* --- New Background Slider CSS End --- */
+
+  /* Header Design (Made slightly transparent) */
+  .header { background-color: rgba(0, 68, 204, 0.85); color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 5px solid rgba(0, 34, 102, 0.9); }
   .top-bar { font-size: 42px; font-weight: 900; margin-bottom: 10px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
   .main-title { font-size: 22px; color: #e6f0ff; font-weight: bold; }
   
-  /* Main Container */
-  .container { max-width: 900px; margin: 30px auto; background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  /* Main Container (Made slightly transparent to show background) */
+  .container { max-width: 900px; margin: 30px auto; background: rgba(255, 255, 255, 0.92); padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
   section { margin-bottom: 40px; padding-bottom: 30px; border-bottom: 2px dashed #ddd; }
   section:last-child { border-bottom: none; }
   h2 { color: #0044cc; font-size: 26px; border-left: 5px solid #ff9900; padding-left: 10px; }
@@ -53,6 +87,13 @@
 </style>
 </head>
 <body>
+
+<div class="bg-slider">
+  <div class="slide slide-1"></div>
+  <div class="slide slide-2"></div>
+  <div class="slide slide-3"></div>
+  <div class="slide slide-4"></div>
+</div>
 
 <div class="header">
   <div class="top-bar">Welcome to Electrical Jankari</div>
@@ -120,14 +161,14 @@
       <option value="apfc_kvar">10. APFC Required Capacitor (kVAR)</option>
     </select>
     
-    <div id="calcInputs" style="display:none; background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
+    <div id="calcInputs" style="display:none; background: rgba(255, 255, 255, 0.95); padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-top: 15px;">
       <div id="inputsContent"></div>
       <button class="calc-btn" onclick="executeCalculation()">कैलकुलेट करें</button>
       <div id="resultOutput" style="display:none;"></div>
     </div>
   </section>
 
-  <section style="text-align: center; border: none; background: #eef5fa; padding: 30px; border-radius: 8px; margin-top: 20px;">
+  <section style="text-align: center; border: none; background: rgba(238, 245, 250, 0.9); padding: 30px; border-radius: 8px; margin-top: 20px;">
     <h2 style="border: none; color: #0044cc; margin-top: 0;">सुझाव या टिप्पणी दें</h2>
     <p style="color: #555; font-size: 16px; margin-bottom: 20px;">
       क्या आपके पास कोई सुझाव है, या आप किसी फॉर्मूले के बारे में पूछना चाहते हैं? सीधे मुझसे Instagram पर जुड़ें!
@@ -264,42 +305,4 @@
       else error = true;
     }
     else if(select === "battery_backup") {
-      if(v1 && v2 && v3 && v4) out = "बैकअप टाइम = " + ((v1 * v2 * v4) / v3).toFixed(2) + " Hours (घंटे)";
-      else error = true;
-    }
-    else if(select === "transformer_kva") {
-      if(v1 && v2) out = "Transformer = " + ((1.732 * v1 * v2) / 1000).toFixed(2) + " kVA";
-      else error = true;
-    }
-    else if(select === "volt_drop_3ph") {
-      if(v1 && v2 && v3) out = "Voltage Drop = " + (1.732 * v1 * v2 * v3).toFixed(2) + " Volts";
-      else error = true;
-    }
-    else if(select === "apfc_kvar") {
-      if(v1 && v2 && v3) {
-        let tan1 = Math.tan(Math.acos(v2));
-        let tan2 = Math.tan(Math.acos(v3));
-        out = "Required Capacitor = " + (v1 * (tan1 - tan2)).toFixed(2) + " kVAR";
-      } else error = true;
-    }
-
-    // Display Result or Error
-    if(error || out.includes("NaN")) {
-      resBox.innerHTML = "कृपया सभी बॉक्स में सही नंबर डालें!";
-      resBox.style.color = "red";
-      resBox.style.backgroundColor = "#ffe6e6";
-      resBox.style.borderColor = "#ffcccc";
-    } else {
-      resBox.innerHTML = out;
-      resBox.style.color = "#155724";
-      resBox.style.backgroundColor = "#d4edda";
-      resBox.style.borderColor = "#c3e6cb";
-    }
-    
-    resBox.style.display = "block";
-    resBox.className = "result-box";
-  }
-</script>
-
-</body>
-</html>
+      if(v1 && v2 && v3 && v4) out = "बैकअप टाइम = " + ((v1 * v2 * v4) / v3).toFixed(2) + " Hours (घं
