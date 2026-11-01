@@ -29,6 +29,8 @@
   .formula-text { font-size: 18px; font-weight: bold; color: #222; margin-bottom: 10px; line-height: 1.6; }
   .example { font-style: italic; color: #005500; margin-top: 10px; background: #e6ffe6; padding: 10px; border-radius: 4px; border-left: 4px solid #00cc00;}
   .result-box { background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; font-size: 18px; font-weight: bold; margin-top: 15px; text-align: center; border: 1px solid #c3e6cb; }
+  .calc-guidance { background:#fff8e8; border-left:4px solid #ff9900; padding:12px 14px; margin:8px 0 14px; border-radius:4px; color:#444; font-size:14px; line-height:1.6; }
+  .calc-guidance p { margin:5px 0 8px; }
   label { font-weight: bold; color: #555; display: block; margin-top: 10px; }
 
   /* Advanced Grid Cards */
@@ -43,6 +45,19 @@
   .safety-alert { background: #fff5f5; border: 1px solid #fed7d7; border-left: 5px solid #e53e3e; padding: 20px; border-radius: 6px; margin-top: 20px; }
   .safety-alert h3 { color: #c53030; margin-top: 0; }
 
+  /* HSE section: scoped styles so the existing website styles remain unchanged */
+  .hse-table-wrap { width: 100%; overflow-x: auto; margin-top: 18px; }
+  .hse-table { width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; min-width: 650px; }
+  .hse-table th, .hse-table td { border: 1px solid #dddddd; text-align: left; padding: 12px; vertical-align: top; }
+  .hse-table th { background-color: #0056b3; color: white; }
+  .hse-table tr:nth-child(even) { background-color: #f2f2f2; }
+  .hse-category { font-weight: bold; background-color: #e9ecef; }
+  .hse-note { font-size: 13px; color: #666; line-height: 1.6; margin-top: 10px; }
+  .hse-subtitle { color: #0044cc; margin-top: 28px; margin-bottom: 8px; }
+  .hse-result { white-space: normal; }
+  .hse-example { background: #e8f4ff; color: #23415e; border: 1px solid #c8def3; border-left: 4px solid #3182ce; border-radius: 5px; padding: 13px 15px; margin-top: 10px; line-height: 1.65; white-space: pre-line; font-size: 14px; }
+  .hse-example b { color: #0044cc; }
+  
   /* Instagram Floating Button */
   .ig-float {
     position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
@@ -239,6 +254,110 @@
     </div>
   </section>
 
+  <!-- SECTION 2A: HSE SAFETY FORMULAS & CALCULATORS (new section) -->
+  <section id="hse-safety-section">
+    <h2>🦺 HSE Safety Formula - Quick Reference Guide</h2>
+    <p style="color: #666;">Health, Safety, and Environment से जुड़े महत्वपूर्ण HSE formulas और quick calculations:</p>
+
+    <div class="hse-table-wrap">
+      <table class="hse-table">
+        <thead>
+          <tr>
+            <th>कैटगरी (Category)</th>
+            <th>फ़ॉर्मूला का नाम (Formula Name)</th>
+            <th>फ़ॉर्मूला (Formula)</th>
+            <th>उदाहरण (Example)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="hse-category" rowspan="1">Risk Management</td>
+            <td>Risk Rating (R)</td>
+            <td>Likelihood (L) × Severity (S)</td>
+            <td>L = 3, S = 4 → R = 3 × 4 = <b>12</b> (score)</td>
+          </tr>
+          <tr>
+            <td class="hse-category" rowspan="4">Accident & Incident Statistics</td>
+            <td>Accident Frequency Rate (AFR)</td>
+            <td>(Number of injuries × 1,000,000) ÷ Total man-hours worked</td>
+            <td>(2 × 1,000,000) ÷ 250,000 = <b>8</b> per 1,000,000 man-hours</td>
+          </tr>
+          <tr>
+            <td>Lost Time Injury Frequency Rate (LTIFR)</td>
+            <td>(Number of lost-time injuries × 1,000,000) ÷ Total man-hours worked</td>
+            <td>(1 × 1,000,000) ÷ 250,000 = <b>4</b> per 1,000,000 man-hours</td>
+          </tr>
+          <tr>
+            <td>Severity Rate (SR)</td>
+            <td>(Lost workdays × 1,000,000) ÷ Total man-hours worked</td>
+            <td>(12 × 1,000,000) ÷ 250,000 = <b>48</b> lost workdays per 1,000,000 man-hours</td>
+          </tr>
+          <tr>
+            <td>Incident Rate (IR / TRIR)</td>
+            <td>(Recordable incidents × 200,000) ÷ Total hours worked</td>
+            <td>(2 × 200,000) ÷ 1,000,000 = <b>0.40</b> per 200,000 hours</td>
+          </tr>
+          <tr>
+            <td class="hse-category" rowspan="3">Occupational Health & Environment</td>
+            <td>Fire Load Density</td>
+            <td>Total heat energy of combustible materials (MJ) ÷ Floor area (m²)</td>
+            <td>50,000 MJ ÷ 500 m² = <b>100 MJ/m²</b></td>
+          </tr>
+          <tr>
+            <td>Noise Level (LAeq)</td>
+            <td>10 × log₁₀ [ (10<sup>L1/10</sup> + 10<sup>L2/10</sup> + ... + 10<sup>Ln/10</sup>) ÷ n ] (equal-duration readings)</td>
+            <td>82, 85, 88, 90 dB(A) (equal duration) → <b>87.21 dB(A)</b></td>
+          </tr>
+          <tr>
+            <td>Ventilation Rate (Q)</td>
+            <td>Room volume (m³) × Air changes per hour (ACH) = m³/hour</td>
+            <td>300 m³ × 6 ACH = <b>1,800 m³/hour</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="hse-note"><b>ध्यान दें:</b> AFR, LTIFR और TRIR/IR के multiplier अलग-अलग client, company या reporting standards में अलग हो सकते हैं। यहाँ आपके दिए हुए formula के multipliers रखे गए हैं। रिपोर्ट जमा करने से पहले अपने project/client standard से पुष्टि करें।</p>
+
+    <h3 class="hse-subtitle">HSE Safety Calculators</h3>
+    <p style="color: #666;">नीचे calculator चुनें, आवश्यक data भरें और result देखें:</p>
+    <select id="hseCalcSelect" onchange="showHSECalculator()">
+      <option value="">-- HSE Safety Calculator चुनें --</option>
+      <optgroup label="MOST IMPORTANT 8 मूल Formula Calculators">
+        <option value="risk_rating">1. Risk Rating / Risk Matrix</option>
+        <option value="afr">2. Accident Frequency Rate (AFR)</option>
+        <option value="ltifr">3. Lost Time Injury Frequency Rate (LTIFR)</option>
+        <option value="severity_rate">4. Severity Rate (SR)</option>
+        <option value="incident_rate">5. Incident Rate / TRIR</option>
+        <option value="fire_load">6. Fire Load Density</option>
+        <option value="noise_laeq">7. Noise Level (LAeq)</option>
+        <option value="ventilation">8. Ventilation Rate (Q)</option>
+      </optgroup>
+      <optgroup label="अतिरिक्त HSE Calculators">
+        <option value="near_miss_rate">9. Near Miss Frequency Rate</option>
+        <option value="ladder_4to1">10. Ladder 4:1 Setup Guide</option>
+        <option value="extinguisher_estimate">11. Fire Extinguisher Area Planning Estimate</option>
+        <option value="wbgt">12. Heat Stress - WBGT Calculator</option>
+        <option value="noise_dose">13. Noise Exposure Dose</option>
+        <option value="ppe_compliance">14. PPE Compliance Percentage</option>
+        <option value="training_coverage">15. Safety Training Coverage</option>
+        <option value="observation_closure">16. Safety Observation Closure Rate</option>
+        <option value="inspection_compliance">17. Safety Inspection Compliance</option>
+        <option value="drill_participation">18. Emergency Drill Participation</option>
+        <option value="ptw_compliance">19. Permit-to-Work (PTW) Compliance</option>
+        <option value="action_closure">20. Corrective Action Closure Rate</option>
+      </optgroup>
+    </select>
+
+    <div id="hseCalcInputs" style="display:none; background:#fff; padding:20px; border:1px solid #ddd; border-radius:8px; margin-top:15px;">
+      <div id="hseInputsContent"></div>
+      <button type="button" class="calc-btn" onclick="executeHSECalculation()">HSE Calculate करें</button>
+      <div id="hseResultOutput" class="result-box hse-result" style="display:none;"></div>
+      <div id="hseExampleOutput" class="hse-example" style="display:none;" aria-live="polite"></div>
+    </div>
+    <p class="hse-note"><b>Safety note:</b> ये calculators quick reference और indicative calculations के लिए हैं। वास्तविक risk assessment, ladder setup, fire extinguisher selection/placement, heat-stress controls और exposure limits के लिए लागू कानून, IS/NBC/प्रोजेक्ट standards, manufacturer instructions और competent HSE professional की मंजूरी का पालन करें।</p>
+  </section>
+
   <!-- SECTION 3: ADVANCED ELECTRICAL ENGINEERING TIPS -->
   <section>
     <h2>⚡ एडवांस इलेक्ट्रिकल इंजीनियरिंग टिप्स & इंडस्ट्री स्टैंडर्ड्स</h2>
@@ -403,6 +522,9 @@
   }
 
   // -- 2. Dynamic Calculator Inputs Generation (Expanded to 100 Calculations) --
+  // Clear, formula-specific input names and examples for Electrical Calculators 11–100.
+  const extendedCalculatorInputs = {"ohm_calc":{"fields":[{"label":"Voltage (V) — वोल्टेज","placeholder":"उदा. 230"},{"label":"Current (A) — करंट","placeholder":"उदा. 5"},{"label":"Resistance (Ω) — रेजिस्टेंस","placeholder":"उदा. 46"}],"note":"इन तीन में से कोई भी दो मान भरें; तीसरा मान कैलकुलेट होगा।","example":"Example: V = 230 V और R = 46 Ω → I = 5 A."},"dc_power_calc":{"fields":[{"label":"DC Voltage (V) — सप्लाई वोल्टेज","placeholder":"उदा. 24"},{"label":"DC Current (A) — करंट","placeholder":"उदा. 5"}],"note":"बैटरी/डीसी सप्लाई का वोल्टेज और उससे लिया जाने वाला करंट भरें।","example":"Example: 24 V × 5 A = 120 W."},"ac_1ph_power":{"fields":[{"label":"Single-phase Voltage (V) — वोल्टेज","placeholder":"उदा. 230"},{"label":"Current (A) — करंट","placeholder":"उदा. 10"},{"label":"Power Factor (PF) — पावर फैक्टर","placeholder":"उदा. 0.8"}],"note":"सिंगल-फेज सप्लाई का वोल्टेज, करंट और PF (0 से 1 के बीच) भरें।","example":"Example: 230 × 10 × 0.8 = 1,840 W."},"res_series_calc":{"fields":[{"label":"Resistance R1 (Ω)","placeholder":"उदा. 10"},{"label":"Resistance R2 (Ω)","placeholder":"उदा. 15"},{"label":"Resistance R3 (Ω) — वैकल्पिक","placeholder":"उदा. 5"},{"label":"Resistance R4 (Ω) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"},{"label":"Resistance R5 (Ω) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"}],"note":"सीरीज़ में जुड़े रेजिस्टर्स की वैल्यू भरें। कम-से-कम R1 और R2 जरूरी हैं।","example":"Example: 10 + 15 + 5 = 30 Ω."},"res_parallel_calc":{"fields":[{"label":"Resistance R1 (Ω)","placeholder":"उदा. 10"},{"label":"Resistance R2 (Ω)","placeholder":"उदा. 20"},{"label":"Resistance R3 (Ω) — वैकल्पिक","placeholder":"उदा. 30"},{"label":"Resistance R4 (Ω) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"},{"label":"Resistance R5 (Ω) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"}],"note":"पैरेलल में जुड़े सभी रेजिस्टर्स की वैल्यू भरें। R1 और R2 जरूरी हैं।","example":"Example: 10 Ω और 20 Ω पैरेलल → 6.67 Ω."},"cap_series_calc":{"fields":[{"label":"Capacitor C1 (µF)","placeholder":"उदा. 10"},{"label":"Capacitor C2 (µF)","placeholder":"उदा. 20"},{"label":"Capacitor C3 (µF) — वैकल्पिक","placeholder":"उदा. 30"},{"label":"Capacitor C4 (µF) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"},{"label":"Capacitor C5 (µF) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"}],"note":"सीरीज़ में जुड़े capacitors की capacitance µF में भरें। C1 और C2 जरूरी हैं।","example":"Example: 10 µF और 20 µF सीरीज़ → 6.67 µF."},"cap_parallel_calc":{"fields":[{"label":"Capacitor C1 (µF)","placeholder":"उदा. 10"},{"label":"Capacitor C2 (µF)","placeholder":"उदा. 20"},{"label":"Capacitor C3 (µF) — वैकल्पिक","placeholder":"उदा. 30"},{"label":"Capacitor C4 (µF) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"},{"label":"Capacitor C5 (µF) — वैकल्पिक","placeholder":"खाली छोड़ सकते हैं"}],"note":"पैरेलल में जुड़े capacitors की capacitance µF में भरें। C1 और C2 जरूरी हैं।","example":"Example: 10 + 20 + 30 = 60 µF."},"inductive_reactance_calc":{"fields":[{"label":"Frequency (Hz) — फ्रीक्वेंसी","placeholder":"उदा. 50"},{"label":"Inductance (mH) — इंडक्टेंस","placeholder":"उदा. 100"}],"note":"AC frequency Hz में और inductance mH में भरें।","example":"Example: 50 Hz और 100 mH → XL = 31.42 Ω."},"capacitive_reactance_calc":{"fields":[{"label":"Frequency (Hz) — फ्रीक्वेंसी","placeholder":"उदा. 50"},{"label":"Capacitance (µF) — कैपेसिटेंस","placeholder":"उदा. 100"}],"note":"AC frequency Hz में और capacitance µF में भरें।","example":"Example: 50 Hz और 100 µF → XC = 31.83 Ω."},"impedance_calc":{"fields":[{"label":"Resistance (Ω) — R","placeholder":"उदा. 10"},{"label":"Inductive Reactance XL (Ω)","placeholder":"उदा. 20"},{"label":"Capacitive Reactance XC (Ω)","placeholder":"उदा. 5"}],"note":"सर्किट का R, XL और XC भरें। Net reactance = XL − XC माना जाएगा।","example":"Example: R = 10 Ω, XL = 20 Ω, XC = 5 Ω → Z = 18.03 Ω."},"kwh_calc":{"fields":[{"label":"Load Power (kW) — लोड पावर","placeholder":"उदा. 5"},{"label":"Operating Time (hours) — चलने का समय","placeholder":"उदा. 8"}],"note":"लोड की वास्तविक इनपुट पावर kW में और चलने के घंटे भरें।","example":"Example: 5 kW × 8 hours = 40 kWh (units)."},"cable_ampacity_calc":{"fields":[{"label":"Load Current (A) — आवश्यक करंट","placeholder":"उदा. 100"},{"label":"Allowable Current Density (A/mm²) — स्वीकृत करंट डेंसिटी","placeholder":"उदा. 4"}],"note":"लोड करंट और डिजाइन/स्टैंडर्ड के अनुसार स्वीकृत current density भरें।","example":"Example: 100 A ÷ 4 A/mm² = 25 mm² न्यूनतम अनुमानित conductor area."},"motor_torque_calc":{"fields":[{"label":"Motor Output Power (kW) — मोटर आउटपुट","placeholder":"उदा. 7.5"},{"label":"Motor Speed (RPM) — मोटर स्पीड","placeholder":"उदा. 1440"}],"note":"मोटर की output power kW में और nameplate speed RPM में भरें।","example":"Example: 7.5 kW at 1440 RPM → लगभग 49.74 N·m."},"transformer_turns_calc":{"fields":[{"label":"Primary Voltage (V) — प्राइमरी वोल्टेज","placeholder":"उदा. 11000"},{"label":"Secondary Voltage (V) — सेकेंडरी वोल्टेज","placeholder":"उदा. 415"}],"note":"ट्रांसफार्मर का primary और secondary voltage भरें।","example":"Example: 11000 ÷ 415 = लगभग 26.51 : 1."},"diversity_calc":{"fields":[{"label":"Sum of Individual Maximum Demands (kW)","placeholder":"उदा. 200"},{"label":"Maximum Coincident Demand (kW)","placeholder":"उदा. 150"}],"note":"सभी individual maximum demand का योग और एक साथ आया maximum demand भरें।","example":"Example: 200 ÷ 150 = 1.33."},"load_factor_calc":{"fields":[{"label":"Average Load (kW) — औसत लोड","placeholder":"उदा. 60"},{"label":"Maximum Demand (kW) — अधिकतम मांग","placeholder":"उदा. 100"}],"note":"उसी अवधि का average load और maximum demand भरें।","example":"Example: 60 ÷ 100 × 100 = 60%."},"power_factor_calc":{"fields":[{"label":"Active Power (kW) — वास्तविक पावर","placeholder":"उदा. 80"},{"label":"Apparent Power (kVA) — अपेरेंट पावर","placeholder":"उदा. 100"}],"note":"एक ही समय/लोड के kW और kVA भरें।","example":"Example: 80 ÷ 100 = PF 0.80."},"earthing_plate_calc":{"fields":[{"label":"Plate Length (m) — प्लेट की लंबाई","placeholder":"उदा. 0.6"},{"label":"Plate Width (m) — प्लेट की चौड़ाई","placeholder":"उदा. 0.6"},{"label":"Number of Plates — प्लेटों की संख्या","placeholder":"उदा. 1"}],"note":"यह कुल geometric surface area का अनुमान है (दोनों faces); यह earth resistance या plate sizing approval नहीं है।","example":"Example: 0.6 × 0.6 × 2 faces = 0.72 m² (एक प्लेट)."},"lux_level_calc":{"fields":[{"label":"Total Lumens (lm) — कुल ल्यूमेन","placeholder":"उदा. 12000"},{"label":"Utilization Factor (CU) — उपयोग गुणांक","placeholder":"उदा. 0.6"},{"label":"Maintenance Factor (MF) — मेंटेनेंस गुणांक","placeholder":"उदा. 0.8"},{"label":"Room Area (m²) — क्षेत्रफल","placeholder":"उदा. 40"}],"note":"लाइटों का कुल lumen output, CU, MF और कमरे का floor area भरें।","example":"Example: 12000 × 0.6 × 0.8 ÷ 40 = 144 lux."},"solar_generation_calc":{"fields":[{"label":"Solar Plant Capacity (kWp)","placeholder":"उदा. 10"},{"label":"Peak Sun Hours per Day (hours)","placeholder":"उदा. 5"},{"label":"Performance Ratio (0–1)","placeholder":"उदा. 0.8"}],"note":"सोलर प्लांट की DC capacity, रोज के peak sun hours और performance ratio भरें।","example":"Example: 10 kWp × 5 h × 0.8 = 40 kWh/day."},"fault_current_calc":{"fields":[{"label":"Line Voltage (V) — 3-phase L-L voltage","placeholder":"उदा. 415"},{"label":"Equivalent Fault Impedance (Ω) — प्रति फेज equivalent","placeholder":"उदा. 0.05"}],"note":"3-phase fault का line-to-line voltage और source तक का equivalent per-phase impedance भरें।","example":"Example: 415 V, Z = 0.05 Ω → लगभग 4,791 A."},"mcb_rating_calc":{"fields":[{"label":"Calculated Design Load Current (A)","placeholder":"उदा. 40"},{"label":"Sizing Multiplier — design factor","placeholder":"उदा. 1.25"}],"note":"लोड का design current और चुना गया multiplier भरें। परिणाम केवल calculated minimum rating है; cable coordination और breaking capacity भी जाँचें।","example":"Example: 40 A × 1.25 = 50 A calculated minimum."},"relay_setting_calc":{"fields":[{"label":"Motor Nameplate Full Load Current (A)","placeholder":"उदा. 18"},{"label":"Relay Setting Multiplier","placeholder":"उदा. 1.0"}],"note":"मोटर nameplate का FLC और relay/installation के अनुसार setting multiplier भरें।","example":"Example: 18 A × 1.0 = 18 A. वास्तविक setting relay manual और starter arrangement से तय करें."},"star_delta_calc":{"fields":[{"label":"DOL Starting Line Current (A)","placeholder":"उदा. 180"}],"note":"यदि यही मोटर DOL पर start होती तो उसका अनुमानित line starting current भरें। स्टार-डेल्टा का ideal starting line current लगभग 1/3 माना है।","example":"Example: 180 A ÷ 3 = लगभग 60 A."},"vfd_freq_calc":{"fields":[{"label":"Rated Motor Speed (RPM) at Rated Frequency","placeholder":"उदा. 1440"},{"label":"Rated Frequency (Hz)","placeholder":"उदा. 50"},{"label":"Target VFD Frequency (Hz)","placeholder":"उदा. 40"}],"note":"मोटर की rated speed, rated frequency और VFD की target frequency भरें। Slip लगभग समान मानकर अनुमान निकलेगा।","example":"Example: 1440 × 40 ÷ 50 = लगभग 1152 RPM."},"capacitor_discharge_calc":{"fields":[{"label":"Discharge Resistance (kΩ)","placeholder":"उदा. 100"},{"label":"Capacitance (µF)","placeholder":"उदा. 100"},{"label":"Initial Voltage (V)","placeholder":"उदा. 400"},{"label":"Safe Target Voltage (V)","placeholder":"उदा. 50"}],"note":"Bleeder/discharge resistor, capacitor value, शुरुआती voltage और target safe voltage भरें।","example":"Example: 100 kΩ, 100 µF, 400 V से 50 V तक → लगभग 20.8 seconds."},"copper_loss_calc":{"fields":[{"label":"Current per Phase (A)","placeholder":"उदा. 20"},{"label":"Resistance per Phase (Ω)","placeholder":"उदा. 0.2"},{"label":"Number of Phases (1 or 3)","placeholder":"उदा. 3"}],"note":"प्रति phase current, प्रति phase winding resistance और phase count भरें।","example":"Example: 20² × 0.2 × 3 = 240 W."},"core_loss_calc":{"fields":[{"label":"No-load Line Voltage (V) — 3-phase L-L","placeholder":"उदा. 415"},{"label":"No-load Current (A)","placeholder":"उदा. 2"},{"label":"No-load Power Factor (0–1)","placeholder":"उदा. 0.2"}],"note":"3-phase transformer का no-load line voltage, no-load current और no-load PF भरें। यह measured no-load input power का estimate है।","example":"Example: √3 × 415 × 2 × 0.2 ÷ 1000 = 0.287 kW."},"voltage_regulation_calc":{"fields":[{"label":"No-load Voltage (V)","placeholder":"उदा. 240"},{"label":"Full-load Voltage (V)","placeholder":"उदा. 230"}],"note":"एक ही measurement point पर no-load और full-load voltage भरें।","example":"Example: (240 − 230) ÷ 230 × 100 = 4.35%."},"reactive_power_calc":{"fields":[{"label":"Active Power (kW)","placeholder":"उदा. 100"},{"label":"Power Factor (0–1)","placeholder":"उदा. 0.8"}],"note":"Active power kW और वर्तमान PF भरें।","example":"Example: 100 × tan(cos⁻¹ 0.8) = 75 kVAR."},"apparent_power_calc":{"fields":[{"label":"Active Power (kW)","placeholder":"उदा. 100"},{"label":"Power Factor (0–1)","placeholder":"उदा. 0.8"}],"note":"Active power kW और PF भरें।","example":"Example: 100 ÷ 0.8 = 125 kVA."},"skin_depth_calc":{"fields":[{"label":"Frequency (Hz)","placeholder":"उदा. 50"},{"label":"Resistivity (Ω·m)","placeholder":"Copper: 0.0000000172"},{"label":"Relative Permeability (µr)","placeholder":"उदा. 1"}],"note":"Frequency, conductor resistivity और relative permeability भरें। सामान्य copper के लिए resistivity लगभग 1.72×10⁻⁸ Ω·m और µr लगभग 1 है।","example":"Example: copper at 50 Hz → skin depth लगभग 9.35 mm."},"dc_resistance_temp_calc":{"fields":[{"label":"Initial Resistance R1 (Ω)","placeholder":"उदा. 10"},{"label":"Initial Temperature T1 (°C)","placeholder":"उदा. 20"},{"label":"Final Temperature T2 (°C)","placeholder":"उदा. 75"},{"label":"Temperature Coefficient α (/°C)","placeholder":"Copper: 0.00393"}],"note":"रेजिस्टेंस की शुरुआती value, शुरुआती/अंतिम तापमान और material का α भरें।","example":"Example: copper 10 Ω at 20°C → 75°C पर लगभग 12.16 Ω."},"lighting_fixture_calc":{"fields":[{"label":"Target Illuminance (lux)","placeholder":"उदा. 300"},{"label":"Room Area (m²)","placeholder":"उदा. 50"},{"label":"Lumens per Fixture (lm)","placeholder":"उदा. 4000"},{"label":"Utilization Factor (CU)","placeholder":"उदा. 0.6"},{"label":"Maintenance Factor (MF)","placeholder":"उदा. 0.8"}],"note":"Target lux, floor area, एक fixture का lumen output, CU और MF भरें।","example":"Example: 300×50 ÷ (4000×0.6×0.8) = 7.82 → 8 fixtures."},"battery_ah_calc":{"fields":[{"label":"DC Load Power (W)","placeholder":"उदा. 500"},{"label":"Required Backup Time (hours)","placeholder":"उदा. 4"},{"label":"Battery Bank Voltage (V)","placeholder":"उदा. 48"},{"label":"Inverter/System Efficiency (0–1)","placeholder":"उदा. 0.9"},{"label":"Allowed Depth of Discharge (0–1)","placeholder":"उदा. 0.8"}],"note":"DC/AC load watt, backup hours, battery voltage, efficiency और allowed DoD भरें। यह ideal Ah estimate है; temperature, aging और rate effects अलग हैं।","example":"Example: 500 W, 4 h, 48 V, 90% efficiency, 80% DoD → लगभग 57.9 Ah."},"inverter_rating_calc":{"fields":[{"label":"Total Load Power (W)","placeholder":"उदा. 1000"},{"label":"Load Power Factor (0–1)","placeholder":"उदा. 0.8"},{"label":"Design Margin (%)","placeholder":"उदा. 25"}],"note":"कुल simultaneous load W, load PF और अतिरिक्त design margin भरें। Starting surge अलग से जाँचें।","example":"Example: 1000 ÷ 0.8 × 1.25 = 1562.5 VA."},"generator_fuel_calc":{"fields":[{"label":"DG Rated Output (kW)","placeholder":"उदा. 100"},{"label":"Operating Load (%)","placeholder":"उदा. 75"},{"label":"Specific Fuel Consumption (L/kWh)","placeholder":"उदा. 0.25"}],"note":"DG की rated output kW, actual load प्रतिशत और निर्माता का SFC (L/kWh) भरें।","example":"Example: 100 × 75% × 0.25 = 18.75 L/hour."},"busbar_current_calc":{"fields":[{"label":"Busbar Width (mm)","placeholder":"उदा. 50"},{"label":"Busbar Thickness (mm)","placeholder":"उदा. 5"},{"label":"Number of Parallel Bars per Phase","placeholder":"उदा. 1"},{"label":"Approved Current Density (A/mm²)","placeholder":"उदा. 1.2"}],"note":"एक phase में bar की चौड़ाई, मोटाई, parallel bars की संख्या और approved current density भरें। यह preliminary estimate है; temperature rise/short-circuit check जरूरी है।","example":"Example: 50×5×1×1.2 = 300 A estimated."},"conduit_fill_calc":{"fields":[{"label":"Total Cable Cross-sectional Area (mm²)","placeholder":"उदा. 300"},{"label":"Conduit Internal Diameter (mm)","placeholder":"उदा. 32"}],"note":"सभी cables के बाहरी cross-sectional area का कुल योग और conduit का internal diameter भरें।","example":"Example: 300 mm² cable area in 32 mm conduit → लगभग 37.3% fill."},"harmonic_current_calc":{"fields":[{"label":"Fundamental Current I1 (A)","placeholder":"उदा. 100"},{"label":"3rd Harmonic I3 (A)","placeholder":"उदा. 5"},{"label":"5th Harmonic I5 (A)","placeholder":"उदा. 8"},{"label":"7th Harmonic I7 (A)","placeholder":"उदा. 4"},{"label":"11th Harmonic I11 (A)","placeholder":"उदा. 2"}],"note":"Fundamental current और उपलब्ध harmonic currents भरें। खाली harmonic fields को zero माना जाएगा।","example":"Example: I1=100 A, I3=5 A, I5=8 A, I7=4 A, I11=2 A → THDi लगभग 10.25%."},"surge_arrester_calc":{"fields":[{"label":"System Line-to-line Voltage (kV)","placeholder":"उदा. 11"},{"label":"Maximum System Voltage Factor","placeholder":"उदा. 1.1"}],"note":"System nominal line voltage और highest-system-voltage factor भरें। यह phase-to-earth voltage estimate है, arrester MCOV/rating selection नहीं।","example":"Example: 11 kV × 1.1 ÷ √3 = 6.99 kV."},"ct_ratio_calc":{"fields":[{"label":"CT Primary Rated Current (A)","placeholder":"उदा. 400"},{"label":"CT Secondary Rated Current (A) — 1 or 5","placeholder":"उदा. 5"}],"note":"CT nameplate की primary और secondary current rating भरें।","example":"Example: 400/5 A CT → ratio 80:1."},"pt_ratio_calc":{"fields":[{"label":"PT Primary Voltage (V)","placeholder":"उदा. 11000"},{"label":"PT Secondary Voltage (V)","placeholder":"उदा. 110"}],"note":"PT/VT की nameplate primary और secondary voltage भरें।","example":"Example: 11000/110 V → ratio 100:1."},"earth_pit_resistance_calc":{"fields":[{"label":"Resistance of One Earth Pit (Ω)","placeholder":"उदा. 5"},{"label":"Number of Similar Earth Pits","placeholder":"उदा. 4"}],"note":"एक pit का measured resistance और समान pits की संख्या भरें। समान और independent parallel pits मानकर अनुमान होगा; mutual coupling/spacing शामिल नहीं है।","example":"Example: 5 Ω ÷ 4 = 1.25 Ω ideal estimate."},"stator_resistance_calc":{"fields":[{"label":"Measured Stator Resistance R1 (Ω)","placeholder":"उदा. 1.2"},{"label":"Measurement Temperature T1 (°C)","placeholder":"उदा. 30"},{"label":"Reference Temperature T2 (°C)","placeholder":"उदा. 75"},{"label":"Conductor Constant (°C)","placeholder":"Copper: 235"}],"note":"Measured resistance और दोनों तापमान भरें। Copper के लिए constant 235 और aluminium के लिए लगभग 225 इस्तेमाल किया जाता है।","example":"Example: 1.2 Ω at 30°C corrected to 75°C (copper) → लगभग 1.39 Ω."},"rotor_copper_loss_calc":{"fields":[{"label":"Slip (%)","placeholder":"उदा. 4"},{"label":"Rotor Input / Air-gap Power (kW)","placeholder":"उदा. 50"}],"note":"Motor slip percentage और rotor air-gap input power भरें।","example":"Example: 4% × 50 kW = 2 kW rotor copper loss."},"synchronous_reactance_calc":{"fields":[{"label":"Synchronous Impedance Zs (Ω)","placeholder":"उदा. 5"},{"label":"Armature Resistance Ra (Ω)","placeholder":"उदा. 1"}],"note":"Per-phase synchronous impedance और armature resistance भरें।","example":"Example: √(5² − 1²) = 4.90 Ω."},"short_circuit_kva_calc":{"fields":[{"label":"Line Voltage (V) — 3-phase L-L","placeholder":"उदा. 415"},{"label":"Three-phase Short-circuit Current (A)","placeholder":"उदा. 10000"}],"note":"3-phase system का line voltage और calculated/measured short-circuit current भरें।","example":"Example: √3 × 415 × 10000 ÷ 1000 = 7,188 kVA."},"pu_impedance_calc":{"fields":[{"label":"Actual Impedance (Ω)","placeholder":"उदा. 0.5"},{"label":"Base Voltage (kV, line-to-line)","placeholder":"उदा. 11"},{"label":"Base Power (MVA, 3-phase)","placeholder":"उदा. 5"}],"note":"Actual impedance, base line voltage kV और 3-phase base MVA भरें।","example":"Example: Zbase = 11²/5 = 24.2 Ω; Zpu = 0.5/24.2 = 0.0207 pu."},"substation_area_calc":{"fields":[{"label":"Required Length (m)","placeholder":"उदा. 30"},{"label":"Required Width (m)","placeholder":"उदा. 20"}],"note":"Substation plot की usable length और width भरें। setbacks/clearances अलग से रखें।","example":"Example: 30 m × 20 m = 600 m²."},"cable_pulling_tension_calc":{"fields":[{"label":"Friction Coefficient (µ)","placeholder":"उदा. 0.3"},{"label":"Cable Weight (N/m)","placeholder":"उदा. 20"},{"label":"Straight Horizontal Pull Length (m)","placeholder":"उदा. 50"}],"note":"Straight horizontal cable pull के लिए friction coefficient, cable weight per metre और length भरें। Bends/sidewall pressure शामिल नहीं।","example":"Example: 0.3 × 20 × 50 = 300 N (straight-run estimate)."},"cable_tray_fill_calc":{"fields":[{"label":"Total Cable Cross-sectional Area (mm²)","placeholder":"उदा. 2500"},{"label":"Usable Tray Cross-sectional Area (mm²)","placeholder":"उदा. 10000"}],"note":"सभी cables के बाहरी area का कुल योग और tray का usable width × usable depth area भरें।","example":"Example: 2500 ÷ 10000 × 100 = 25% fill."},"solar_string_calc":{"fields":[{"label":"Module Open-circuit Voltage Voc (V)","placeholder":"उदा. 49.5"},{"label":"Modules in Series","placeholder":"उदा. 10"},{"label":"Voc Temperature Coefficient (%/°C; negative value allowed)","placeholder":"उदा. -0.28"},{"label":"Lowest Design Temperature (°C)","placeholder":"उदा. 0"}],"note":"Module datasheet का Voc, series modules, Voc temperature coefficient और site minimum temperature भरें।","example":"Example: 49.5 V × 10 modules, −0.28%/°C, Tmin 0°C → लगभग 528.8 V."},"wind_turbine_power_calc":{"fields":[{"label":"Air Density (kg/m³)","placeholder":"उदा. 1.225"},{"label":"Rotor Diameter (m)","placeholder":"उदा. 10"},{"label":"Wind Speed (m/s)","placeholder":"उदा. 8"},{"label":"Power Coefficient Cp (0–0.59)","placeholder":"उदा. 0.35"},{"label":"Mechanical/Electrical Efficiency (0–1)","placeholder":"उदा. 0.9"}],"note":"Air density, rotor diameter, wind speed, Cp और total efficiency भरें। यह idealized available-power estimate है।","example":"Example: 1.225 kg/m³, D=10 m, v=8 m/s, Cp=0.35, η=0.9 → लगभग 6.20 kW."},"hydro_power_calc":{"fields":[{"label":"Water Flow (m³/s)","placeholder":"उदा. 2"},{"label":"Net Head (m)","placeholder":"उदा. 10"},{"label":"Overall Efficiency (0–1)","placeholder":"उदा. 0.8"}],"note":"Turbine तक उपलब्ध water flow, net head और overall efficiency भरें।","example":"Example: 1000×9.81×2×10×0.8 = 156.96 kW."},"ac_impedance_triangle_calc":{"fields":[{"label":"Resistance R (Ω)","placeholder":"उदा. 10"},{"label":"Net Reactance X (Ω) — XL − XC","placeholder":"उदा. 15"}],"note":"AC circuit का resistance और net reactance भरें। X positive inductive और negative capacitive हो सकता है।","example":"Example: R=10 Ω, X=15 Ω → angle = 56.31°."},"power_triangle_calc":{"fields":[{"label":"Active Power (kW)","placeholder":"उदा. 80"},{"label":"Apparent Power (kVA)","placeholder":"उदा. 100"}],"note":"एक ही load के active kW और apparent kVA भरें।","example":"Example: cos⁻¹(80/100) = 36.87°."},"three_phase_unbalance_calc":{"fields":[{"label":"Phase R Current (A)","placeholder":"उदा. 100"},{"label":"Phase Y Current (A)","placeholder":"उदा. 90"},{"label":"Phase B Current (A)","placeholder":"उदा. 110"}],"note":"तीनों phase के current एक ही operating condition पर भरें। परिणाम average current से maximum deviation के आधार पर है।","example":"Example: 100, 90, 110 A → average 100 A; unbalance = 10%."},"neutral_current_calc":{"fields":[{"label":"Phase R Current (A)","placeholder":"उदा. 30"},{"label":"Phase Y Current (A)","placeholder":"उदा. 25"},{"label":"Phase B Current (A)","placeholder":"उदा. 20"},{"label":"Phase R Angle (°)","placeholder":"उदा. 0"},{"label":"Phase Y Angle (°)","placeholder":"उदा. -120"},{"label":"Phase B Angle (°)","placeholder":"उदा. 120"}],"note":"हर phase current और उसका phasor angle भरें। यदि केवल magnitude पता है, default 0°, −120°, +120° तभी रखें जब phase displacement और load angles के लिए यह assumption सही हो।","example":"Example: 30 A∠0°, 25 A∠−120°, 20 A∠120° → vector neutral current लगभग 8.66 A."},"motor_starting_time_calc":{"fields":[{"label":"Total Inertia J (kg·m²)","placeholder":"उदा. 2"},{"label":"Target Speed (RPM)","placeholder":"उदा. 1440"},{"label":"Net Accelerating Torque (N·m)","placeholder":"उदा. 50"}],"note":"Motor + load का total inertia, target RPM और net accelerating torque (motor torque − load torque) भरें। Constant torque मानकर estimate निकलेगा।","example":"Example: J=2, 1440 RPM, 50 N·m → लगभग 6.03 s."},"flywheel_energy_calc":{"fields":[{"label":"Flywheel Inertia J (kg·m²)","placeholder":"उदा. 5"},{"label":"Rotational Speed (RPM)","placeholder":"उदा. 1500"}],"note":"Flywheel का moment of inertia और speed RPM में भरें।","example":"Example: J=5 kg·m² at 1500 RPM → लगभग 61.69 kJ."},"relay_pickup_calc":{"fields":[{"label":"CT Primary Rating (A)","placeholder":"उदा. 400"},{"label":"Relay Pickup Setting (%)","placeholder":"उदा. 100"}],"note":"CT primary rating और relay pickup setting percentage भरें। Output primary-referred pickup current होगा।","example":"Example: 400 A CT × 100% = 400 A primary pickup."},"fuse_melting_time_calc":{"fields":[{"label":"Fuse Pre-arcing I²t (A²·s) — datasheet","placeholder":"उदा. 10000"},{"label":"Prospective Current (A)","placeholder":"उदा. 500"}],"note":"Fuse manufacturer datasheet का pre-arcing I²t और prospective current भरें। इससे ideal equivalent time मिलता है; actual fuse curve से verify करें।","example":"Example: 10,000 A²s ÷ 500² A² = 0.04 s."},"transformer_inrush_calc":{"fields":[{"label":"Transformer Full-load Current (A)","placeholder":"उदा. 100"},{"label":"Inrush Multiplier (times)","placeholder":"उदा. 8"}],"note":"Transformer का rated full-load current और manufacturer/design source का inrush multiplier भरें। यह estimate है; inrush variable होता है।","example":"Example: 100 A × 8 = 800 A estimated inrush."},"skin_effect_factor_calc":{"fields":[{"label":"AC Resistance (Ω)","placeholder":"उदा. 0.12"},{"label":"DC Resistance (Ω)","placeholder":"उदा. 0.10"}],"note":"एक ही conductor और temperature पर AC resistance और DC resistance भरें। Ratio 1 से अधिक होने पर AC resistance बढ़ी हुई है।","example":"Example: 0.12 ÷ 0.10 = 1.20 (20% higher)."},"proximity_effect_calc":{"fields":[{"label":"Measured AC Resistance (Ω)","placeholder":"उदा. 0.13"},{"label":"DC Resistance (Ω)","placeholder":"उदा. 0.10"}],"note":"AC और DC resistance एक ही conductor/temperature पर भरें। यह combined AC resistance factor है; skin और proximity effect को अलग-अलग नहीं बताता।","example":"Example: 0.13 ÷ 0.10 = 1.30."},"earthing_strip_size_calc":{"fields":[{"label":"Fault Current (A)","placeholder":"उदा. 10000"},{"label":"Fault Clearing Time (seconds)","placeholder":"उदा. 1"},{"label":"Material Constant k (A√s/mm²)","placeholder":"Copper typical input: 143"}],"note":"Earth strip को सहने वाला fault current, clearing time और applicable material constant k भरें। अंतिम sizing applicable standard और corrosion allowance से verify करें।","example":"Example: 10,000×√1 ÷ 143 = 69.93 mm² minimum adiabatic area."},"lighting_lux_target_calc":{"fields":[{"label":"Target Illuminance (lux)","placeholder":"उदा. 500"},{"label":"Existing Illuminance (lux)","placeholder":"उदा. 250"},{"label":"Room Area (m²)","placeholder":"उदा. 40"},{"label":"CU (0–1)","placeholder":"उदा. 0.6"},{"label":"MF (0–1)","placeholder":"उदा. 0.8"}],"note":"Target lux, measured existing lux, room area, CU और MF भरें। Result अतिरिक्त lumens है।","example":"Example: (500−250)×40 ÷ (0.6×0.8) = 20,833 lm additional."},"dc_motor_speed_calc":{"fields":[{"label":"Initial Armature Voltage V1 (V)","placeholder":"उदा. 220"},{"label":"Initial Armature Current I1 (A)","placeholder":"उदा. 20"},{"label":"Armature Resistance Ra (Ω)","placeholder":"उदा. 0.5"},{"label":"Initial Speed N1 (RPM)","placeholder":"उदा. 1000"},{"label":"New Armature Voltage V2 (V)","placeholder":"उदा. 200"},{"label":"New Armature Current I2 (A)","placeholder":"उदा. 18"}],"note":"दो operating points के voltage/current, armature resistance और initial speed भरें। Field flux समान मानकर speed ratio निकलेगा।","example":"Example: V1=220, I1=20, Ra=0.5, N1=1000; V2=200, I2=18 → लगभग 910.5 RPM."},"dc_motor_torque_calc":{"fields":[{"label":"Motor Output Power (kW)","placeholder":"उदा. 5"},{"label":"Motor Speed (RPM)","placeholder":"उदा. 1500"}],"note":"DC motor की shaft output power kW और speed RPM भरें।","example":"Example: 5 kW at 1500 RPM → 31.83 N·m."},"synchronous_motor_power_calc":{"fields":[{"label":"Phase Voltage V (V)","placeholder":"उदा. 230"},{"label":"Internal EMF E (V)","placeholder":"उदा. 250"},{"label":"Synchronous Reactance Xs (Ω/phase)","placeholder":"उदा. 5"},{"label":"Power Angle δ (degrees)","placeholder":"उदा. 20"}],"note":"Per-phase terminal voltage, internal EMF, synchronous reactance और power angle भरें। सरल cylindrical-rotor model माना गया है।","example":"Example: 3×230×250÷5×sin20° = लगभग 1.18 kW."},"ac_generator_regulation_calc":{"fields":[{"label":"No-load/Internal Generated Voltage (V)","placeholder":"उदा. 440"},{"label":"Full-load Terminal Voltage (V)","placeholder":"उदा. 415"}],"note":"एक ही phase/line basis पर no-load generated voltage और full-load terminal voltage भरें।","example":"Example: (440−415)÷415×100 = 6.02%."},"exciter_power_calc":{"fields":[{"label":"Exciter/Field Voltage (V)","placeholder":"उदा. 110"},{"label":"Field Current (A)","placeholder":"उदा. 5"}],"note":"Alternator exciter/field winding का DC voltage और current भरें।","example":"Example: 110 V × 5 A = 550 W."},"cable_thermal_resistance_calc":{"fields":[{"label":"Insulation Thermal Conductivity (W/m·K)","placeholder":"उदा. 0.2"},{"label":"Conductor/Inner Diameter (mm)","placeholder":"उदा. 20"},{"label":"Insulation Outer Diameter (mm)","placeholder":"उदा. 30"}],"note":"Insulation thermal conductivity और inner/outer diameters भरें। Result cylindrical insulation की thermal resistance per metre है।","example":"Example: k=0.2, d1=20 mm, d2=30 mm → लगभग 0.0323 K·m/W."},"transformer_oil_bdv_calc":{"fields":[{"label":"Measured Oil BDV (kV)","placeholder":"उदा. 55"},{"label":"Required Minimum BDV (kV) — project/spec limit","placeholder":"उदा. 50"}],"note":"Oil test report का measured BDV और आपके project/transformer specification का minimum limit भरें। Universal limit नहीं है; standard, gap और test method देखना जरूरी है।","example":"Example: 55 kV measured vs 50 kV limit → meets entered limit by 5 kV."},"solar_inverter_efficiency_calc":{"fields":[{"label":"AC Output Power (kW)","placeholder":"उदा. 9.5"},{"label":"DC Input Power (kW)","placeholder":"उदा. 10"}],"note":"Inverter का AC output और उसी समय का DC input power भरें।","example":"Example: 9.5 ÷ 10 × 100 = 95%."},"led_driver_load_calc":{"fields":[{"label":"LED Driver Rated Output Power (W)","placeholder":"उदा. 100"},{"label":"Total Connected LED Load (W)","placeholder":"उदा. 80"}],"note":"Driver की rated output wattage और उससे जुड़े सभी LED modules की total wattage भरें। Output loading % होगा।","example":"Example: 80 ÷ 100 × 100 = 80% loading."},"generator_parallel_sharing_calc":{"fields":[{"label":"Total Parallel Generator Load (kW)","placeholder":"उदा. 600"},{"label":"This Generator Rated Capacity (kW)","placeholder":"उदा. 250"},{"label":"Total Online Generator Capacity (kW)","placeholder":"उदा. 750"}],"note":"सभी parallel DG का actual total load, इस DG की rating और online DG की combined rating भरें। Equal percentage loading assumed है।","example":"Example: 600×250÷750 = 200 kW share."},"reactive_power_compensation_calc":{"fields":[{"label":"Active Load (kW)","placeholder":"उदा. 100"},{"label":"Present Power Factor (0–1)","placeholder":"उदा. 0.75"},{"label":"Target Power Factor (0–1)","placeholder":"उदा. 0.99"}],"note":"Active load kW, present PF और target PF भरें।","example":"Example: 100 kW, PF 0.75 to 0.99 → लगभग 68.4 kVAR capacitor."},"cable_derating_factor_calc":{"fields":[{"label":"Base Cable Current Rating (A)","placeholder":"उदा. 200"},{"label":"Ambient Temperature Factor (0–1)","placeholder":"उदा. 0.91"},{"label":"Grouping Factor (0–1)","placeholder":"उदा. 0.8"},{"label":"Soil/Installation Factor (0–1)","placeholder":"उदा. 0.95"}],"note":"Cable base ampacity और applicable derating factors भरें। Factors cable standard/manufacturer tables से लें।","example":"Example: 200×0.91×0.8×0.95 = 138.32 A derated ampacity."},"motor_efficiency_class_calc":{"fields":[{"label":"Motor Shaft Output Power (kW)","placeholder":"उदा. 7.5"},{"label":"Electrical Input Power (kW)","placeholder":"उदा. 8.4"}],"note":"Motor shaft output kW और measured electrical input kW भरें। यह efficiency निकालेगा; IE class motor rating, poles और standard table से verify करनी होगी।","example":"Example: 7.5 ÷ 8.4 ×100 = 89.29% efficiency."},"substation_earth_resistance_calc":{"fields":[{"label":"Soil Resistivity ρ (Ω·m)","placeholder":"उदा. 100"},{"label":"Earth Grid Area (m²)","placeholder":"उदा. 900"}],"note":"Soil resistivity और grid area भरें। यह केवल preliminary large-grid approximation है; IEEE 80 detailed design, touch/step voltage और field testing जरूरी हैं।","example":"Example: ρ=100 Ω·m, A=900 m² → approximate Rg ≈ 0.83 Ω."},"lightning_protection_radius_calc":{"fields":[{"label":"Rolling Sphere Radius (m) — selected protection class","placeholder":"उदा. 45"},{"label":"Air Terminal Height above reference plane (m)","placeholder":"उदा. 10"}],"note":"Selected LPS class के अनुसार rolling sphere radius और air-terminal height भरें। IEC 62305 class/risk design से sphere radius चुनें।","example":"Example: R=45 m, h=10 m → geometrical radius ≈ 28.28 m."},"transformer_cooling_fan_calc":{"fields":[{"label":"Heat to be Removed (kW)","placeholder":"उदा. 5"},{"label":"Permitted Air Temperature Rise (°C)","placeholder":"उदा. 10"},{"label":"Air Density (kg/m³)","placeholder":"उदा. 1.2"},{"label":"Air Specific Heat (kJ/kg·K)","placeholder":"उदा. 1.005"}],"note":"Transformer loss/heat to dissipate, air temperature rise, air density और specific heat भरें। Fan selection में pressure drop/actual fan curve भी देखें।","example":"Example: 5 kW heat, 10°C rise → airflow ≈ 1,493 m³/h."},"battery_charging_current_calc":{"fields":[{"label":"Battery Capacity (Ah)","placeholder":"उदा. 200"},{"label":"Required Charging Time (hours)","placeholder":"उदा. 10"},{"label":"Charging Factor","placeholder":"उदा. 1.1"}],"note":"Battery Ah, target charging duration और battery-maker recommended charge factor भरें।","example":"Example: 200 Ah ÷ 10 h × 1.1 = 22 A."},"energy_meter_pulse_calc":{"fields":[{"label":"Pulse Count during Test","placeholder":"उदा. 1000"},{"label":"Test Load Power (kW)","placeholder":"उदा. 1"},{"label":"Test Duration (seconds)","placeholder":"उदा. 3600"}],"note":"Test के दौरान meter pulse count, stable load kW और test duration seconds भरें।","example":"Example: 1000 pulses at 1 kW for 3600 s → 1000 imp/kWh."},"power_loss_cost_calc":{"fields":[{"label":"Current per Phase (A)","placeholder":"उदा. 50"},{"label":"Resistance per Phase (Ω)","placeholder":"उदा. 0.1"},{"label":"Number of Phases (1 or 3)","placeholder":"उदा. 3"},{"label":"Operating Hours per Year","placeholder":"उदा. 4000"},{"label":"Energy Tariff (₹/kWh)","placeholder":"उदा. 8"}],"note":"Conductor current, per-phase resistance, phases, annual operating hours और energy tariff भरें। Constant load assumption है।","example":"Example: 50²×0.1×3 = 750 W; 4000 h at ₹8/kWh → ₹24,000/year."},"harmonic_filter_design_calc":{"fields":[{"label":"Required Capacitor Reactive Power (kVAR)","placeholder":"उदा. 100"},{"label":"Line Voltage (V, 3-phase L-L)","placeholder":"उदा. 415"},{"label":"System Frequency (Hz)","placeholder":"उदा. 50"},{"label":"Tuning Harmonic Order (e.g. 5)","placeholder":"उदा. 4.7"}],"note":"3-phase delta capacitor bank का kVAR, line voltage, fundamental frequency और tuning order भरें। यह ideal starting calculation है; reactor tolerance, voltage/current rating और resonance study जरूरी हैं।","example":"Example: 100 kVAR, 415 V, 50 Hz, h=4.7 → C≈1,848 µF/phase, L≈0.25 mH/phase (ideal delta model)."},"motor_starting_kva_calc":{"fields":[{"label":"Line Voltage (V)","placeholder":"उदा. 415"},{"label":"Motor Starting Line Current (A)","placeholder":"उदा. 150"},{"label":"Number of Phases (1 or 3)","placeholder":"उदा. 3"}],"note":"Motor का line voltage, starting line current और phase count भरें। 3-phase में √3VI और 1-phase में VI इस्तेमाल होगा।","example":"Example: √3×415×150÷1000 = 107.8 kVA."},"total_plant_demand_calc":{"fields":[{"label":"Total Connected Load (kW)","placeholder":"उदा. 500"},{"label":"Demand/Diversity Multiplier (0–1)","placeholder":"उदा. 0.75"}],"note":"सभी connected loads का total kW और applicable demand factor/multiplier भरें।","example":"Example: 500 kW × 0.75 = 375 kW diversified demand."}};
+
   function showCalculator() {
     let select = document.getElementById("calcSelect").value;
     let calcInputs = document.getElementById("calcInputs");
@@ -434,12 +556,140 @@
     } else if(select === "apfc_kvar") {
       html = '<label>Active Power (kW):</label><input type="number" id="val1" placeholder="उदा. 100"><label>Current PF:</label><input type="number" id="val2" placeholder="उदा. 0.75" step="0.01"><label>Target PF:</label><input type="number" id="val3" value="0.99" step="0.01">';
     } else {
-      // General handler for all 100 calculators to ensure interactive input
-      html = '<label>Value 1:</label><input type="number" id="val1" placeholder="मान 1 दर्ज करें"><label>Value 2 (यदि आवश्यक हो):</label><input type="number" id="val2" placeholder="मान 2 दर्ज करें">';
+      const cfg = extendedCalculatorInputs[select];
+      if (!cfg) {
+        inputsContent.innerHTML = '<p style="color:#b00020;">इस calculator की input configuration उपलब्ध नहीं है।</p>';
+        calcInputs.style.display = "block";
+        return;
+      }
+      html = cfg.fields.map((field, index) =>
+        '<label>' + field.label + ':</label><input type="number" step="any" id="val' + (index + 1) + '" placeholder="' + field.placeholder + '">'
+      ).join('');
+      html += '<div class="calc-guidance"><b>कौन-सी वैल्यू डालें?</b><p>' + cfg.note + '</p><b>Example:</b> ' + cfg.example + '</div>';
     }
     
     inputsContent.innerHTML = html;
     calcInputs.style.display = "block";
+  }
+
+  // Actual calculation logic for Electrical Calculators 11–100.
+  // Where engineering standards or site conditions are needed, the UI guidance identifies the result as an estimate.
+  function calculateExtendedElectrical(id) {
+    const n = i => { const el = document.getElementById("val" + i); return el && el.value.trim() !== "" ? Number(el.value) : NaN; };
+    const o = i => { const x = n(i); return Number.isFinite(x) ? x : 0; };
+    const bad = msg => ({error: msg || "कृपया सभी जरूरी वैल्यू सही यूनिट में भरें।"});
+    const result = msg => ({result: msg});
+    const positive = (...a) => a.every(v => Number.isFinite(v) && v > 0);
+    const finite = (...a) => a.every(v => Number.isFinite(v));
+    const f = (v,d=2) => Number(v).toLocaleString('en-IN', { maximumFractionDigits:d, minimumFractionDigits:d });
+    const pf = v => Number.isFinite(v) && v > 0 && v <= 1;
+    const sqrt3 = Math.sqrt(3), pi = Math.PI, mu0 = 4*pi*1e-7;
+    switch(id) {
+      case "ohm_calc": {
+        const a=[n(1),n(2),n(3)], count=a.filter(Number.isFinite).length;
+        if(count!==2 && count!==3) return bad("ओम के नियम के लिए V, I और R में से ठीक दो वैल्यू भरें।");
+        if(a[0]===null || a[1]===null || a[2]===null){}
+        if(count===3) {
+          if(!positive(a[0],a[1],a[2])) return bad();
+          const expected=a[1]*a[2];
+          return result("दर्ज V = "+f(a[0])+" V, I = "+f(a[1])+" A, R = "+f(a[2])+" Ω. Check: I × R = "+f(expected)+" V.");
+        }
+        if(Number.isFinite(a[0]) && Number.isFinite(a[1])) { if(!positive(a[0],a[1]))return bad(); return result("Resistance (R) = V ÷ I = "+f(a[0]/a[1])+" Ω"); }
+        if(Number.isFinite(a[0]) && Number.isFinite(a[2])) { if(!positive(a[0],a[2]))return bad(); return result("Current (I) = V ÷ R = "+f(a[0]/a[2])+" A"); }
+        if(Number.isFinite(a[1]) && Number.isFinite(a[2])) { if(!positive(a[1],a[2]))return bad(); return result("Voltage (V) = I × R = "+f(a[1]*a[2])+" V"); }
+        return bad();
+      }
+      case "dc_power_calc": return positive(n(1),n(2)) ? result("DC Power = V × I = "+f(n(1)*n(2))+" W ("+f(n(1)*n(2)/1000)+" kW)") : bad();
+      case "ac_1ph_power": return positive(n(1),n(2)) && pf(n(3)) ? result("Single-phase real power = V × I × PF = "+f(n(1)*n(2)*n(3))+" W") : bad("Voltage, current positive रखें और PF 0 से 1 के बीच भरें।");
+      case "res_series_calc": { const a=[n(1),n(2),o(3),o(4),o(5)]; if(!positive(a[0],a[1])||a.some(x=>x<0))return bad(); return result("Total Series Resistance = "+f(a.reduce((p,c)=>p+c,0))+" Ω"); }
+      case "res_parallel_calc": { const a=[n(1),n(2),o(3),o(4),o(5)].filter(x=>x!==0); if(a.length<2||!positive(...a))return bad(); return result("Total Parallel Resistance = "+f(1/a.reduce((p,c)=>p+1/c,0))+" Ω"); }
+      case "cap_series_calc": { const a=[n(1),n(2),o(3),o(4),o(5)]; if(!positive(a[0],a[1])||a.some(x=>x<0))return bad(); const nonzero=a.filter(x=>x>0); return result("Total Series Capacitance = "+f(1/nonzero.reduce((p,c)=>p+1/c,0))+" µF"); }
+      case "cap_parallel_calc": { const a=[n(1),n(2),o(3),o(4),o(5)]; if(!positive(a[0],a[1])||a.some(x=>x<0))return bad(); return result("Total Parallel Capacitance = "+f(a.reduce((p,c)=>p+c,0))+" µF"); }
+      case "inductive_reactance_calc": return positive(n(1),n(2)) ? result("XL = 2πfL = "+f(2*pi*n(1)*(n(2)/1000))+" Ω") : bad();
+      case "capacitive_reactance_calc": return positive(n(1),n(2)) ? result("XC = 1 ÷ (2πfC) = "+f(1/(2*pi*n(1)*n(2)*1e-6))+" Ω") : bad();
+      case "impedance_calc": return positive(n(1)) && finite(n(2),n(3)) ? result("Impedance Z = √[R² + (XL − XC)²] = "+f(Math.hypot(n(1),n(2)-n(3)))+" Ω") : bad();
+      case "kwh_calc": return positive(n(1),n(2)) ? result("Energy = kW × hours = "+f(n(1)*n(2))+" kWh (units)") : bad();
+      case "cable_ampacity_calc": return positive(n(1),n(2)) ? result("Estimated minimum conductor area = I ÷ current density = "+f(n(1)/n(2))+" mm². अगला उपलब्ध standard cable size चुनने से पहले installation derating और short-circuit check करें।") : bad();
+      case "motor_torque_calc": return positive(n(1),n(2)) ? result("Shaft Torque = 9550 × kW ÷ RPM = "+f(9550*n(1)/n(2))+" N·m") : bad();
+      case "transformer_turns_calc": return positive(n(1),n(2)) ? result("Voltage / Turns Ratio (Np:Ns) = "+f(n(1)/n(2))+" : 1") : bad();
+      case "diversity_calc": return positive(n(1),n(2)) && n(1)>=n(2) ? result("Diversity Factor = Sum of individual maximum demands ÷ coincident maximum demand = "+f(n(1)/n(2))) : bad("Individual maximum demands का sum, coincident maximum demand से कम नहीं होना चाहिए।");
+      case "load_factor_calc": return positive(n(1),n(2)) && n(1)<=n(2) ? result("Load Factor = Average Load ÷ Maximum Demand × 100 = "+f(n(1)/n(2)*100)+" %") : bad("Average load, maximum demand से अधिक नहीं होना चाहिए।");
+      case "power_factor_calc": return positive(n(1),n(2)) && n(1)<=n(2) ? result("Power Factor = kW ÷ kVA = "+f(n(1)/n(2),3)) : bad("kW positive होना चाहिए और kVA, kW से कम नहीं होना चाहिए।");
+      case "earthing_plate_calc": return positive(n(1),n(2),n(3)) ? result("Estimated total plate surface area (दोनों faces) = L × W × 2 × plates = "+f(n(1)*n(2)*2*n(3))+" m². यह earth resistance नहीं बताता।") : bad();
+      case "lux_level_calc": return positive(n(1),n(2),n(3),n(4)) && n(2)<=1 && n(3)<=1 ? result("Average Illuminance = Lumens × CU × MF ÷ Area = "+f(n(1)*n(2)*n(3)/n(4))+" lux") : bad("Lumens/area positive रखें; CU और MF 0 से 1 के बीच भरें।");
+      case "solar_generation_calc": return positive(n(1),n(2)) && n(3)>0 && n(3)<=1 ? result("Estimated daily energy = kWp × peak sun hours × PR = "+f(n(1)*n(2)*n(3))+" kWh/day") : bad("Capacity और sun hours positive रखें; PR 0 से 1 के बीच भरें।");
+      case "fault_current_calc": return positive(n(1),n(2)) ? result("3-phase symmetrical fault current = VLL ÷ (√3 × Z) = "+f(n(1)/(sqrt3*n(2)))+" A. Use actual source impedance and X/R study for protection design.") : bad();
+      case "mcb_rating_calc": return positive(n(1),n(2)) ? result("Calculated minimum current rating = load current × multiplier = "+f(n(1)*n(2))+" A. यह final MCB/MCCB selection नहीं है; cable coordination, trip curve और breaking capacity verify करें।") : bad();
+      case "relay_setting_calc": return positive(n(1),n(2)) ? result("Indicative OLR setting = motor FLC × setting multiplier = "+f(n(1)*n(2))+" A. Manufacturer manual और relay location के अनुसार verify करें।") : bad();
+      case "star_delta_calc": return positive(n(1)) ? result("Ideal star starting line current ≈ DOL starting line current ÷ 3 = "+f(n(1)/3)+" A. Actual value depends on motor and supply conditions.") : bad();
+      case "vfd_freq_calc": return positive(n(1),n(2),n(3)) ? result("Estimated motor speed = rated speed × target Hz ÷ rated Hz = "+f(n(1)*n(3)/n(2),0)+" RPM (slip approximately constant).") : bad();
+      case "capacitor_discharge_calc": return positive(n(1),n(2),n(3),n(4)) && n(3)>n(4) ? result("Discharge time = R × C × ln(Vinitial/Vtarget) = "+f(n(1)*1000*n(2)*1e-6*Math.log(n(3)/n(4)))+" seconds. Circuit isolation and voltage verification are still mandatory.") : bad("Vinitial, Vtarget positive रखें और Vinitial, Vtarget से बड़ा होना चाहिए।");
+      case "copper_loss_calc": return positive(n(1),n(2),n(3)) && [1,3].includes(n(3)) ? result("Copper loss = phases × I² × R = "+f(n(3)*n(1)*n(1)*n(2))+" W") : bad("Phase count 1 या 3 होना चाहिए।");
+      case "core_loss_calc": return positive(n(1),n(2)) && pf(n(3)) ? result("Estimated no-load input power = √3 × VLL × I0 × PF = "+f(sqrt3*n(1)*n(2)*n(3)/1000)+" kW. No-load input also includes small auxiliary losses.") : bad();
+      case "voltage_regulation_calc": return positive(n(1),n(2)) ? result("Voltage Regulation = (Vno-load − Vfull-load) ÷ Vfull-load × 100 = "+f((n(1)-n(2))/n(2)*100)+" %") : bad();
+      case "reactive_power_calc": return positive(n(1)) && pf(n(2)) ? result("Reactive Power = kW × tan(cos⁻¹ PF) = "+f(n(1)*Math.tan(Math.acos(n(2))))+" kVAR") : bad();
+      case "apparent_power_calc": return positive(n(1)) && pf(n(2)) ? result("Apparent Power = kW ÷ PF = "+f(n(1)/n(2))+" kVA") : bad();
+      case "skin_depth_calc": return positive(n(1),n(2),n(3)) ? result("Skin Depth δ = √[ρ ÷ (πfµ0µr)] = "+f(Math.sqrt(n(2)/(pi*n(1)*mu0*n(3)))*1000)+" mm") : bad();
+      case "dc_resistance_temp_calc": return positive(n(1)) && finite(n(2),n(3)) && n(4)>0 ? result("R2 = R1 × [1 + α(T2 − T1)] = "+f(n(1)*(1+n(4)*(n(3)-n(2))))+" Ω") : bad();
+      case "lighting_fixture_calc": return positive(n(1),n(2),n(3),n(4),n(5)) && n(4)<=1 && n(5)<=1 ? result("Required fixtures = Target lux × area ÷ (lumens/fixture × CU × MF) = "+Math.ceil(n(1)*n(2)/(n(3)*n(4)*n(5)))+" fixtures (rounded up)") : bad();
+      case "battery_ah_calc": return positive(n(1),n(2),n(3),n(4),n(5)) && n(4)<=1 && n(5)<=1 ? result("Estimated battery capacity = Load × backup hours ÷ (V × efficiency × DoD) = "+f(n(1)*n(2)/(n(3)*n(4)*n(5)))+" Ah") : bad("Efficiency और DoD 0 से 1 के बीच भरें।");
+      case "inverter_rating_calc": return positive(n(1),n(2)) && pf(n(2)) && n(3)>=0 ? result("Suggested apparent rating = Load W ÷ PF × (1 + margin) = "+f(n(1)/n(2)*(1+n(3)/100))+" VA") : bad();
+      case "generator_fuel_calc": return positive(n(1),n(2),n(3)) && n(2)<=100 ? result("Estimated fuel consumption = Rated kW × load fraction × SFC = "+f(n(1)*n(2)/100*n(3))+" L/hour") : bad("Load percentage 0 से 100 के बीच होना चाहिए।");
+      case "busbar_current_calc": return positive(n(1),n(2),n(3),n(4)) ? result("Preliminary busbar current = width × thickness × bars × current density = "+f(n(1)*n(2)*n(3)*n(4))+" A. Verify temperature rise, enclosure and short-circuit withstand.") : bad();
+      case "conduit_fill_calc": return positive(n(1),n(2)) ? result("Conduit fill = cable area ÷ (πd²/4) × 100 = "+f(n(1)/(pi*n(2)*n(2)/4)*100)+" %. Check the applicable wiring code fill limit.") : bad();
+      case "harmonic_current_calc": { if(!positive(n(1)))return bad(); const hs=[o(2),o(3),o(4),o(5)].filter(x=>x>=0); if(hs.some(x=>!Number.isFinite(x)))return bad(); const thd=Math.sqrt(hs.reduce((a,b)=>a+b*b,0))/n(1)*100; return result("THDi = √(I3² + I5² + I7² + I11²) ÷ I1 × 100 = "+f(thd)+" % (only entered harmonics included)"); }
+      case "surge_arrester_calc": return positive(n(1),n(2)) ? result("Estimated maximum phase-to-earth voltage = VLL × factor ÷ √3 = "+f(n(1)*n(2)/sqrt3)+" kV. This is not the final arrester MCOV/Uc selection.") : bad();
+      case "ct_ratio_calc": return positive(n(1),n(2)) ? result("CT Ratio = "+f(n(1)/n(2),0)+" : 1 ("+f(n(1),0)+"/"+f(n(2),0)+" A)") : bad();
+      case "pt_ratio_calc": return positive(n(1),n(2)) ? result("PT Ratio = "+f(n(1)/n(2),0)+" : 1") : bad();
+      case "earth_pit_resistance_calc": return positive(n(1),n(2)) ? result("Ideal parallel resistance (no mutual coupling) = Rsingle ÷ number of pits = "+f(n(1)/n(2))+" Ω. Actual value depends on spacing and soil interaction.") : bad();
+      case "stator_resistance_calc": return positive(n(1),n(4)) && finite(n(2),n(3)) && n(4)+n(2)>0 ? result("Temperature-corrected resistance = R1 × (K+T2) ÷ (K+T1) = "+f(n(1)*(n(4)+n(3))/(n(4)+n(2)))+" Ω") : bad();
+      case "rotor_copper_loss_calc": return positive(n(1),n(2)) && n(1)<=100 ? result("Rotor copper loss = slip × air-gap power = "+f(n(1)/100*n(2))+" kW") : bad("Slip percentage 0 से 100 के बीच होना चाहिए।");
+      case "synchronous_reactance_calc": return positive(n(1)) && n(2)>=0 && n(1)>=n(2) ? result("Synchronous Reactance Xs = √(Zs² − Ra²) = "+f(Math.sqrt(n(1)*n(1)-n(2)*n(2)))+" Ω/phase") : bad("Zs positive और Zs, Ra से कम नहीं होना चाहिए।");
+      case "short_circuit_kva_calc": return positive(n(1),n(2)) ? result("3-phase short-circuit level = √3 × VLL × Isc ÷ 1000 = "+f(sqrt3*n(1)*n(2)/1000)+" kVA") : bad();
+      case "pu_impedance_calc": return positive(n(1),n(2),n(3)) ? result("Zbase = Vbase² ÷ Sbase = "+f(n(2)*n(2)/n(3))+" Ω; Zpu = Zactual ÷ Zbase = "+f(n(1)/(n(2)*n(2)/n(3)),4)+" pu") : bad();
+      case "substation_area_calc": return positive(n(1),n(2)) ? result("Required rectangular plot area = length × width = "+f(n(1)*n(2))+" m² (clearances/setbacks excluded)") : bad();
+      case "cable_pulling_tension_calc": return positive(n(1),n(2),n(3)) ? result("Straight horizontal pull tension estimate = µ × weight per metre × length = "+f(n(1)*n(2)*n(3))+" N. Bends and sidewall pressure are excluded.") : bad();
+      case "cable_tray_fill_calc": return positive(n(1),n(2)) ? result("Cable tray fill = total cable area ÷ usable tray area × 100 = "+f(n(1)/n(2)*100)+" %") : bad();
+      case "solar_string_calc": return positive(n(1),n(2)) && finite(n(3),n(4)) && (1+(n(3)/100)*(n(4)-25))>0 ? result("Cold-corrected string Voc = module Voc × series modules × [1 + β(Tmin − 25)] = "+f(n(1)*n(2)*(1+n(3)/100*(n(4)-25)))+" V. Verify inverter maximum DC voltage.") : bad();
+      case "wind_turbine_power_calc": return positive(n(1),n(2),n(3),n(4),n(5)) && n(4)<=0.593 && n(5)<=1 ? result("Estimated electrical power = ½ρA v³ Cp η = "+f(0.5*n(1)*(pi*n(2)*n(2)/4)*Math.pow(n(3),3)*n(4)*n(5)/1000)+" kW") : bad("Cp को 0 से 0.593 और efficiency को 0 से 1 के बीच रखें।");
+      case "hydro_power_calc": return positive(n(1),n(2),n(3)) && n(3)<=1 ? result("Hydro power = ρgQHη = "+f(1000*9.81*n(1)*n(2)*n(3)/1000)+" kW") : bad();
+      case "ac_impedance_triangle_calc": return finite(n(1),n(2)) && n(1)>0 ? result("Impedance angle θ = tan⁻¹(X/R) = "+f(Math.atan2(n(2),n(1))*180/pi)+" degrees") : bad();
+      case "power_triangle_calc": return positive(n(1),n(2)) && n(1)<=n(2) ? result("Power angle φ = cos⁻¹(kW/kVA) = "+f(Math.acos(n(1)/n(2))*180/pi)+" degrees") : bad("kVA, kW से कम नहीं होना चाहिए।");
+      case "three_phase_unbalance_calc": { if(!positive(n(1),n(2),n(3)))return bad(); const a=[n(1),n(2),n(3)],avg=a.reduce((p,c)=>p+c,0)/3,dev=Math.max(...a.map(v=>Math.abs(v-avg))); return result("Current unbalance = maximum deviation from average ÷ average × 100 = "+f(dev/avg*100)+" % (average = "+f(avg)+" A)"); }
+      case "neutral_current_calc": { if(!positive(n(1),n(2),n(3))||!finite(n(4),n(5),n(6)))return bad(); const angles=[n(4),n(5),n(6)].map(v=>v*pi/180),curr=[n(1),n(2),n(3)]; const re=curr.reduce((p,c,i)=>p+c*Math.cos(angles[i]),0),im=curr.reduce((p,c,i)=>p+c*Math.sin(angles[i]),0); return result("Neutral current (phasor sum) = "+f(Math.hypot(re,im))+" A. Result depends on correct phase-current angles."); }
+      case "motor_starting_time_calc": return positive(n(1),n(2),n(3)) ? result("Constant-torque acceleration time = J × ω ÷ Tacc = "+f(n(1)*(n(2)*2*pi/60)/n(3))+" seconds (approximate)") : bad();
+      case "flywheel_energy_calc": return positive(n(1),n(2)) ? result("Flywheel energy = ½Jω² = "+f(0.5*n(1)*Math.pow(n(2)*2*pi/60,2)/1000)+" kJ") : bad();
+      case "relay_pickup_calc": return positive(n(1),n(2)) ? result("Primary-referred relay pickup = CT primary rating × setting % = "+f(n(1)*n(2)/100)+" A") : bad();
+      case "fuse_melting_time_calc": return positive(n(1),n(2)) ? result("Ideal equivalent pre-arcing time = I²t ÷ Ifault² = "+f(n(1)/(n(2)*n(2)),4)+" seconds. Confirm from the fuse manufacturer's time-current curve.") : bad();
+      case "transformer_inrush_calc": return positive(n(1),n(2)) ? result("Estimated inrush current = FLC × multiplier = "+f(n(1)*n(2))+" A. Actual inrush is affected by residual flux and switching angle.") : bad();
+      case "skin_effect_factor_calc": return positive(n(1),n(2)) ? result("AC/DC resistance factor = Rac ÷ Rdc = "+f(n(1)/n(2),3)+" (increase = "+f((n(1)/n(2)-1)*100)+" %)") : bad();
+      case "proximity_effect_calc": return positive(n(1),n(2)) ? result("Measured AC/DC resistance factor = Rac ÷ Rdc = "+f(n(1)/n(2),3)+". This combined factor cannot isolate proximity effect alone.") : bad();
+      case "earthing_strip_size_calc": return positive(n(1),n(2),n(3)) ? result("Minimum adiabatic conductor area S = I√t ÷ k = "+f(n(1)*Math.sqrt(n(2))/n(3))+" mm². Select next suitable standard size and verify applicable code.") : bad();
+      case "lighting_lux_target_calc": return positive(n(1),n(3),n(4),n(5)) && n(2)>=0 && n(2)<=n(1) && n(4)<=1 && n(5)<=1 ? result("Additional lumen requirement = (target − existing lux) × area ÷ (CU×MF) = "+f((n(1)-n(2))*n(3)/(n(4)*n(5)))+" lm") : bad();
+      case "dc_motor_speed_calc": { if(!positive(n(1),n(4),n(5))||!finite(n(2),n(3),n(6)))return bad(); const e1=n(1)-n(2)*n(3),e2=n(5)-n(6)*n(3); if(e1<=0||e2<=0)return bad("Back EMF values positive होने चाहिए।"); return result("Estimated new speed (constant field flux) = N1 × E2/E1 = "+f(n(4)*e2/e1,1)+" RPM"); }
+      case "dc_motor_torque_calc": return positive(n(1),n(2)) ? result("DC motor shaft torque = 9550 × P(kW) ÷ RPM = "+f(9550*n(1)/n(2))+" N·m") : bad();
+      case "synchronous_motor_power_calc": return positive(n(1),n(2),n(3)) && finite(n(4)) && Math.abs(n(4))<=90 ? result("Simplified 3-phase power = 3VE/Xs × sinδ = "+f(3*n(1)*n(2)/n(3)*Math.sin(n(4)*pi/180)/1000)+" kW") : bad("Power angle degree में और सामान्य operating range में भरें।");
+      case "ac_generator_regulation_calc": return positive(n(1),n(2)) ? result("Voltage regulation = (E0 − VFL) ÷ VFL × 100 = "+f((n(1)-n(2))/n(2)*100)+" %") : bad();
+      case "exciter_power_calc": return positive(n(1),n(2)) ? result("Field/exciter DC power = V × I = "+f(n(1)*n(2))+" W") : bad();
+      case "cable_thermal_resistance_calc": return positive(n(1),n(2),n(3)) && n(3)>n(2) ? result("Thermal resistance per metre = ln(D2/D1) ÷ (2πk) = "+f(Math.log(n(3)/n(2))/(2*pi*n(1)),4)+" K·m/W") : bad("Outer diameter inner diameter से बड़ा होना चाहिए।");
+      case "transformer_oil_bdv_calc": return positive(n(1),n(2)) ? result(n(1)>=n(2) ? "PASS against entered limit: measured BDV "+f(n(1))+" kV, entered minimum "+f(n(2))+" kV (margin +"+f(n(1)-n(2))+" kV)." : "BELOW entered limit: measured BDV "+f(n(1))+" kV, entered minimum "+f(n(2))+" kV (shortfall "+f(n(2)-n(1))+" kV). Verify test method and project specification.") : bad();
+      case "solar_inverter_efficiency_calc": return positive(n(1),n(2)) && n(1)<=n(2)*1.1 ? result("Inverter efficiency = AC output ÷ DC input × 100 = "+f(n(1)/n(2)*100)+" %") : bad("Input/output values जाँचें; efficiency सामान्यतः 100% से अधिक नहीं होनी चाहिए।");
+      case "led_driver_load_calc": return positive(n(1),n(2)) ? result("Driver loading = connected load ÷ rated output × 100 = "+f(n(2)/n(1)*100)+" %") : bad();
+      case "generator_parallel_sharing_calc": return positive(n(1),n(2),n(3)) && n(2)<=n(3) ? result("Estimated load share (equal % loading) = total load × this DG rating ÷ total online rating = "+f(n(1)*n(2)/n(3))+" kW") : bad("इस DG की rating total online capacity से अधिक नहीं हो सकती।");
+      case "reactive_power_compensation_calc": return positive(n(1)) && pf(n(2)) && pf(n(3)) && n(3)>n(2) ? result("Required capacitor = P[tan(cos⁻¹ PF1) − tan(cos⁻¹ PF2)] = "+f(n(1)*(Math.tan(Math.acos(n(2)))-Math.tan(Math.acos(n(3)))))+" kVAR") : bad("Target PF, present PF से अधिक और दोनों 0–1 के बीच होने चाहिए।");
+      case "cable_derating_factor_calc": return positive(n(1),n(2),n(3),n(4)) && n(2)<=1 && n(3)<=1 && n(4)<=1 ? result("Total derating factor = "+f(n(2)*n(3)*n(4),3)+"; derated ampacity = "+f(n(1)*n(2)*n(3)*n(4))+" A") : bad("Derating factors 0 से 1 के बीच भरें।");
+      case "motor_efficiency_class_calc": return positive(n(1),n(2)) && n(1)<=n(2) ? result("Motor efficiency = shaft output ÷ electrical input × 100 = "+f(n(1)/n(2)*100)+" %. IE class को motor rating/poles के applicable standard table से जाँचें।") : bad();
+      case "substation_earth_resistance_calc": return positive(n(1),n(2)) ? result("Approximate large-grid resistance Rg ≈ ρ ÷ (4√A) = "+f(n(1)/(4*Math.sqrt(n(2))) )+" Ω. Preliminary estimate only; detailed grid design and touch/step checks required.") : bad();
+      case "lightning_protection_radius_calc": return positive(n(1),n(2)) && n(2)<=2*n(1) ? result("Rolling-sphere geometrical radius = √(2Rh − h²) = "+f(Math.sqrt(2*n(1)*n(2)-n(2)*n(2)))+" m. Confirm IEC 62305 zone-of-protection geometry.") : bad("Air terminal height positive हो और sphere radius के दायरे में हो।");
+      case "transformer_cooling_fan_calc": return positive(n(1),n(2),n(3),n(4)) ? result("Required ideal airflow = Qheat×3600 ÷ (ρ×Cp×ΔT) = "+f(n(1)*3600/(n(3)*n(4)*n(2)))+" m³/hour. Fan static pressure/curve और design margin जोड़ें।") : bad();
+      case "battery_charging_current_calc": return positive(n(1),n(2),n(3)) ? result("Estimated charging current = Ah ÷ hours × charging factor = "+f(n(1)/n(2)*n(3))+" A. Confirm battery maker's charge-current limit.") : bad();
+      case "energy_meter_pulse_calc": return positive(n(1),n(2),n(3)) ? result("Meter constant = pulses ÷ (kW × seconds/3600) = "+f(n(1)/(n(2)*n(3)/3600),1)+" imp/kWh") : bad();
+      case "power_loss_cost_calc": return positive(n(1),n(2),n(3),n(4),n(5)) && [1,3].includes(n(3)) ? (()=>{const kw=n(1)*n(1)*n(2)*n(3)/1000; return result("I²R loss = "+f(kw*1000)+" W; annual energy loss = "+f(kw*n(4))+" kWh; annual cost = ₹"+f(kw*n(4)*n(5))+" (constant-load estimate).")})() : bad("Phase count 1 या 3 होना चाहिए।");
+      case "harmonic_filter_design_calc": { if(!positive(n(1),n(2),n(3),n(4))||n(4)<=1)return bad(); const w=2*pi*n(3), Cfarad=n(1)*1000/(w*n(2)*n(2)), ft=n(4)*n(3), L=1/(Math.pow(2*pi*ft,2)*Cfarad); return result("Ideal 3-phase delta estimate: C = "+f(Cfarad*1e6,1)+" µF/phase; tuning frequency = "+f(ft)+" Hz; L = "+f(L*1000,3)+" mH/phase. Engineering harmonic/resonance study required."); }
+      case "motor_starting_kva_calc": return positive(n(1),n(2),n(3)) && [1,3].includes(n(3)) ? result("Starting apparent power = "+(n(3)===3?"√3 × ":"")+"V × I ÷ 1000 = "+f((n(3)===3?sqrt3:1)*n(1)*n(2)/1000)+" kVA") : bad("Phase count 1 या 3 होना चाहिए।");
+      case "total_plant_demand_calc": return positive(n(1),n(2)) && n(2)<=1 ? result("Diversified maximum demand = connected load × demand factor = "+f(n(1)*n(2))+" kW") : bad("Demand factor 0 से 1 के बीच भरें।");
+      default: return null;
+    }
   }
 
   // -- 3. Execute Calculation Core Logic --
@@ -448,13 +698,21 @@
     let resBox = document.getElementById("resultOutput");
     let out = "";
     let error = false;
+    let errorMessage = "";
 
     function getV(id) { 
         let el = document.getElementById(id);
-        return el && el.value ? parseFloat(el.value) : NaN;
+        return el && el.value.trim() !== "" ? parseFloat(el.value) : NaN;
     }
 
     let v1 = getV("val1"), v2 = getV("val2"), v3 = getV("val3"), v4 = getV("val4");
+    function getN(n) { const el = document.getElementById("val" + n); return el && el.value.trim() !== "" ? Number(el.value) : NaN; }
+    function optionalN(n) { const x = getN(n); return Number.isFinite(x) ? x : 0; }
+    const v5 = getN(5), v6 = getN(6);
+    const ok = (...xs) => xs.every(x => Number.isFinite(x));
+    const positive = (...xs) => xs.every(x => Number.isFinite(x) && x > 0);
+    const pfOK = x => Number.isFinite(x) && x > 0 && x <= 1;
+    const nice = (x, d=2) => Number(x).toLocaleString('en-IN', { maximumFractionDigits:d, minimumFractionDigits:d });
 
     if(select === "kw_to_amp_3ph") {
       if(v1 && v2 && v3) out = "3-Phase Current (I) = " + ((v1 * 1000) / (1.732 * v2 * v3)).toFixed(2) + " Amps";
@@ -500,16 +758,14 @@
       } else error = true;
     }
     else {
-      // General dynamic execution for expanded calculators
-      if(v1 && !isNaN(v1)) {
-        out = "कैलकुलेशन परिणाम (Calc ID: " + select + ") = " + (v1 * 1.25).toFixed(2) + " ( मानक गुणांक आधार पर)";
-      } else {
-        error = true;
-      }
+      const x = calculateExtendedElectrical(select);
+      if (x && x.error) { out = x.error; error = true; errorMessage = x.error; }
+      else if (x && x.result) out = x.result;
+      else error = true;
     }
 
     if(error || out.includes("NaN")) {
-      resBox.innerHTML = "कृपया सभी बॉक्स में सही नंबर डालें!";
+      resBox.innerHTML = errorMessage || "कृपया सभी जरूरी बॉक्स में सही नंबर भरें और input values जाँचें!";
       resBox.style.color = "red";
       resBox.style.backgroundColor = "#ffe6e6";
       resBox.style.borderColor = "#ffcccc";
@@ -522,6 +778,201 @@
     
     resBox.style.display = "block";
     resBox.className = "result-box";
+  }
+
+  // -- 4. HSE SAFETY CALCULATORS: isolated from the existing Electrical calculator --
+  function showHSECalculator() {
+    const select = document.getElementById("hseCalcSelect").value;
+    const wrap = document.getElementById("hseCalcInputs");
+    const content = document.getElementById("hseInputsContent");
+    const result = document.getElementById("hseResultOutput");
+    const example = document.getElementById("hseExampleOutput");
+    result.style.display = "none";
+    example.style.display = "none";
+    example.textContent = "";
+    content.innerHTML = "";
+    if (!select) { wrap.style.display = "none"; return; }
+
+    const fields = {
+      risk_rating: '<label>Likelihood (L) - अपनी risk matrix के अनुसार:</label><input type="number" id="hseL" min="1" step="1" placeholder="उदा. 3"><label>Severity (S) - अपनी risk matrix के अनुसार:</label><input type="number" id="hseS" min="1" step="1" placeholder="उदा. 4"><p class="hse-note">Risk score = L × S. Low / Medium / High की सीमा आपकी approved risk matrix के अनुसार तय करें।</p>',
+      afr: '<label>Number of injuries:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 2"><label>Total man-hours worked:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 250000">',
+      ltifr: '<label>Number of lost-time injuries:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 1"><label>Total man-hours worked:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 250000">',
+      severity_rate: '<label>Lost workdays:</label><input type="number" id="hseA" min="0" step="any" placeholder="उदा. 12"><label>Total man-hours worked:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 250000">',
+      incident_rate: '<label>Number of recordable incidents:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 2"><label>Total hours worked:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 1000000"><p class="hse-note">आपके दिए हुए formula के अनुसार multiplier 200,000 रखा गया है।</p>',
+      fire_load: '<label>Total heat energy of combustible materials (MJ):</label><input type="number" id="hseA" min="0" step="any" placeholder="उदा. 50000"><label>Floor area (m²):</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 500">',
+      noise_laeq: '<label>Noise readings in dB(A), comma-separated (equal duration):</label><input type="text" id="hseNoiseReadings" placeholder="उदा. 82, 85, 88, 90"><p class="hse-note">एक ही अवधि की readings डालें। अलग-अलग exposure durations हों तो यह simple average-energy calculator उपयुक्त नहीं है।</p>',
+      ventilation: '<label>Room volume (m³):</label><input type="number" id="hseA" min="0" step="any" placeholder="उदा. 300"><label>Air Changes per Hour (ACH):</label><input type="number" id="hseB" min="0" step="any" placeholder="उदा. 6">',
+      near_miss_rate: '<label>Number of near-miss cases:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 5"><label>Total hours worked:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 250000"><label>Reporting multiplier:</label><select id="hseMultiplier"><option value="200000">200,000 hours basis</option><option value="1000000">1,000,000 hours basis</option></select><p class="hse-note">Near-miss rate का multiplier universal नहीं है; अपनी company/client reporting basis चुनें।</p>',
+      ladder_4to1: '<label>Vertical height to access point (meters):</label><input type="number" id="hseA" min="0.01" step="any" placeholder="उदा. 4"><p class="hse-note">यह 4:1 geometry का estimate है: base distance = vertical height ÷ 4. Actual ladder angle, securing और extension के लिए ladder manufacturer तथा site procedure follow करें।</p>',
+      extinguisher_estimate: '<label>Floor area (m²):</label><input type="number" id="hseA" min="0.01" step="any" placeholder="उदा. 600"><label>Approved coverage area per extinguisher (m²):</label><input type="number" id="hseB" min="0.01" step="any" placeholder="अपनी approved fire plan value डालें"><p class="hse-note">यह केवल area-based planning estimate है। यह extinguisher type, fire class/rating, travel distance, hazard और applicable code की calculation का विकल्प नहीं है।</p>',
+      wbgt: '<label>Natural wet-bulb temperature (°C):</label><input type="number" id="hseA" step="any" placeholder="उदा. 25"><label>Globe temperature (°C):</label><input type="number" id="hseB" step="any" placeholder="उदा. 32"><label>Dry-bulb temperature (°C) - outdoor sunlight के लिए:</label><input type="number" id="hseC" step="any" placeholder="उदा. 35"><label>Exposure condition:</label><select id="hseWBGTMode"><option value="indoor">Indoor / no direct solar load</option><option value="outdoor">Outdoor / direct solar load</option></select><p class="hse-note">Indoor: WBGT = 0.7 Tnwb + 0.3 Tg. Outdoor sun: WBGT = 0.7 Tnwb + 0.2 Tg + 0.1 Tdb.</p>',
+      noise_dose: '<label>Actual noise exposure duration (hours):</label><input type="number" id="hseA" min="0" step="any" placeholder="उदा. 4"><label>Permissible exposure duration (hours, as per applicable standard):</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 8"><p class="hse-note">Dose % = (Actual duration ÷ Permissible duration) × 100. Permissible duration आपके लागू standard से लें।</p>',
+      ppe_compliance: '<label>Number of workers compliant with required PPE:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 45"><label>Total workers checked:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 50">',
+      training_coverage: '<label>Workers who completed required safety training:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 80"><label>Total workers required to be trained:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 100">',
+      observation_closure: '<label>Safety observations closed:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 42"><label>Total safety observations raised:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 50">',
+      inspection_compliance: '<label>Inspections completed:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 18"><label>Inspections planned:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 20">',
+      drill_participation: '<label>Workers who participated in the emergency drill:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 90"><label>Total workers expected to participate:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 100">',
+      ptw_compliance: '<label>PTWs found compliant during audit:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 28"><label>Total PTWs audited:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 30">',
+      action_closure: '<label>Corrective actions closed:</label><input type="number" id="hseA" min="0" step="1" placeholder="उदा. 36"><label>Total corrective actions assigned:</label><input type="number" id="hseB" min="0.000001" step="any" placeholder="उदा. 40">'
+    };
+    content.innerHTML = fields[select] || "";
+    wrap.style.display = "block";
+  }
+
+  function executeHSECalculation() {
+    const select = document.getElementById("hseCalcSelect").value;
+    const result = document.getElementById("hseResultOutput");
+    const example = document.getElementById("hseExampleOutput");
+    const read = (id) => {
+      const el = document.getElementById(id);
+      if (!el || el.value.trim() === "") return NaN;
+      return Number(el.value);
+    };
+    const validNonNegative = (n) => Number.isFinite(n) && n >= 0;
+    const validPositive = (n) => Number.isFinite(n) && n > 0;
+    const ratePercent = (part, total) => (part / total) * 100;
+    let message = "";
+    let error = "";
+    const a = read("hseA");
+    const b = read("hseB");
+    const c = read("hseC");
+
+    switch (select) {
+      case "risk_rating": {
+        const l = read("hseL"), s = read("hseS");
+        if (!validPositive(l) || !validPositive(s)) error = "Likelihood और Severity में 0 से बड़ा मान दर्ज करें।";
+        else message = `Risk Rating (R) = ${l} × ${s} = ${(l * s).toFixed(2)} (score)`;
+        break;
+      }
+      case "afr":
+        if (!validNonNegative(a) || !validPositive(b)) error = "Injuries और man-hours के सही मान दर्ज करें; man-hours शून्य से अधिक होना चाहिए।";
+        else message = `Accident Frequency Rate (AFR) = ${((a * 1000000) / b).toFixed(3)} per 1,000,000 man-hours`;
+        break;
+      case "ltifr":
+        if (!validNonNegative(a) || !validPositive(b)) error = "Lost-time injuries और man-hours के सही मान दर्ज करें।";
+        else message = `LTIFR = ${((a * 1000000) / b).toFixed(3)} per 1,000,000 man-hours`;
+        break;
+      case "severity_rate":
+        if (!validNonNegative(a) || !validPositive(b)) error = "Lost workdays और man-hours के सही मान दर्ज करें।";
+        else message = `Severity Rate (SR) = ${((a * 1000000) / b).toFixed(3)} lost workdays per 1,000,000 man-hours`;
+        break;
+      case "incident_rate":
+        if (!validNonNegative(a) || !validPositive(b)) error = "Recordable incidents और total hours के सही मान दर्ज करें।";
+        else message = `Incident Rate / TRIR = ${((a * 200000) / b).toFixed(3)} per 200,000 hours`;
+        break;
+      case "fire_load":
+        if (!validNonNegative(a) || !validPositive(b)) error = "Heat energy और floor area के सही मान दर्ज करें।";
+        else message = `Fire Load Density = ${(a / b).toFixed(2)} MJ/m²`;
+        break;
+      case "noise_laeq": {
+        const raw = document.getElementById("hseNoiseReadings").value;
+        const levels = raw.split(",").map(x => x.trim()).filter(x => x !== "").map(Number);
+        if (!levels.length || levels.some(x => !Number.isFinite(x))) error = "Comma से अलग करके सही dB(A) readings दर्ज करें, जैसे 82, 85, 88.";
+        else {
+          const meanEnergy = levels.reduce((sum, level) => sum + Math.pow(10, level / 10), 0) / levels.length;
+          message = `Equivalent Noise Level (LAeq) = ${(10 * Math.log10(meanEnergy)).toFixed(2)} dB(A) (${levels.length} equal-duration readings)`;
+        }
+        break;
+      }
+      case "ventilation":
+        if (!validNonNegative(a) || !validNonNegative(b)) error = "Room volume और ACH के सही मान दर्ज करें।";
+        else message = `Ventilation Rate (Q) = ${(a * b).toFixed(2)} m³/hour`;
+        break;
+      case "near_miss_rate": {
+        const multiplier = Number(document.getElementById("hseMultiplier").value);
+        if (!validNonNegative(a) || !validPositive(b)) error = "Near misses और total work hours के सही मान दर्ज करें।";
+        else message = `Near Miss Frequency Rate = ${((a * multiplier) / b).toFixed(3)} per ${multiplier.toLocaleString("en-US")} hours`;
+        break;
+      }
+      case "ladder_4to1":
+        if (!validPositive(a)) error = "Vertical height शून्य से अधिक दर्ज करें।";
+        else message = `4:1 setup estimate: Base distance = ${(a / 4).toFixed(2)} m. Geometric angle from horizontal = ${(Math.atan(4) * 180 / Math.PI).toFixed(1)}°`;
+        break;
+      case "extinguisher_estimate":
+        if (!validPositive(a) || !validPositive(b)) error = "Floor area और approved coverage area दोनों शून्य से अधिक दर्ज करें।";
+        else message = `Area-based planning estimate = ${Math.ceil(a / b)} extinguisher(s). Final quantity/type/location को approved fire plan और applicable code से verify करें.`;
+        break;
+      case "wbgt": {
+        const mode = document.getElementById("hseWBGTMode").value;
+        if (!Number.isFinite(a) || !Number.isFinite(b) || (mode === "outdoor" && !Number.isFinite(c))) error = "WBGT के लिए आवश्यक temperature readings दर्ज करें।";
+        else {
+          const wbgt = mode === "outdoor" ? (0.7 * a + 0.2 * b + 0.1 * c) : (0.7 * a + 0.3 * b);
+          message = `Estimated WBGT = ${wbgt.toFixed(2)} °C`;
+        }
+        break;
+      }
+      case "noise_dose":
+        if (!validNonNegative(a) || !validPositive(b)) error = "Actual और permissible exposure hours के सही मान दर्ज करें।";
+        else message = `Noise Exposure Dose = ${((a / b) * 100).toFixed(2)}% (based on the permissible duration you entered)`;
+        break;
+      case "ppe_compliance":
+      case "training_coverage":
+      case "observation_closure":
+      case "inspection_compliance":
+      case "drill_participation":
+      case "ptw_compliance":
+      case "action_closure": {
+        if (!validNonNegative(a) || !validPositive(b) || a > b) error = "Completed/compliant संख्या 0 या अधिक और total से कम या बराबर होनी चाहिए; total शून्य से अधिक होना चाहिए।";
+        else {
+          const pct = ratePercent(a, b);
+          const names = {
+            ppe_compliance: "PPE Compliance",
+            training_coverage: "Safety Training Coverage",
+            observation_closure: "Safety Observation Closure Rate",
+            inspection_compliance: "Safety Inspection Compliance",
+            drill_participation: "Emergency Drill Participation",
+            ptw_compliance: "PTW Compliance",
+            action_closure: "Corrective Action Closure Rate"
+          };
+          message = `${names[select]} = ${pct.toFixed(2)}% (${a} of ${b})`;
+        }
+        break;
+      }
+      default:
+        error = "कृपया एक HSE calculator चुनें।";
+    }
+
+    result.className = "result-box hse-result";
+    if (error) {
+      result.textContent = error;
+      result.style.color = "#842029";
+      result.style.backgroundColor = "#f8d7da";
+      result.style.borderColor = "#f5c2c7";
+      example.style.display = "none";
+      example.textContent = "";
+    } else {
+      result.textContent = message;
+      result.style.color = "#155724";
+      result.style.backgroundColor = "#d4edda";
+      result.style.borderColor = "#c3e6cb";
+
+      // Fixed worked examples are shown immediately below the live result.
+      const workedExamples = {
+        risk_rating: "उदाहरण: Likelihood (L) = 3 और Severity (S) = 4\nCalculation: R = L × S = 3 × 4 = 12 (score).\nRisk category आपकी approved site risk matrix के अनुसार तय होगी.",
+        afr: "उदाहरण: Injuries = 2 और Total man-hours = 250,000\nCalculation: AFR = (2 × 1,000,000) ÷ 250,000 = 8 per 1,000,000 man-hours.",
+        ltifr: "उदाहरण: Lost-time injuries = 1 और Total man-hours = 250,000\nCalculation: LTIFR = (1 × 1,000,000) ÷ 250,000 = 4 per 1,000,000 man-hours.",
+        severity_rate: "उदाहरण: Lost workdays = 12 और Total man-hours = 250,000\nCalculation: SR = (12 × 1,000,000) ÷ 250,000 = 48 lost workdays per 1,000,000 man-hours.",
+        incident_rate: "उदाहरण: Recordable incidents = 2 और Total hours = 1,000,000\nCalculation: IR = (2 × 200,000) ÷ 1,000,000 = 0.40 per 200,000 hours.\nयहाँ 200,000 multiplier आपके दिए हुए reference formula के अनुसार है.",
+        fire_load: "उदाहरण: Total heat energy = 50,000 MJ और Floor area = 500 m²\nCalculation: Fire Load Density = 50,000 ÷ 500 = 100 MJ/m².",
+        noise_laeq: "उदाहरण: Equal-duration readings = 82, 85, 88, 90 dB(A)\nCalculation: LAeq = 10 × log₁₀[(10⁸·² + 10⁸·⁵ + 10⁸·⁸ + 10⁹·⁰) ÷ 4] = 87.21 dB(A).",
+        ventilation: "उदाहरण: Room volume = 300 m³ और ACH = 6\nCalculation: Q = 300 × 6 = 1,800 m³/hour.",
+        near_miss_rate: "उदाहरण: Near misses = 5, Total hours = 250,000 और multiplier = 200,000\nCalculation: Rate = (5 × 200,000) ÷ 250,000 = 4 per 200,000 hours.\nReporting multiplier अपनी company/client basis के अनुसार चुनें.",
+        ladder_4to1: "उदाहरण: Vertical height = 4 m\nCalculation: Base distance = 4 ÷ 4 = 1 m; angle ≈ 76° from horizontal.\nयह केवल 4:1 geometry example है; ladder को secure करने और इस्तेमाल करने के लिए approved site procedure follow करें.",
+        extinguisher_estimate: "उदाहरण: Floor area = 600 m² और approved planning coverage = 150 m² per extinguisher\nCalculation: 600 ÷ 150 = 4 extinguishers (area-only estimate).\nFinal type, rating, travel distance और placement approved fire plan/code से verify करें.",
+        wbgt: "उदाहरण (Indoor): Natural wet-bulb = 25°C और Globe temperature = 32°C\nCalculation: WBGT = (0.7 × 25) + (0.3 × 32) = 17.5 + 9.6 = 27.1°C.\nExposure limits और work/rest controls लागू standard के अनुसार तय करें.",
+        noise_dose: "उदाहरण: Actual exposure = 4 hours और Permissible duration = 8 hours\nCalculation: Dose = (4 ÷ 8) × 100 = 50%.\nPermissible duration अपने लागू noise-exposure standard से लें.",
+        ppe_compliance: "उदाहरण: PPE-compliant workers = 45 और Total workers checked = 50\nCalculation: PPE Compliance = (45 ÷ 50) × 100 = 90%.",
+        training_coverage: "उदाहरण: Trained workers = 80 और Workers required to be trained = 100\nCalculation: Training Coverage = (80 ÷ 100) × 100 = 80%.",
+        observation_closure: "उदाहरण: Safety observations closed = 42 और Total raised = 50\nCalculation: Closure Rate = (42 ÷ 50) × 100 = 84%.",
+        inspection_compliance: "उदाहरण: Inspections completed = 18 और Inspections planned = 20\nCalculation: Inspection Compliance = (18 ÷ 20) × 100 = 90%.",
+        drill_participation: "उदाहरण: Workers participated = 90 और Expected participants = 100\nCalculation: Drill Participation = (90 ÷ 100) × 100 = 90%.",
+        ptw_compliance: "उदाहरण: Compliant PTWs = 28 और Total PTWs audited = 30\nCalculation: PTW Compliance = (28 ÷ 30) × 100 = 93.33%.",
+        action_closure: "उदाहरण: Corrective actions closed = 36 और Total assigned = 40\nCalculation: Action Closure Rate = (36 ÷ 40) × 100 = 90%."
+      };
+      example.textContent = "WORKED EXAMPLE (उदाहरण)\n" + (workedExamples[select] || "इस calculator का worked example उपलब्ध नहीं है.");
+      example.style.display = "block";
+    }
+    result.style.display = "block";
   }
 </script>
 
