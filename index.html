@@ -254,6 +254,1395 @@
     </div>
   </section>
 
+  <!-- ELECTRICAL LOAD CHART SECTION (embedded from supplied HTML file) -->
+  <section id="electrical-load-chart-section">
+    <h2>इलेक्ट्रिकल लोड चार्ट कैलकुलेशन (ELECTRICAL LOAD CHART CALCULATION)</h2>
+    <iframe
+      id="electricalLoadChartFrame"
+      title="Electrical Load Chart Calculation"
+      style="display:block;width:100%;height:1800px;border:0;background:#fff;"
+      loading="eager"
+      srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Electrical Load Chart Calculation – Fixed V10&lt;/title&gt;
+&lt;style&gt;
+:root{--navy:#123b70;--blue:#1764a5;--line:#596575;--ink:#182536;--bg:#e9eef4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}
+.page{max-width:1680px;margin:18px auto;background:#fff;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.15);position:relative}
+.header{display:grid;grid-template-columns:160px 1fr 160px;border:1px solid #333;text-align:center;min-height:105px}
+.logo{border-right:1px solid #333;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;min-width:0;position:relative}
+.logo.right{border-right:0;border-left:1px solid #333}
+.logo img{display:none;width:100%;height:85px;object-fit:contain}
+.logo input[type=file]{font-size:10px;width:100%}
+.heading{padding:6px}
+.heading input{display:block;width:100%;text-align:center;border:0;border-bottom:1px dashed #aaa;padding:3px;font-weight:bold}
+.heading input:focus{outline:none;border-bottom-color:var(--blue)}
+.heading .company{font-size:20px;color:var(--navy);border-bottom-style:solid;text-transform:uppercase}
+.heading .title{font-size:17px;color:#b42318;border:0;margin:2px 0;font-weight:bold}
+.controls{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0;padding:12px;background:#f4f7fb;border:1px solid #cbd5e1;border-radius:4px}
+.controls label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:bold;flex:1;min-width:190px}
+input,select,textarea{font:inherit;padding:5px;border:1px solid #aab4c0;border-radius:3px;min-width:0;background:#fff}
+input.error-border,select.error-border{border:1.5px solid #b42318!important;background:#fff5f5!important}
+button{border:0;border-radius:4px;padding:9px 13px;background:var(--blue);color:#fff;cursor:pointer;font-weight:bold;font-size:12px;transition:background .2s}
+button:hover{background:#114c80}
+.secondary{background:#536477}.secondary:hover{background:#3d4b5b}
+.excel-btn{background:#1d6f42}.excel-btn:hover{background:#144f2e}
+.word-btn{background:#2b579a}.word-btn:hover{background:#1e3d6b}
+.danger{background:#b42318}.danger:hover{background:#8e1b12}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.section-title{margin:20px 0 10px;color:var(--navy);font-size:14px;font-weight:bold;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--navy);padding-bottom:3px}
+.table-wrap{overflow-x:auto}
+table.load-table{border-collapse:collapse;width:100%;min-width:1480px;font-size:10.5px;table-layout:fixed}
+table.load-table th,table.load-table td{border:1px solid #515b67;padding:5px 3px;text-align:center;vertical-align:middle;overflow-wrap:anywhere}
+table.load-table th{background:#e5ebf3;color:#162d49;font-weight:bold;font-size:10.5px}
+.col-sl{width:2.8%}.col-area{width:10.2%}.col-equip{width:14.5%}.col-type{width:5.5%}.col-load{width:6%}.col-unit{width:3.5%}.col-qty{width:3.5%}.col-conn{width:6%}.col-demand{width:6%}.col-hrs{width:4.5%}.col-kwh{width:6.5%}.col-pf{width:4.5%}.col-df{width:4.5%}.col-df input{width:100%;min-width:0;text-align:center;padding:2px 1px}.col-amp{width:5.5%}.col-cable{width:13%}.col-action{width:3.5%}
+td input,td select{width:100%;padding:3px;font-size:10.5px}
+td input[type=number]{text-align:right}
+.num{font-weight:bold;white-space:nowrap}
+.cable-info{font-size:8.8px;line-height:1.25;margin-top:2px;padding:3px 4px;background:#f0f4f8;border-radius:2px;border-left:2px solid var(--blue);overflow-wrap:anywhere}
+.cable-info.drop-ok{border-left-color:#0e7090;color:#0e7090;font-weight:bold}
+.cable-info.drop-warn{border-left-color:#b42318;color:#b42318;font-weight:bold;background:#fff5f5}
+.requirements{width:100%;border-collapse:collapse;margin-top:5px;font-size:11px}
+.requirements th,.requirements td{border:1px solid #515b67;padding:5px 8px}
+.requirements th{text-align:left;width:48%;background:#f4f7fb}
+.requirements td{text-align:left;font-weight:bold}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.card{border:1px solid #c7d1dc;padding:10px 12px;background:#fbfcfe;border-radius:4px}
+.card small{display:block;color:#5d6b7b;margin-bottom:3px;font-weight:bold;text-transform:uppercase;font-size:9.5px}
+.card strong{font-size:16px;color:var(--navy)}
+.formula-table{width:100%;border-collapse:collapse;font-size:10.5px;table-layout:fixed}
+.formula-table th,.formula-table td{border:1px solid #515b67;padding:5px}
+.formula-table th{background:#e5ebf3;text-align:center}
+.formula-table td:nth-child(1){width:33%;font-weight:bold}
+.formula-table td:nth-child(2){width:20%;font-weight:bold;text-align:center}
+.formula-table td:nth-child(3){text-align:left;line-height:1.35}
+.formula-table tr{break-inside:avoid}
+.approvals{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #555;margin-top:14px;background:#fff}
+.approval{padding:8px 10px;border-right:1px solid #555;display:flex;flex-direction:column;justify-content:space-between;min-height:120px}
+.approval:last-child{border-right:0}
+.approval b{display:block;margin-bottom:4px;text-align:center;font-size:11.5px;color:var(--navy)}
+.approval input{width:100%;margin:2px 0;font-size:10.5px;text-align:center}
+.approval input.desig{font-weight:bold;border-color:transparent;background:transparent}
+.approval input.desig:hover,.approval input.desig:focus{border-color:#aab4c0;background:#fff}
+.sig-space{margin-top:10px;border-bottom:1px dashed #777;height:40px;position:relative}
+.sig-space::after{content:&quot;Handwritten Signature&quot;;position:absolute;bottom:2px;right:4px;font-size:8.5px;color:#888;font-style:italic}
+.notes-container{margin:12px 0;border:1px solid #cbd5e1;border-radius:4px;background:#fdfefe;padding:10px}
+.notes-container textarea{overflow-y:auto;resize:vertical;width:100%;min-height:95px;font-family:inherit;font-size:10.5px;line-height:1.45;border:1px solid #cbd5e1;padding:6px;resize:vertical}
+.muted{color:#556980;font-size:9.5px;line-height:1.4;margin-top:6px}
+.warning-note{margin:8px 0;padding:8px 10px;border-left:3px solid #b7791f;background:#fffaf0;color:#704b12;font-size:10px;line-height:1.4}
+.status-ok{color:#147044}.status-warn{color:#a15c00}.status-error{color:#b42318}
+@page{size:A4 landscape;margin:7mm 6mm 10mm 6mm;@bottom-right{content:&quot;Page &quot; counter(page) &quot; of &quot; counter(pages);font-size:8pt;font-family:Arial,sans-serif;color:#444}}
+@media print{
+ html,body{width:100%;margin:0;padding:0;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .page{width:100%;max-width:none;margin:0;padding:0;box-shadow:none;border:0}
+ .no-print{display:none!important}
+ .col-sl{width:3%!important}.col-area{width:10.5%!important}.col-equip{width:15%!important}.col-type{width:5.5%!important}.col-load{width:6%!important}.col-unit{width:3.5%!important}.col-qty{width:3.5%!important}.col-conn{width:6.5%!important}.col-demand{width:6.5%!important}.col-hrs{width:4.5%!important}.col-kwh{width:6.5%!important}.col-pf{width:4.5%!important}.col-df{width:4.5%!important}.col-amp{width:6%!important}.col-cable{width:14%!important}.col-action{display:none!important}
+ .header{grid-template-columns:110px 1fr 110px;min-height:55px;break-inside:avoid}
+ .logo{padding:2px}.logo img{height:50px}.logo input{display:none!important}
+ .heading{padding:2px}.heading input{padding:1px;font-size:9.5px;border-bottom:0}.heading .company{font-size:14px}.heading .title{font-size:11px}
+ .section-title{font-size:10.5px;margin:8px 0 3px;padding-bottom:1px}
+ .table-wrap{overflow:visible;width:100%}
+ table.load-table{width:100%;min-width:0;table-layout:fixed;font-size:7.5pt}
+ table.load-table th,table.load-table td{padding:2.5px 2px}
+ select{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;background:transparent!important;border:0!important;padding:0!important;font-size:7.5pt!important;text-align-last:center}
+ td input,td select{font-size:7.5pt;padding:0;border:0;background:transparent}
+ input::placeholder{color:transparent!important}
+ .summary{gap:4px;margin:5px 0}.card{padding:3px 5px}.card strong{font-size:10.5pt}.card small{font-size:6.5pt;margin-bottom:1px}
+ .requirements{font-size:8pt}.requirements th,.requirements td{padding:2.5px 4px}
+ .approvals{margin-top:6px;break-inside:avoid}.approval{min-height:55px;padding:3px}.approval b{font-size:8.5pt;margin-bottom:1px}.approval input{font-size:7.5pt;padding:0;border:0}.sig-space{margin-top:4px;height:26px;border-bottom:1px solid #444}.sig-space::after{font-size:6.5pt;bottom:1px}
+ .formula-table{font-size:7.5pt}.formula-table th,.formula-table td{padding:2.5px 3px}
+ .notes-container{padding:3px;margin:5px 0}.notes-container textarea{overflow-y:auto;resize:vertical;font-size:7.5pt;min-height:50px;border:0;padding:0}
+ .notes-container textarea{overflow:visible!important;height:auto!important;min-height:50px;white-space:pre-wrap}
+ .muted{font-size:6.8pt;padding:1px;margin:3px 0}.warning-note{font-size:6.8pt;padding:3px;margin:3px 0}
+ .header,.summary,.approvals,.requirements,.notes-container{break-inside:avoid}
+}
+.editable-protocol-note{display:block;width:100%;min-height:18px;margin-top:4px;padding:2px 0;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;color:inherit;font:inherit;white-space:pre-wrap;overflow-wrap:anywhere;}
+.editable-protocol-note:focus{border:0!important;outline:0!important;box-shadow:none!important;}
+@media print{.editable-protocol-note{border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;min-height:18px;}}
+@media(max-width:900px){.page{margin:0;padding:12px}.header{grid-template-columns:95px 1fr 95px}.heading .company{font-size:16px}.summary{grid-template-columns:repeat(2,1fr)}.approvals{grid-template-columns:repeat(2,1fr)}.approval:nth-child(2){border-right:0}.approval:nth-child(-n+2){border-bottom:1px solid #555}}
+@media(max-width:520px){.header{grid-template-columns:70px 1fr 70px}.heading .company{font-size:13px}.heading .title{font-size:12px}.controls label{min-width:100%}.summary{grid-template-columns:1fr}.approvals{grid-template-columns:1fr}.approval{border-right:0!important;border-bottom:1px solid #555}.approval:last-child{border-bottom:0}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;page&quot; id=&quot;exportableArea&quot;&gt;
+  &lt;div class=&quot;header&quot;&gt;
+    &lt;div class=&quot;logo&quot;&gt;
+      &lt;input class=&quot;no-print&quot; type=&quot;file&quot; accept=&quot;image/png,image/jpeg&quot; aria-label=&quot;Upload left logo&quot; onchange=&quot;loadLogo(this,&#x27;logoLeft&#x27;)&quot;&gt;
+      &lt;img id=&quot;logoLeft&quot; alt=&quot;Left company logo&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;heading&quot;&gt;
+      &lt;input id=&quot;hCompany&quot; class=&quot;company&quot; value=&quot;&quot; placeholder=&quot;COMPANY NAME&quot;&gt;
+      &lt;input id=&quot;hTenderName&quot; value=&quot;&quot; placeholder=&quot;Tender Name&quot;&gt;
+      &lt;input id=&quot;hTenderNo&quot; value=&quot;&quot; placeholder=&quot;Tender Number&quot;&gt;
+      &lt;input class=&quot;title&quot; value=&quot;ELECTRICAL LOAD CHART CALCULATION&quot; readonly&gt;
+      &lt;input id=&quot;hLocation&quot; value=&quot;&quot; placeholder=&quot;LOCATION&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;logo right&quot;&gt;
+      &lt;input class=&quot;no-print&quot; type=&quot;file&quot; accept=&quot;image/png,image/jpeg&quot; aria-label=&quot;Upload right logo&quot; onchange=&quot;loadLogo(this,&#x27;logoRight&#x27;)&quot;&gt;
+      &lt;img id=&quot;logoRight&quot; alt=&quot;Right company logo&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;controls no-print&quot;&gt;
+    &lt;label&gt;Design Margin (kW)
+      &lt;input id=&quot;marginKW&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;0.1&quot; value=&quot;&quot; placeholder=&quot;Enter Margin kW&quot;&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Main Feeder Cable Length (Meters)
+      &lt;input id=&quot;feederLength&quot; type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; value=&quot;&quot; placeholder=&quot;Enter Length (m)&quot;&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Main Cable Material (selected recommendation)
+      &lt;select id=&quot;mainCableMat&quot;&gt;
+        &lt;option value=&quot;Aluminium&quot; selected&gt;Aluminium (Armoured XLPE)&lt;/option&gt;
+        &lt;option value=&quot;Copper&quot;&gt;Copper (Armoured XLPE)&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Voltage Drop Criteria
+      &lt;select id=&quot;dropCriteria&quot;&gt;
+        &lt;option value=&quot;3&quot;&gt;3.0% (Strict / Sensitive Loads)&lt;/option&gt;
+        &lt;option value=&quot;5&quot; selected&gt;5.0% (Design Criterion – Verify Project Requirement)&lt;/option&gt;
+        &lt;option value=&quot;7&quot;&gt;7.0% (Project-specific allowance only)&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Main Supply System
+      &lt;select id=&quot;supply&quot;&gt;
+        &lt;option value=&quot;415_3P&quot; selected&gt;415 V, 3-Phase, 4-Wire, 50 Hz&lt;/option&gt;
+        &lt;option value=&quot;220_1P&quot;&gt;220 V, 1-Phase, 2-Wire, 50 Hz&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Branch Cable – Combined Ampacity Correction Factor
+      &lt;input id=&quot;branchAmpacityFactor&quot; type=&quot;number&quot; min=&quot;0.1&quot; max=&quot;1&quot; step=&quot;0.01&quot; value=&quot;&quot; placeholder=&quot;Verified branch-route factor (0.10–1.00)&quot;&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Main Feeder – Combined Ampacity Correction Factor
+      &lt;input id=&quot;mainAmpacityFactor&quot; type=&quot;number&quot; min=&quot;0.1&quot; max=&quot;1&quot; step=&quot;0.01&quot; value=&quot;&quot; placeholder=&quot;Verified feeder-route factor (0.10–1.00)&quot;&gt;
+    &lt;/label&gt;
+    &lt;label&gt;DG Maximum Continuous Loading (%)
+      &lt;input id=&quot;dgLoadingPct&quot; type=&quot;number&quot; min=&quot;50&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;80&quot;&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+
+
+  &lt;div class=&quot;actions no-print&quot;&gt;
+    &lt;button onclick=&quot;addRow()&quot;&gt;+ Add Equipment Row&lt;/button&gt;
+    &lt;button class=&quot;secondary&quot; onclick=&quot;loadExample()&quot;&gt;Load Sample Data (Verification)&lt;/button&gt;
+    &lt;button class=&quot;secondary&quot; onclick=&quot;window.print()&quot;&gt;Print / Save PDF&lt;/button&gt;
+    &lt;button class=&quot;excel-btn&quot; onclick=&quot;exportToExcel()&quot;&gt;Export to Excel (.xlsx)&lt;/button&gt;
+    &lt;button class=&quot;word-btn&quot; onclick=&quot;exportToWord()&quot;&gt;Export to Word (.docx)&lt;/button&gt;
+    &lt;button class=&quot;danger&quot; onclick=&quot;clearRows()&quot;&gt;Clear Rows&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;section-title&quot;&gt;Electrical Load Details&lt;/h3&gt;
+  &lt;div class=&quot;table-wrap&quot;&gt;
+    &lt;table class=&quot;load-table&quot; id=&quot;mainLoadTable&quot;&gt;
+      &lt;thead&gt;&lt;tr&gt;
+        &lt;th class=&quot;col-sl&quot;&gt;SL.No&lt;/th&gt;&lt;th class=&quot;col-area&quot;&gt;AREA / LOCATION&lt;/th&gt;&lt;th class=&quot;col-equip&quot;&gt;EQUIPMENT / Machine Name&lt;/th&gt;
+        &lt;th class=&quot;col-type&quot;&gt;LOAD TYPE&lt;/th&gt;&lt;th class=&quot;col-load&quot;&gt;INDIVIDUAL LOAD&lt;/th&gt;&lt;th class=&quot;col-unit&quot;&gt;Unit&lt;/th&gt;&lt;th class=&quot;col-qty&quot;&gt;Qty&lt;/th&gt;
+        &lt;th class=&quot;col-conn&quot;&gt;Total Connected Load (kW)&lt;/th&gt;&lt;th class=&quot;col-demand&quot;&gt;Maximum Demand (kW)&lt;/th&gt;&lt;th class=&quot;col-hrs&quot;&gt;Operating Hours / Day&lt;/th&gt;
+        &lt;th class=&quot;col-kwh&quot;&gt;EST. ENERGY (kWh/day)&lt;/th&gt;&lt;th class=&quot;col-pf&quot;&gt;POWER FACTOR&lt;/th&gt;&lt;th class=&quot;col-df&quot;&gt;DEMAND FACTOR %&lt;/th&gt;
+        &lt;th class=&quot;col-amp&quot;&gt;CURRENT (A) per machine&lt;/th&gt;&lt;th class=&quot;col-cable&quot;&gt;BRANCH CABLE (per machine) &amp; VOLTAGE DROP&lt;/th&gt;&lt;th class=&quot;col-action no-print&quot;&gt;ACTION&lt;/th&gt;
+      &lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody id=&quot;rows&quot;&gt;&lt;/tbody&gt;
+      &lt;tfoot&gt;
+        &lt;tr&gt;
+          &lt;th colspan=&quot;7&quot; style=&quot;text-align:right;padding-right:8px&quot;&gt;Total&lt;/th&gt;
+          &lt;th id=&quot;totalConnected&quot; class=&quot;num&quot;&gt;0.000&lt;/th&gt;&lt;th id=&quot;totalDemand&quot; class=&quot;num&quot;&gt;0.000&lt;/th&gt;&lt;th&gt;—&lt;/th&gt;
+          &lt;th id=&quot;totalEnergy&quot; class=&quot;num&quot;&gt;—&lt;/th&gt;&lt;th&gt;—&lt;/th&gt;&lt;th id=&quot;totalDF&quot; class=&quot;num&quot;&gt;—&lt;/th&gt;&lt;th id=&quot;totalCurrent&quot; class=&quot;num&quot; title=&quot;Main feeder design current, not the sum of branch currents&quot;&gt;—&lt;/th&gt;&lt;th&gt;—&lt;/th&gt;&lt;th class=&quot;no-print&quot;&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th colspan=&quot;7&quot; style=&quot;text-align:right;padding-right:8px&quot;&gt;Design Margin (additional load)&lt;/th&gt;&lt;th&gt;—&lt;/th&gt;&lt;th id=&quot;marginRow&quot; class=&quot;num&quot;&gt;0.000 kW&lt;/th&gt;&lt;th colspan=&quot;2&quot;&gt;—&lt;/th&gt;
+          &lt;th colspan=&quot;4&quot; style=&quot;text-align:left;padding-left:8px;font-weight:normal;font-size:10px&quot;&gt;User-defined design margin (assumed at unity PF)&lt;/th&gt;&lt;th class=&quot;no-print&quot;&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th colspan=&quot;7&quot; style=&quot;text-align:right;padding-right:8px&quot;&gt;Total Design Load&lt;/th&gt;&lt;th&gt;—&lt;/th&gt;&lt;th id=&quot;designLoad&quot; class=&quot;num&quot;&gt;0.000 kW&lt;/th&gt;&lt;th colspan=&quot;2&quot;&gt;—&lt;/th&gt;
+          &lt;th colspan=&quot;4&quot; style=&quot;text-align:left;padding-left:8px;font-weight:normal;font-size:10px&quot;&gt;Maximum Demand + Design Margin&lt;/th&gt;&lt;th class=&quot;no-print&quot;&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/tfoot&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;summary&quot;&gt;
+    &lt;div class=&quot;card&quot;&gt;&lt;small&gt;Total Connected Load&lt;/small&gt;&lt;strong id=&quot;cardConnected&quot;&gt;0.000 kW&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;card&quot;&gt;&lt;small&gt;Total Maximum Demand&lt;/small&gt;&lt;strong id=&quot;cardDemand&quot;&gt;0.000 kW&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;card&quot;&gt;&lt;small&gt;Design Load&lt;/small&gt;&lt;strong id=&quot;cardDesign&quot;&gt;0.000 kW&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;card&quot;&gt;&lt;small&gt;Estimated Daily Energy&lt;/small&gt;&lt;strong id=&quot;cardEnergy&quot;&gt;—&lt;/strong&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;section-title&quot;&gt;Transformer, DG Set &amp; Main Feeder Requirement&lt;/h3&gt;
+  &lt;table class=&quot;requirements&quot; id=&quot;reqTable&quot;&gt;
+    &lt;tr&gt;&lt;th&gt;Total Maximum Demand&lt;/th&gt;&lt;td id=&quot;rDemand&quot;&gt;0.000 kW&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Design Margin (assumed at unity PF)&lt;/th&gt;&lt;td id=&quot;rMargin&quot;&gt;0.000 kW&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Total Design Load&lt;/th&gt;&lt;td id=&quot;rDesign&quot;&gt;0.000 kW&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Calculated Aggregate Power Factor (Vector Sum)&lt;/th&gt;&lt;td id=&quot;rPF&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Calculated Total Reactive Power (kVAr)&lt;/th&gt;&lt;td id=&quot;rKVAR&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Calculated Total Apparent Power (kVA)&lt;/th&gt;&lt;td id=&quot;rKVA&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Required Transformer Capacity (Preliminary)&lt;/th&gt;&lt;td id=&quot;transformer&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Suggested Standard Transformer Rating (Preliminary)&lt;/th&gt;&lt;td id=&quot;transformerStandard&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Required DG Capacity at Selected Continuous Loading&lt;/th&gt;&lt;td id=&quot;dg&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Suggested Standard DG Rating (Preliminary)&lt;/th&gt;&lt;td id=&quot;dgStandard&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Main Feeder Design Current (balanced-load assumption)&lt;/th&gt;&lt;td id=&quot;feederCurrent&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Main Feeder Total Connected Current (arithmetic sum of machine currents)&lt;/th&gt;&lt;td id=&quot;totalConnectedCurrent&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Main Supply Compatibility / Phase Balance&lt;/th&gt;&lt;td id=&quot;supplyStatus&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Selected Main Feeder Cable Recommendation&lt;/th&gt;&lt;td id=&quot;mainSelectedCable&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Main Feeder Cable – Copper Comparison&lt;/th&gt;&lt;td id=&quot;mainCopperCable&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Main Feeder Cable – Aluminium Comparison&lt;/th&gt;&lt;td id=&quot;mainAluCable&quot;&gt;—&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+
+  &lt;h3 class=&quot;section-title&quot;&gt;Position, Name and Signature&lt;/h3&gt;
+  &lt;div class=&quot;approvals&quot;&gt;
+    &lt;div class=&quot;approval&quot;&gt;&lt;div&gt;&lt;b&gt;Prepared By&lt;/b&gt;&lt;input class=&quot;desig&quot; value=&quot;Electrical Sr. Engineer&quot; aria-label=&quot;Prepared by designation&quot;&gt;&lt;input placeholder=&quot;Name&quot; value=&quot;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sig-space&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;approval&quot;&gt;&lt;div&gt;&lt;b&gt;Checked By&lt;/b&gt;&lt;input class=&quot;desig&quot; value=&quot;Chief SHE (AGM)&quot; aria-label=&quot;Checked by designation&quot;&gt;&lt;input placeholder=&quot;Name&quot; value=&quot;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sig-space&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;approval&quot;&gt;&lt;div&gt;&lt;b&gt;Approved By&lt;/b&gt;&lt;input class=&quot;desig&quot; value=&quot;Project Manager&quot; aria-label=&quot;Approved by designation&quot;&gt;&lt;input placeholder=&quot;Name&quot; value=&quot;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sig-space&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;approval&quot;&gt;&lt;div&gt;&lt;b&gt;Client &amp; Consultant&lt;/b&gt;&lt;input class=&quot;desig&quot; value=&quot;GMRC / GEC&quot; aria-label=&quot;Client and consultant designation&quot;&gt;&lt;input placeholder=&quot;Name&quot; value=&quot;&quot;&gt;&lt;/div&gt;&lt;div class=&quot;sig-space&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;section-title&quot;&gt;Engineer Notes&lt;/h3&gt;
+  &lt;div class=&quot;notes-container&quot;&gt;
+    &lt;div class=&quot;no-print&quot; style=&quot;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:8px;flex-wrap:wrap&quot;&gt;
+      &lt;span style=&quot;font-size:11px;font-weight:bold;color:var(--navy)&quot;&gt;Draft Technical Observations (Editable):&lt;/span&gt;
+      &lt;button class=&quot;secondary&quot; style=&quot;padding:4px 10px;font-size:10px&quot; onclick=&quot;regenerateNotesWithPrompt()&quot;&gt;🔄 Regenerate Technical Notes&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;textarea id=&quot;engineerNotes&quot; aria-label=&quot;Engineer Technical Notes&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;h3 class=&quot;section-title&quot;&gt;FORMULA &amp; HOW IT WORKS&lt;/h3&gt;
+  &lt;table class=&quot;formula-table&quot;&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;FORMULA&lt;/th&gt;&lt;th&gt;SL.NO&lt;/th&gt;&lt;th&gt;How it works&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Maximum Demand (kW) = Connected Load (kW) × Demand Factor&lt;/td&gt;&lt;td&gt;1. Maximum Demand&lt;/td&gt;&lt;td&gt;Estimates the demand used for this design calculation. Demand factors are assumptions selected for each load category; confirm that they are appropriate for the actual equipment and project.&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;If load is entered in W: Energy (kWh/day) = [Load (W) × Qty × Demand Factor × Hours] ÷ 1000&lt;br&gt;If load is entered in kW: Energy (kWh/day) = Load (kW) × Qty × Demand Factor × Hours&lt;/td&gt;&lt;td&gt;2. Energy Consumption&lt;/td&gt;&lt;td&gt;Watt input is divided by 1000 to convert Wh to kWh. The calculator converts W to kW before calculation, so both input units produce the same kWh/day result. This remains an estimate assuming calculated maximum demand persists for the entered hours. Actual energy consumption requires measured or realistic average operating power.&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Power Factor (PF) = Active Power (kW) ÷ Apparent Power (kVA)&lt;/td&gt;&lt;td&gt;3. Power Factor&lt;/td&gt;&lt;td&gt;Power factor is the ratio of active power to apparent power. It is not, by itself, a complete measure of overall system efficiency.&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Diversity Factor = Sum of Individual Maximum Demands ÷ Maximum Demand of the Entire System&lt;/td&gt;&lt;td&gt;4. Diversity Factor&lt;/td&gt;&lt;td&gt;Diversity factor is generally greater than or equal to 1. It is shown here as a reference formula only; this calculator does not apply a diversity factor in its calculations.&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Demand Factor = Maximum Demand ÷ Connected Load&lt;/td&gt;&lt;td&gt;5. Demand Factor&lt;/td&gt;&lt;td&gt;Demand factor is the ratio of maximum demand to connected load and is normally less than or equal to 1 for a consistent load basis.&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;1-Phase: I = (kW × 1000) ÷ (V × PF)&lt;br&gt;3-Phase: I = (kW × 1000) ÷ (√3 × V × PF)&lt;/td&gt;&lt;td&gt;6. Current&lt;/td&gt;&lt;td&gt;For balanced sinusoidal loads, the formulas estimate line current. The 3-phase multiplier is √3 (approximately 1.732), not 3. Actual cable and protective-device selection also requires installation and fault-level checks.&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;3-Phase Voltage Drop ≈ √3 × I × L × (R cosφ + X sinφ)&lt;br&gt;1-Phase Voltage Drop ≈ 2 × I × L × (R cosφ + X sinφ)&lt;/td&gt;&lt;td&gt;7. Voltage Drop&lt;/td&gt;&lt;td&gt;For this prototype, R and X are in Ω/km and L is in km. The calculation is indicative because conductor AC resistance, cable arrangement and actual manufacturer data must be confirmed.&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;div id=&quot;protocolNote&quot; class=&quot;editable-protocol-note&quot; contenteditable=&quot;true&quot; role=&quot;textbox&quot; aria-label=&quot;Optional additional note&quot; spellcheck=&quot;true&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+&#x27;use strict&#x27;;
+
+// Indicative prototype dataset only. Replace with project/manufacturer verified values before final design.
+// R90 values are approximate resistance inputs for preliminary voltage-drop estimation; they are NOT certified AC resistance.
+const CABLE_TABLE_COPPER = [
+  {size:1.5,amp:21,r90:15.43,x:0.115},{size:2.5,amp:28,r90:9.45,x:0.108},{size:4,amp:38,r90:5.88,x:0.101},
+  {size:6,amp:49,r90:3.93,x:0.096},{size:10,amp:68,r90:2.33,x:0.090},{size:16,amp:91,r90:1.47,x:0.086},
+  {size:25,amp:121,r90:0.927,x:0.083},{size:35,amp:150,r90:0.669,x:0.081},{size:50,amp:181,r90:0.494,x:0.079},
+  {size:70,amp:230,r90:0.342,x:0.077},{size:95,amp:282,r90:0.247,x:0.076},{size:120,amp:327,r90:0.196,x:0.074},
+  {size:150,amp:374,r90:0.159,x:0.073},{size:185,amp:427,r90:0.128,x:0.073},{size:240,amp:504,r90:0.098,x:0.072},
+  {size:300,amp:577,r90:0.079,x:0.071},{size:400,amp:679,r90:0.063,x:0.070}
+];
+const CABLE_TABLE_ALU = [
+  {size:2.5,amp:20,r90:15.42,x:0.108},{size:4,amp:29,r90:9.61,x:0.101},{size:6,amp:38,r90:6.41,x:0.096},
+  {size:10,amp:52,r90:3.84,x:0.090},{size:16,amp:69,r90:2.40,x:0.086},{size:25,amp:93,r90:1.54,x:0.083},
+  {size:35,amp:114,r90:1.11,x:0.081},{size:50,amp:138,r90:0.822,x:0.079},{size:70,amp:176,r90:0.569,x:0.077},
+  {size:95,amp:216,r90:0.411,x:0.076},{size:120,amp:251,r90:0.325,x:0.074},{size:150,amp:288,r90:0.265,x:0.073},
+  {size:185,amp:330,r90:0.211,x:0.073},{size:240,amp:390,r90:0.162,x:0.072},{size:300,amp:448,r90:0.130,x:0.071},
+  {size:400,amp:528,r90:0.102,x:0.070}
+];
+
+let logoLeftDataUrl = &#x27;&#x27;;
+let logoRightDataUrl = &#x27;&#x27;;
+const $ = (id) =&gt; document.getElementById(id);
+const numberText = (value, decimals=3) =&gt; Number(value).toFixed(decimals);
+
+function loadLogo(input, id) {
+  const file = input.files &amp;&amp; input.files[0];
+  if (!file) return;
+  if (![&#x27;image/png&#x27;,&#x27;image/jpeg&#x27;].includes(file.type)) {
+    alert(&#x27;Please select a PNG or JPG image.&#x27;); input.value=&#x27;&#x27;; return;
+  }
+  if (file.size &gt; 3 * 1024 * 1024) {
+    alert(&#x27;Logo file is too large. Please use an image up to 3 MB.&#x27;); input.value=&#x27;&#x27;; return;
+  }
+  const reader = new FileReader();
+  reader.onerror = () =&gt; { alert(&#x27;Could not read the selected logo. Please try again.&#x27;); input.value=&#x27;&#x27;; };
+  reader.onload = (event) =&gt; {
+    const dataUrl = event.target.result;
+    const img = $(id);
+    img.src = dataUrl;
+    img.style.display = &#x27;block&#x27;;
+    input.style.display = &#x27;none&#x27;;
+    if (id === &#x27;logoLeft&#x27;) logoLeftDataUrl = dataUrl;
+    if (id === &#x27;logoRight&#x27;) logoRightDataUrl = dataUrl;
+    const container = input.closest(&#x27;.logo&#x27;);
+    let changeButton = container.querySelector(&#x27;.change-logo-btn&#x27;);
+    if (!changeButton) {
+      changeButton = document.createElement(&#x27;button&#x27;);
+      changeButton.type = &#x27;button&#x27;;
+      changeButton.className = &#x27;no-print secondary change-logo-btn&#x27;;
+      changeButton.style.cssText = &#x27;font-size:8px;padding:2px 4px;margin-top:2px&#x27;;
+      changeButton.textContent = &#x27;Change Logo&#x27;;
+      changeButton.addEventListener(&#x27;click&#x27;, () =&gt; {
+        img.removeAttribute(&#x27;src&#x27;); img.style.display=&#x27;none&#x27;; input.value=&#x27;&#x27;; input.style.display=&#x27;block&#x27;;
+        if (id === &#x27;logoLeft&#x27;) logoLeftDataUrl=&#x27;&#x27;;
+        if (id === &#x27;logoRight&#x27;) logoRightDataUrl=&#x27;&#x27;;
+        changeButton.remove();
+      });
+      container.appendChild(changeButton);
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function getAmpacityFactor(id) {
+  const raw = $(id).value.trim();
+  if (raw === &#x27;&#x27;) return null;
+  const factor = Number(raw);
+  return Number.isFinite(factor) &amp;&amp; factor &gt;= 0.1 &amp;&amp; factor &lt;= 1 ? factor : NaN;
+}
+
+function getPreliminaryCableSelection(currentAmps, material, lengthMeters, isThreePhase, pf, allowedDropPct, ampacityFactor) {
+  if (!Number.isFinite(lengthMeters) || lengthMeters &lt;= 0) return {text:&#x27;Not entered (enter cable length)&#x27;,ok:false,missingLength:true};
+  if (!Number.isFinite(currentAmps) || currentAmps &lt;= 0) return {text:&#x27;No load current&#x27;,ok:false};
+  if (ampacityFactor === null) return {text:&#x27;Enter the verified combined ampacity correction factor (0.10–1.00)&#x27;,ok:false,missingFactor:true};
+  if (!Number.isFinite(ampacityFactor) || ampacityFactor &lt; 0.1 || ampacityFactor &gt; 1) return {text:&#x27;Invalid ampacity correction factor (allowed 0.10–1.00)&#x27;,ok:false};
+  if (!Number.isFinite(pf) || pf &lt; 0.1 || pf &gt; 1) return {text:&#x27;Invalid PF; correct PF before cable selection&#x27;,ok:false};
+
+  const table = material === &#x27;Aluminium&#x27; ? CABLE_TABLE_ALU : CABLE_TABLE_COPPER;
+  const voltage = isThreePhase ? 415 : 220;
+  const sinPhi = Math.sqrt(Math.max(0,1-pf*pf));
+  const factor = isThreePhase ? Math.sqrt(3) : 2;
+
+  // One to four parallel runs are shown only as preliminary options. Equal current sharing must be engineered.
+  for (let runs=1; runs&lt;=4; runs++) {
+    const perRunCurrent = currentAmps / runs;
+    for (const cable of table) {
+      const effectiveTotalAmpacity = cable.amp * ampacityFactor * runs;
+      if (effectiveTotalAmpacity + 1e-9 &lt; currentAmps) continue;
+      const voltageDrop = factor * perRunCurrent * (cable.r90*pf + cable.x*sinPhi) * (lengthMeters/1000);
+      const dropPct = (voltageDrop/voltage)*100;
+      if (dropPct &lt;= allowedDropPct) {
+        const sizeText = runs === 1 ? `${cable.size} sq.mm ${material}` : `${runs} runs × ${cable.size} sq.mm ${material}`;
+        const shareNote = runs &gt; 1 ? &#x27; Parallel-run current sharing and installation arrangement must be verified.&#x27; : &#x27;&#x27;;
+        return {
+          text:`${sizeText} – preliminary (R input ${cable.r90} Ω/km; ΔV ${voltageDrop.toFixed(2)} V; ${dropPct.toFixed(2)}%)${shareNote}`,
+          ok:true,size:cable.size,runs,material,voltageDrop,dropPct,effectiveTotalAmpacity
+        };
+      }
+    }
+  }
+  return {text:`No option in the prototype table meets the entered ampacity factor and ${allowedDropPct}% voltage-drop criterion. Specialized cable/busduct design and verified data required.`,ok:false};
+}
+
+function setCableInfo(element, result) {
+  element.textContent = result.text;
+  element.className = `cable-info ${result.ok ? &#x27;drop-ok&#x27; : (result.missingLength ? &#x27;&#x27; : &#x27;drop-warn&#x27;)}`;
+}
+
+function addRow(data = {}) {
+  const tr = document.createElement(&#x27;tr&#x27;);
+  tr.innerHTML = `
+    &lt;td class=&quot;sl col-sl&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-area&quot;&gt;&lt;input class=&quot;area-val&quot; placeholder=&quot;Add Location&quot; aria-label=&quot;Area or location&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-equip&quot;&gt;&lt;input class=&quot;equip-val&quot; placeholder=&quot;Add Equipment&quot; aria-label=&quot;Equipment name&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-type&quot;&gt;&lt;select class=&quot;type-select&quot;&gt;&lt;option value=&quot;Small&quot;&gt;Small&lt;/option&gt;&lt;option value=&quot;Heavy&quot;&gt;Heavy&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-load&quot;&gt;&lt;input class=&quot;load-val&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;any&quot; placeholder=&quot;Load&quot; aria-label=&quot;Individual load&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-unit&quot;&gt;&lt;select class=&quot;unit-select&quot;&gt;&lt;option value=&quot;kW&quot;&gt;kW&lt;/option&gt;&lt;option value=&quot;W&quot;&gt;W&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-qty&quot;&gt;&lt;input class=&quot;qty-val&quot; type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; value=&quot;1&quot; aria-label=&quot;Quantity&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;connected num col-conn&quot;&gt;0.000&lt;/td&gt;&lt;td class=&quot;demand num col-demand&quot;&gt;0.000&lt;/td&gt;
+    &lt;td class=&quot;col-hrs&quot;&gt;&lt;input class=&quot;hrs-val&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;24&quot; step=&quot;0.5&quot; placeholder=&quot;Hours (0–24)&quot; aria-label=&quot;Operating hours per day&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;energy num col-kwh&quot;&gt;—&lt;/td&gt;
+    &lt;td class=&quot;col-pf&quot;&gt;&lt;input class=&quot;pf-val&quot; type=&quot;number&quot; min=&quot;0.1&quot; max=&quot;1&quot; step=&quot;0.01&quot; aria-label=&quot;Power factor&quot;&gt;&lt;/td&gt;
+    &lt;td class=&quot;col-df&quot;&gt;&lt;input class=&quot;df-val&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;&quot; placeholder=&quot;DF %&quot; aria-label=&quot;Demand factor percentage&quot;&gt;&lt;/td&gt;&lt;td class=&quot;current num col-amp&quot;&gt;—&lt;/td&gt;
+    &lt;td class=&quot;col-cable&quot;&gt;&lt;div style=&quot;display:flex;gap:2px&quot;&gt;&lt;select class=&quot;cable-mat&quot; aria-label=&quot;Branch cable material&quot; style=&quot;flex:1&quot;&gt;&lt;option value=&quot;Copper&quot;&gt;Copper&lt;/option&gt;&lt;option value=&quot;Aluminium&quot;&gt;Aluminium&lt;/option&gt;&lt;/select&gt;&lt;input class=&quot;cable-len&quot; type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; placeholder=&quot;Len(m)&quot; title=&quot;Individual equipment cable length&quot; aria-label=&quot;Individual equipment cable length&quot; style=&quot;width:52px&quot;&gt;&lt;/div&gt;&lt;div class=&quot;cable-info&quot;&gt;—&lt;/div&gt;&lt;/td&gt;
+    &lt;td class=&quot;no-print col-action&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;danger remove-row&quot; style=&quot;padding:4px 6px;font-size:10px&quot;&gt;Remove&lt;/button&gt;&lt;/td&gt;`;
+
+  tr.querySelector(&#x27;.area-val&#x27;).value = data.area ?? &#x27;&#x27;;
+  tr.querySelector(&#x27;.equip-val&#x27;).value = data.name ?? &#x27;&#x27;;
+  tr.querySelector(&#x27;.type-select&#x27;).value = data.type === &#x27;Heavy&#x27; ? &#x27;Heavy&#x27; : &#x27;Small&#x27;;
+  tr.querySelector(&#x27;.load-val&#x27;).value = data.load ?? &#x27;&#x27;;
+  tr.querySelector(&#x27;.unit-select&#x27;).value = data.unit === &#x27;W&#x27; ? &#x27;W&#x27; : &#x27;kW&#x27;;
+  tr.querySelector(&#x27;.qty-val&#x27;).value = data.qty ?? 1;
+  tr.querySelector(&#x27;.hrs-val&#x27;).value = data.hrs ?? &#x27;&#x27;;
+  tr.querySelector(&#x27;.pf-val&#x27;).value = data.pf ?? (data.type === &#x27;Heavy&#x27; ? 0.8 : 0.9);
+  tr.querySelector(&#x27;.df-val&#x27;).value = data.df ?? (data.type === &#x27;Heavy&#x27; ? 60 : 80);
+  tr.querySelector(&#x27;.cable-mat&#x27;).value = data.cable === &#x27;Aluminium&#x27; ? &#x27;Aluminium&#x27; : &#x27;Copper&#x27;;
+  tr.querySelector(&#x27;.cable-len&#x27;).value = data.len ?? &#x27;&#x27;;
+
+  tr.querySelector(&#x27;.type-select&#x27;).addEventListener(&#x27;change&#x27;, () =&gt; {
+    const pfInput = tr.querySelector(&#x27;.pf-val&#x27;);
+    pfInput.value = tr.querySelector(&#x27;.type-select&#x27;).value === &#x27;Heavy&#x27; ? &#x27;0.80&#x27; : &#x27;0.90&#x27;;
+    tr.querySelector(&#x27;.df-val&#x27;).value = tr.querySelector(&#x27;.type-select&#x27;).value === &#x27;Heavy&#x27; ? 60 : 80;
+    calculate();
+  });
+  tr.querySelector(&#x27;.remove-row&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; removeRow(tr));
+  tr.querySelectorAll(&#x27;input,select&#x27;).forEach(el =&gt; {
+    el.addEventListener(&#x27;input&#x27;, calculate);
+    el.addEventListener(&#x27;change&#x27;, calculate);
+  });
+  $(&#x27;rows&#x27;).appendChild(tr);
+  calculate();
+}
+
+function removeRow(row) {
+  if (document.querySelectorAll(&#x27;#rows tr&#x27;).length &gt; 1) {
+    row.remove();
+  } else {
+    row.querySelector(&#x27;.area-val&#x27;).value=&#x27;&#x27;; row.querySelector(&#x27;.equip-val&#x27;).value=&#x27;&#x27;;
+    row.querySelector(&#x27;.type-select&#x27;).value=&#x27;Small&#x27;; row.querySelector(&#x27;.load-val&#x27;).value=&#x27;&#x27;;
+    row.querySelector(&#x27;.unit-select&#x27;).value=&#x27;kW&#x27;; row.querySelector(&#x27;.qty-val&#x27;).value=&#x27;1&#x27;;
+    row.querySelector(&#x27;.hrs-val&#x27;).value=&#x27;&#x27;; row.querySelector(&#x27;.pf-val&#x27;).value=&#x27;0.90&#x27;; row.querySelector(&#x27;.df-val&#x27;).value=&#x27;80&#x27;;
+    row.querySelector(&#x27;.cable-mat&#x27;).value=&#x27;Copper&#x27;; row.querySelector(&#x27;.cable-len&#x27;).value=&#x27;&#x27;;
+    row.querySelectorAll(&#x27;.error-border&#x27;).forEach(el=&gt;el.classList.remove(&#x27;error-border&#x27;));
+  }
+  calculate();
+}
+
+function standardTransformerRating(kva) {
+  const ratings=[16,25,40,63,100,125,160,200,250,315,400,500,630,800,1000,1250,1600,2000,2500,3150,4000,5000];
+  const rating=ratings.find(value=&gt;value&gt;=kva);
+  return rating ? `${rating} kVA (preliminary)` : &#x27;Above 5000 kVA – specialized substation design required&#x27;;
+}
+function standardDGRating(kva) {
+  const ratings=[15,20,25,30,40,50,62.5,82.5,100,125,160,200,250,320,380,500,600,750,1000,1250,1500,2000];
+  const rating=ratings.find(value=&gt;value&gt;=kva);
+  return rating ? `${rating} kVA (preliminary)` : &#x27;Above 2000 kVA – multiple/specialized DG design required&#x27;;
+}
+
+function updateEngineerNotes(state) {
+  const notes=$(&#x27;engineerNotes&#x27;);
+  if (notes.dataset.userEdited === &#x27;true&#x27;) return;
+  if (state.activeLoads === 0 &amp;&amp; state.margin === 0) {
+    notes.value = `1. Electrical load chart is currently blank. Enter equipment parameters to generate engineering notes.\n2. Enter cable lengths and a verified combined ampacity correction factor before reviewing cable recommendations.`;
+    return;
+  }
+  const cableFactor = state.ampacityFactor === null ? &#x27;not entered&#x27; : (Number.isFinite(state.ampacityFactor) ? state.ampacityFactor.toFixed(2) : &#x27;invalid&#x27;);
+  const branchFactor = state.branchAmpacityFactor === null ? &#x27;not entered&#x27; : (Number.isFinite(state.branchAmpacityFactor) ? state.branchAmpacityFactor.toFixed(2) : &#x27;invalid&#x27;);
+  const selected = state.selectedMainCable;
+  notes.value = `1. Total connected load: ${state.tc.toFixed(3)} kW; maximum demand: ${state.td.toFixed(3)} kW.\n2. Total design load: ${state.designKW.toFixed(3)} kW, including ${state.margin.toFixed(3)} kW design margin. The margin is assumed at unity power factor.\n3. Aggregate PF: ${state.calculationReady &amp;&amp; state.aggregatePF &gt; 0 ? state.aggregatePF.toFixed(3) : &#x27;not available – check load, quantity, PF and supply inputs&#x27;}; reactive power: ${state.calculationReady &amp;&amp; state.aggregatePF &gt; 0 ? state.totalKvar.toFixed(2)+&#x27; kVAr&#x27; : &#x27;not available&#x27;}; apparent power: ${state.calculationReady &amp;&amp; state.totalKVA &gt; 0 ? state.totalKVA.toFixed(2)+&#x27; kVA&#x27; : &#x27;not available&#x27;}.\n4. Main feeder basis: ${state.supplyLabel}. Main feeder current: ${state.calculationReady &amp;&amp; state.mainFeederCurrent &gt; 0 ? state.mainFeederCurrent.toFixed(2)+&#x27; A&#x27; : &#x27;not available&#x27;}. The 3-phase estimate assumes balanced phase loading.\n5. Selected main cable material: ${state.mainCableMaterial}. Recommendation: ${selected}.\n6. Branch-route ampacity correction factor: ${branchFactor}; main-feeder route factor: ${cableFactor}. Each must be based on its own verified route conditions and manufacturer data. Cable resistance and base ampacity values in this prototype are indicative only.\n7. DG capacity: ${state.dgLoadingValid ? &#x27;estimated at &#x27;+state.dgLoadingPct+&#x27;% maximum continuous loading&#x27; : &#x27;not calculated because the DG loading input is invalid&#x27;}. Confirm manufacturer rating, ambient/altitude derating, motor starting, step loads and transient voltage dip.\n8. Branch cable current is calculated per machine. Separate branch circuits are assumed; common/group feeders require a separate design.`;
+}
+
+function regenerateNotesWithPrompt() {
+  const notes=$(&#x27;engineerNotes&#x27;);
+  if (notes.dataset.userEdited === &#x27;true&#x27; &amp;&amp; !confirm(&#x27;You have manually edited the technical notes. Overwrite them with newly calculated values?&#x27;)) return;
+  notes.dataset.userEdited=&#x27;false&#x27;;
+  calculate();
+  alert(&#x27;Technical notes have been regenerated from the current calculations.&#x27;);
+}
+
+function calculate() {
+  let tc=0,td=0,te=0,totalKvar=0,totalBranchCurrentSum=0,activeLoads=0;
+  let hasIncompleteHours=false,hasInputErrors=false,hasInvalidPF=false,hasHeavyLoad=false,hasDGInputError=false;
+  const allowedDrop=Number($(&#x27;dropCriteria&#x27;).value);
+  const supply=$(&#x27;supply&#x27;).value;
+  const main3Phase=supply===&#x27;415_3P&#x27;;
+  const marginInput=$(&#x27;marginKW&#x27;);
+  let margin=marginInput.value.trim()===&#x27;&#x27;?0:Number(marginInput.value);
+  if (!Number.isFinite(margin)||margin&lt;0) {marginInput.classList.add(&#x27;error-border&#x27;);hasInputErrors=true;margin=0;} else marginInput.classList.remove(&#x27;error-border&#x27;);
+  const branchAmpacityFactor=getAmpacityFactor(&#x27;branchAmpacityFactor&#x27;);
+  const mainAmpacityFactor=getAmpacityFactor(&#x27;mainAmpacityFactor&#x27;);
+  for (const id of [&#x27;branchAmpacityFactor&#x27;,&#x27;mainAmpacityFactor&#x27;]) { const el=$(id),v=getAmpacityFactor(id); if(el.value.trim()!==&#x27;&#x27; &amp;&amp; (!Number.isFinite(v)||v&lt;0.1||v&gt;1)) el.classList.add(&#x27;error-border&#x27;); else el.classList.remove(&#x27;error-border&#x27;); }
+  const dgPctInput=$(&#x27;dgLoadingPct&#x27;);
+  let dgLoadingPct=Number(dgPctInput.value);
+  if (!Number.isFinite(dgLoadingPct)||dgLoadingPct&lt;50||dgLoadingPct&gt;100) {dgPctInput.classList.add(&#x27;error-border&#x27;);hasDGInputError=true;dgLoadingPct=80;} else dgPctInput.classList.remove(&#x27;error-border&#x27;);
+
+  document.querySelectorAll(&#x27;#rows tr&#x27;).forEach((tr,index)=&gt;{
+    tr.querySelector(&#x27;.sl&#x27;).textContent=String(index+1);
+    const area=tr.querySelector(&#x27;.area-val&#x27;).value.trim();
+    const equipment=tr.querySelector(&#x27;.equip-val&#x27;).value.trim();
+    const loadInput=tr.querySelector(&#x27;.load-val&#x27;);
+    const loadRaw=loadInput.value.trim();
+    const rowHasIdentity=Boolean(area||equipment||loadRaw);
+    const cableInfo=tr.querySelector(&#x27;.cable-info&#x27;);
+    if (!rowHasIdentity) {
+      loadInput.classList.remove(&#x27;error-border&#x27;);
+      tr.querySelector(&#x27;.qty-val&#x27;).classList.remove(&#x27;error-border&#x27;);
+      tr.querySelector(&#x27;.hrs-val&#x27;).classList.remove(&#x27;error-border&#x27;);
+      tr.querySelector(&#x27;.pf-val&#x27;).classList.remove(&#x27;error-border&#x27;);
+      tr.querySelector(&#x27;.df-val&#x27;).classList.remove(&#x27;error-border&#x27;);
+      tr.querySelector(&#x27;.connected&#x27;).textContent=&#x27;0.000&#x27;;tr.querySelector(&#x27;.demand&#x27;).textContent=&#x27;0.000&#x27;;
+      tr.querySelector(&#x27;.energy&#x27;).textContent=&#x27;—&#x27;;tr.querySelector(&#x27;.df&#x27;).textContent=&#x27;—&#x27;;tr.querySelector(&#x27;.current&#x27;).textContent=&#x27;—&#x27;;
+      setCableInfo(cableInfo,{text:&#x27;—&#x27;,ok:false,missingLength:true});
+      return;
+    }
+
+    let load=loadRaw===&#x27;&#x27;?NaN:Number(loadRaw);
+    if (!Number.isFinite(load)||load&lt;0) {loadInput.classList.add(&#x27;error-border&#x27;);hasInputErrors=true;load=0;} else loadInput.classList.remove(&#x27;error-border&#x27;);
+    if (loadRaw===&#x27;&#x27; &amp;&amp; (area||equipment)) {loadInput.classList.add(&#x27;error-border&#x27;);hasInputErrors=true;}
+    const qtyInput=tr.querySelector(&#x27;.qty-val&#x27;);
+    let qty=Number(qtyInput.value);
+    if (!Number.isInteger(qty)||qty&lt;1) {qtyInput.classList.add(&#x27;error-border&#x27;);hasInputErrors=true;qty=0;} else qtyInput.classList.remove(&#x27;error-border&#x27;);
+    const unit=tr.querySelector(&#x27;.unit-select&#x27;).value;
+    const kw=(unit===&#x27;W&#x27;?load/1000:load);
+    const connected=kw*qty;
+    const type=tr.querySelector(&#x27;.type-select&#x27;).value;
+    const heavy=type===&#x27;Heavy&#x27;;
+    if (heavy &amp;&amp; connected&gt;0) hasHeavyLoad=true;
+    const dfInput=tr.querySelector(&#x27;.df-val&#x27;);
+    let dfPct=dfInput.value.trim()===&#x27;&#x27;?(heavy?60:80):Number(dfInput.value);
+    if (!Number.isFinite(dfPct)||dfPct&lt;0||dfPct&gt;100) {dfInput.classList.add(&#x27;error-border&#x27;);hasInputErrors=true;dfPct=0;} else dfInput.classList.remove(&#x27;error-border&#x27;);
+    const df=dfPct/100;
+    const md=connected*df;
+
+    const pfInput=tr.querySelector(&#x27;.pf-val&#x27;);
+    let pf=Number(pfInput.value);
+    const pfValid=pfInput.value.trim()!==&#x27;&#x27; &amp;&amp; Number.isFinite(pf) &amp;&amp; pf&gt;=0.1 &amp;&amp; pf&lt;=1;
+    if (connected&gt;0 &amp;&amp; !pfValid) {pfInput.classList.add(&#x27;error-border&#x27;);hasInputErrors=true;hasInvalidPF=true;} else pfInput.classList.remove(&#x27;error-border&#x27;);
+
+    const hrsInput=tr.querySelector(&#x27;.hrs-val&#x27;);
+    let hrs=null;
+    if (connected&gt;0) {
+      if (hrsInput.value.trim()===&#x27;&#x27;) {hasIncompleteHours=true;hrsInput.classList.remove(&#x27;error-border&#x27;);}
+      else {
+        const h=Number(hrsInput.value);
+        if (!Number.isFinite(h)||h&lt;0||h&gt;24) {hrsInput.classList.add(&#x27;error-border&#x27;);hasIncompleteHours=true;}
+        else {hrsInput.classList.remove(&#x27;error-border&#x27;);hrs=h;}
+      }
+    } else {hrsInput.classList.remove(&#x27;error-border&#x27;);}
+
+    const energy=hrs===null?0:md*hrs; // load is normalized to kW above; kW × hours = kWh/day
+    const branchCurrent=(connected&gt;0 &amp;&amp; pfValid)?(heavy?(kw*1000)/(Math.sqrt(3)*415*pf):(kw*1000)/(220*pf)):0;
+    const cableLength=Number(tr.querySelector(&#x27;.cable-len&#x27;).value);
+    const cableLenValid=tr.querySelector(&#x27;.cable-len&#x27;).value.trim()!==&#x27;&#x27; &amp;&amp; Number.isFinite(cableLength) &amp;&amp; cableLength&gt;0;
+    const cableMaterial=tr.querySelector(&#x27;.cable-mat&#x27;).value;
+    if (connected&gt;0 &amp;&amp; !pfValid) setCableInfo(cableInfo,{text:&#x27;Correct PF (0.10–1.00) before cable selection&#x27;,ok:false});
+    else if (branchCurrent&gt;0 &amp;&amp; cableLenValid) setCableInfo(cableInfo,getPreliminaryCableSelection(branchCurrent,cableMaterial,cableLength,heavy,pf,allowedDrop,branchAmpacityFactor));
+    else if (branchCurrent&gt;0) setCableInfo(cableInfo,{text:&#x27;Not entered (enter individual equipment cable length)&#x27;,ok:false,missingLength:true});
+    else setCableInfo(cableInfo,{text:&#x27;—&#x27;,ok:false,missingLength:true});
+
+    tr.querySelector(&#x27;.connected&#x27;).textContent=connected.toFixed(3);
+    tr.querySelector(&#x27;.demand&#x27;).textContent=md.toFixed(3);
+    tr.querySelector(&#x27;.energy&#x27;).textContent=connected===0?&#x27;0.000&#x27;:(hrs===null?&#x27;Incomplete&#x27;:energy.toFixed(3));
+    // Editable demand factor is retained in the input; totals use its current value.
+    tr.querySelector(&#x27;.current&#x27;).textContent=branchCurrent&gt;0?branchCurrent.toFixed(2)+&#x27; A&#x27;:&#x27;—&#x27;;
+
+    tc+=connected;td+=md;
+    if (connected&gt;0) {activeLoads++;if (hrs!==null) te+=energy;}
+    if (branchCurrent&gt;0) totalBranchCurrentSum+=branchCurrent*qty;
+    if (connected&gt;0 &amp;&amp; pfValid) totalKvar+=md*Math.tan(Math.acos(pf));
+  });
+
+  const designKW=td+margin;
+  let totalKVA=0,aggregatePF=0;
+  if (designKW&gt;0 &amp;&amp; !hasInvalidPF) {
+    totalKVA=Math.sqrt(designKW*designKW+totalKvar*totalKvar);
+    aggregatePF=totalKVA&gt;0?designKW/totalKVA:0;
+  }
+  const incompatibleSupply=hasHeavyLoad &amp;&amp; !main3Phase;
+  const calculationReady=!hasInputErrors &amp;&amp; !hasInvalidPF &amp;&amp; !incompatibleSupply;
+  const mainFeederCurrent=(totalKVA&gt;0 &amp;&amp; calculationReady)?(main3Phase?(totalKVA*1000)/(Math.sqrt(3)*415):(totalKVA*1000)/220):0;
+  const feederLength=Number($(&#x27;feederLength&#x27;).value);
+  const feederLenValid=$(&#x27;feederLength&#x27;).value.trim()!==&#x27;&#x27; &amp;&amp; Number.isFinite(feederLength) &amp;&amp; feederLength&gt;0;
+  const selectedMaterial=$(&#x27;mainCableMat&#x27;).value;
+
+  $(&#x27;totalConnected&#x27;).textContent=tc.toFixed(3);$(&#x27;totalDemand&#x27;).textContent=td.toFixed(3);
+  $(&#x27;totalEnergy&#x27;).textContent=activeLoads===0?&#x27;—&#x27;:(hasIncompleteHours?te.toFixed(3)+&#x27; (Partial)&#x27;:te.toFixed(3));
+  $(&#x27;totalDF&#x27;).textContent=tc&gt;0?(td/tc*100).toFixed(2)+&#x27;%&#x27;:&#x27;—&#x27;;
+  $(&#x27;totalCurrent&#x27;).textContent=mainFeederCurrent&gt;0?mainFeederCurrent.toFixed(2)+&#x27; A&#x27;:&#x27;—&#x27;;
+  $(&#x27;marginRow&#x27;).textContent=margin.toFixed(3)+&#x27; kW&#x27;;$(&#x27;designLoad&#x27;).textContent=designKW.toFixed(3)+&#x27; kW&#x27;;
+  $(&#x27;cardConnected&#x27;).textContent=tc.toFixed(3)+&#x27; kW&#x27;;$(&#x27;cardDemand&#x27;).textContent=td.toFixed(3)+&#x27; kW&#x27;;$(&#x27;cardDesign&#x27;).textContent=designKW.toFixed(3)+&#x27; kW&#x27;;
+  $(&#x27;cardEnergy&#x27;).textContent=activeLoads===0?&#x27;—&#x27;:(hasIncompleteHours?te.toFixed(3)+&#x27; kWh (Partial)&#x27;:te.toFixed(3)+&#x27; kWh&#x27;);
+  $(&#x27;rDemand&#x27;).textContent=td.toFixed(3)+&#x27; kW&#x27;;$(&#x27;rMargin&#x27;).textContent=margin.toFixed(3)+&#x27; kW&#x27;;$(&#x27;rDesign&#x27;).textContent=designKW.toFixed(3)+&#x27; kW&#x27;;
+  $(&#x27;rPF&#x27;).textContent=!calculationReady?&#x27;Correct load / quantity / PF inputs&#x27;:(aggregatePF&gt;0?aggregatePF.toFixed(3):&#x27;—&#x27;);
+  $(&#x27;rKVAR&#x27;).textContent=!calculationReady?&#x27;Correct load / quantity / PF inputs&#x27;:(totalKvar&gt;0?totalKvar.toFixed(2)+&#x27; kVAr&#x27;:&#x27;—&#x27;);
+  $(&#x27;rKVA&#x27;).textContent=totalKVA&gt;0 &amp;&amp; calculationReady?totalKVA.toFixed(2)+&#x27; kVA&#x27;:&#x27;—&#x27;;
+  $(&#x27;transformer&#x27;).textContent=totalKVA&gt;0 &amp;&amp; calculationReady?totalKVA.toFixed(2)+&#x27; kVA (preliminary)&#x27;:&#x27;—&#x27;;
+  $(&#x27;transformerStandard&#x27;).textContent=totalKVA&gt;0 &amp;&amp; calculationReady?standardTransformerRating(totalKVA):&#x27;—&#x27;;
+  const dgRequired=totalKVA&gt;0 &amp;&amp; calculationReady &amp;&amp; !hasDGInputError?totalKVA/(dgLoadingPct/100):0;
+  $(&#x27;dg&#x27;).textContent=hasDGInputError?&#x27;Enter a valid DG loading value (50–100%)&#x27;:(dgRequired&gt;0?dgRequired.toFixed(2)+&#x27; kVA required at &#x27;+dgLoadingPct+&#x27;% loading&#x27;:&#x27;—&#x27;);
+  $(&#x27;dgStandard&#x27;).textContent=dgRequired&gt;0?standardDGRating(dgRequired):&#x27;—&#x27;;
+  $(&#x27;feederCurrent&#x27;).textContent=mainFeederCurrent&gt;0?mainFeederCurrent.toFixed(2)+&#x27; A (design demand basis)&#x27;:&#x27;—&#x27;;
+  $(&#x27;totalConnectedCurrent&#x27;).textContent=totalBranchCurrentSum&gt;0?totalBranchCurrentSum.toFixed(2)+&#x27; A (arithmetic sum; not feeder design current)&#x27;:&#x27;—&#x27;;
+
+  let supplyText=&#x27;&#x27;;
+  if (incompatibleSupply) supplyText=&#x27;Incompatible selection: Heavy loads require a 415 V, 3-phase supply. Change Main Supply System or review load connection.&#x27;;
+  else if (main3Phase &amp;&amp; activeLoads&gt;0) supplyText=&#x27;415 V, 3-phase main selected. 220 V Small loads are assumed distributed/balanced across phases; verify actual phase allocation and neutral loading.&#x27;;
+  else if (activeLoads&gt;0) supplyText=&#x27;220 V, single-phase main selected. Confirm that all loads are single-phase and total demand is within the supply capacity.&#x27;;
+  else supplyText=&#x27;Enter load details to check supply compatibility.&#x27;;
+  if (hasInputErrors) supplyText+=&#x27; Correct highlighted input errors before relying on system results.&#x27;;
+  $(&#x27;supplyStatus&#x27;).textContent=supplyText;
+  $(&#x27;supplyStatus&#x27;).className=hasInputErrors||incompatibleSupply?&#x27;status-error&#x27;:&#x27;status-warn&#x27;;
+
+  let cuText=&#x27;—&#x27;,alText=&#x27;—&#x27;,selectedText=&#x27;—&#x27;;
+  if (mainFeederCurrent&gt;0) {
+    if (feederLenValid) {
+      const cu=getPreliminaryCableSelection(mainFeederCurrent,&#x27;Copper&#x27;,feederLength,main3Phase,aggregatePF,allowedDrop,mainAmpacityFactor);
+      const al=getPreliminaryCableSelection(mainFeederCurrent,&#x27;Aluminium&#x27;,feederLength,main3Phase,aggregatePF,allowedDrop,mainAmpacityFactor);
+      cuText=cu.text;alText=al.text;selectedText=selectedMaterial===&#x27;Copper&#x27;?cu.text:al.text;
+    } else {cuText=&#x27;Not entered (enter Main Feeder Cable Length)&#x27;;alText=cuText;selectedText=cuText;}
+  } else if (incompatibleSupply) {
+    cuText=alText=selectedText=&#x27;Not calculated: Main Supply is incompatible with Heavy (3-phase) loads.&#x27;;
+  } else if (hasInputErrors) {
+    cuText=alText=selectedText=&#x27;Not calculated: correct highlighted inputs first.&#x27;;
+  } else {
+    cuText=alText=selectedText=&#x27;Enter equipment load and feeder length to calculate.&#x27;;
+  }
+  $(&#x27;mainCopperCable&#x27;).textContent=cuText;$(&#x27;mainAluCable&#x27;).textContent=alText;$(&#x27;mainSelectedCable&#x27;).textContent=selectedText;
+
+  updateEngineerNotes({activeLoads,tc,td,margin,designKW,aggregatePF,totalKvar,totalKVA,mainFeederCurrent,supplyLabel:main3Phase?&#x27;415 V, 3-phase&#x27;:&#x27;220 V, 1-phase&#x27;,selectedMainCable:selectedText,ampacityFactor:mainAmpacityFactor,branchAmpacityFactor,mainCableMaterial:selectedMaterial,dgLoadingPct,calculationReady,dgLoadingValid:!hasDGInputError});
+}
+
+function clearRows() {
+  $(&#x27;rows&#x27;).innerHTML=&#x27;&#x27;;$(&#x27;engineerNotes&#x27;).dataset.userEdited=&#x27;false&#x27;;addRow();
+}
+function loadExample() {
+  $(&#x27;rows&#x27;).innerHTML=&#x27;&#x27;;$(&#x27;engineerNotes&#x27;).dataset.userEdited=&#x27;false&#x27;;
+  $(&#x27;marginKW&#x27;).value=&#x27;10&#x27;;$(&#x27;feederLength&#x27;).value=&#x27;10&#x27;;$(&#x27;dropCriteria&#x27;).value=&#x27;5&#x27;;$(&#x27;supply&#x27;).value=&#x27;415_3P&#x27;;
+  $(&#x27;branchAmpacityFactor&#x27;).value=&#x27;&#x27;;$(&#x27;mainAmpacityFactor&#x27;).value=&#x27;&#x27;;$(&#x27;dgLoadingPct&#x27;).value=&#x27;80&#x27;;$(&#x27;mainCableMat&#x27;).value=&#x27;Aluminium&#x27;;
+  [
+    {area:&#x27;CYARD&#x27;,name:&#x27;WELDING&#x27;,type:&#x27;Heavy&#x27;,load:5,unit:&#x27;kW&#x27;,qty:2,hrs:8,pf:.80,cable:&#x27;Copper&#x27;,len:15},
+    {area:&#x27;CYARD&#x27;,name:&#x27;AC&#x27;,type:&#x27;Small&#x27;,load:2,unit:&#x27;kW&#x27;,qty:1,hrs:12,pf:.90,cable:&#x27;Copper&#x27;,len:15},
+    {area:&#x27;CASTING YARD&#x27;,name:&#x27;FAN&#x27;,type:&#x27;Small&#x27;,load:70,unit:&#x27;W&#x27;,qty:10,hrs:12,pf:.90,cable:&#x27;Copper&#x27;,len:15},
+    {area:&#x27;CYARD&#x27;,name:&#x27;RMC PLANT&#x27;,type:&#x27;Heavy&#x27;,load:125,unit:&#x27;kW&#x27;,qty:1,hrs:10,pf:.80,cable:&#x27;Aluminium&#x27;,len:35}
+  ].forEach(row=&gt;addRow(row));
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement(&#x27;a&#x27;);
+  link.href = url;
+  link.download = filename;
+  link.style.display = &#x27;none&#x27;;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  // Keep the object URL alive long enough for the browser&#x27;s download manager.
+  window.setTimeout(() =&gt; URL.revokeObjectURL(url), 60000);
+}
+
+// Small dependency-free ZIP writer. XLSX is an Open XML ZIP package; using
+// STORE compression keeps this self-contained and removes CDN/network failure.
+function zipStore(files) {
+  const enc = new TextEncoder();
+  const crcTable = zipStore.crcTable || (zipStore.crcTable = (() =&gt; {
+    const table = new Uint32Array(256);
+    for (let n=0;n&lt;256;n++) {
+      let c=n;
+      for (let k=0;k&lt;8;k++) c=(c&amp;1)?(0xEDB88320^(c&gt;&gt;&gt;1)):(c&gt;&gt;&gt;1);
+      table[n]=c&gt;&gt;&gt;0;
+    }
+    return table;
+  })());
+  const crc32 = bytes =&gt; {
+    let c=0xFFFFFFFF;
+    for (let i=0;i&lt;bytes.length;i++) c=crcTable[(c^bytes[i])&amp;0xFF]^(c&gt;&gt;&gt;8);
+    return (c^0xFFFFFFFF)&gt;&gt;&gt;0;
+  };
+  const u16=(view,off,val)=&gt;view.setUint16(off,val,true);
+  const u32=(view,off,val)=&gt;view.setUint32(off,val&gt;&gt;&gt;0,true);
+  const localParts=[], centralParts=[];
+  let offset=0;
+  const dosDate=0x0021, dosTime=0;
+  for (const file of files) {
+    const name=enc.encode(file.name);
+    const data=(typeof file.data===&#x27;string&#x27;)?enc.encode(file.data):file.data;
+    const crc=crc32(data);
+    const local=new Uint8Array(30+name.length+data.length);
+    const lv=new DataView(local.buffer);
+    u32(lv,0,0x04034B50); u16(lv,4,20); u16(lv,6,0x0800); u16(lv,8,0);
+    u16(lv,10,dosTime); u16(lv,12,dosDate); u32(lv,14,crc);
+    u32(lv,18,data.length); u32(lv,22,data.length); u16(lv,26,name.length); u16(lv,28,0);
+    local.set(name,30); local.set(data,30+name.length);
+    localParts.push(local);
+
+    const central=new Uint8Array(46+name.length);
+    const cv=new DataView(central.buffer);
+    u32(cv,0,0x02014B50); u16(cv,4,20); u16(cv,6,20); u16(cv,8,0x0800); u16(cv,10,0);
+    u16(cv,12,dosTime); u16(cv,14,dosDate); u32(cv,16,crc);
+    u32(cv,20,data.length); u32(cv,24,data.length); u16(cv,28,name.length);
+    u16(cv,30,0); u16(cv,32,0); u16(cv,34,0); u16(cv,36,0); u32(cv,38,0); u32(cv,42,offset);
+    central.set(name,46); centralParts.push(central);
+    offset += local.length;
+  }
+  const centralSize=centralParts.reduce((n,p)=&gt;n+p.length,0);
+  const end=new Uint8Array(22); const ev=new DataView(end.buffer);
+  u32(ev,0,0x06054B50); u16(ev,4,0); u16(ev,6,0);
+  u16(ev,8,files.length); u16(ev,10,files.length);
+  u32(ev,12,centralSize); u32(ev,16,offset); u16(ev,20,0);
+  const total=offset+centralSize+end.length;
+  const result=new Uint8Array(total); let pos=0;
+  for(const p of localParts){result.set(p,pos);pos+=p.length;}
+  for(const p of centralParts){result.set(p,pos);pos+=p.length;}
+  result.set(end,pos);
+  return result;
+}
+
+function xmlEscape(value) {
+  return String(value ?? &#x27;&#x27;).replace(/&amp;/g,&#x27;&amp;amp;&#x27;).replace(/&lt;/g,&#x27;&amp;lt;&#x27;).replace(/&gt;/g,&#x27;&amp;gt;&#x27;).replace(/&quot;/g,&#x27;&amp;quot;&#x27;).replace(/&#x27;/g,&#x27;&amp;apos;&#x27;);
+}
+function columnName(n) {
+  let name=&#x27;&#x27;;
+  while(n&gt;0){const r=(n-1)%26;name=String.fromCharCode(65+r)+name;n=Math.floor((n-1)/26);}
+  return name;
+}
+function numberFromText(value) {
+  const match=String(value ?? &#x27;&#x27;).replace(/,/g,&#x27;&#x27;).match(/-?\d+(?:\.\d+)?/);
+  return match ? Number(match[0]) : 0;
+}
+function imageDataUrlToBytes(dataUrl) {
+  const match=String(dataUrl||&#x27;&#x27;).match(/^data:image\/(png|jpeg|jpg);base64,([A-Za-z0-9+/=]+)$/i);
+  if(!match) return null;
+  const raw=atob(match[2]); const bytes=new Uint8Array(raw.length);
+  for(let i=0;i&lt;raw.length;i++) bytes[i]=raw.charCodeAt(i);
+  return {ext:match[1].toLowerCase()===&#x27;png&#x27;?&#x27;png&#x27;:&#x27;jpg&#x27;,bytes};
+}
+function xlsxStylesXml() {
+  return `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;styleSheet xmlns=&quot;http://schemas.openxmlformats.org/spreadsheetml/2006/main&quot;&gt;
+&lt;numFmts count=&quot;2&quot;&gt;
+  &lt;numFmt numFmtId=&quot;164&quot; formatCode=&quot;0.000&quot;/&gt;
+  &lt;numFmt numFmtId=&quot;165&quot; formatCode=&quot;0.00%&quot;/&gt;
+&lt;/numFmts&gt;
+&lt;fonts count=&quot;10&quot;&gt;
+  &lt;font&gt;&lt;sz val=&quot;9&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF182536&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;15&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF123B70&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;12&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FFB42318&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;10&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF123B70&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;9&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF123B70&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;9&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF182536&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;8&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF5D6B7B&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;b/&gt;&lt;sz val=&quot;13&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF123B70&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;i/&gt;&lt;sz val=&quot;7.5&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF888888&quot;/&gt;&lt;/font&gt;
+  &lt;font&gt;&lt;sz val=&quot;8.5&quot;/&gt;&lt;name val=&quot;Arial&quot;/&gt;&lt;color rgb=&quot;FF182536&quot;/&gt;&lt;/font&gt;
+&lt;/fonts&gt;
+&lt;fills count=&quot;6&quot;&gt;
+  &lt;fill&gt;&lt;patternFill patternType=&quot;none&quot;/&gt;&lt;/fill&gt;
+  &lt;fill&gt;&lt;patternFill patternType=&quot;gray125&quot;/&gt;&lt;/fill&gt;
+  &lt;fill&gt;&lt;patternFill patternType=&quot;solid&quot;&gt;&lt;fgColor rgb=&quot;FFE5EBF3&quot;/&gt;&lt;bgColor indexed=&quot;64&quot;/&gt;&lt;/patternFill&gt;&lt;/fill&gt;
+  &lt;fill&gt;&lt;patternFill patternType=&quot;solid&quot;&gt;&lt;fgColor rgb=&quot;FFF4F7FB&quot;/&gt;&lt;bgColor indexed=&quot;64&quot;/&gt;&lt;/patternFill&gt;&lt;/fill&gt;
+  &lt;fill&gt;&lt;patternFill patternType=&quot;solid&quot;&gt;&lt;fgColor rgb=&quot;FFFBFCFE&quot;/&gt;&lt;bgColor indexed=&quot;64&quot;/&gt;&lt;/patternFill&gt;&lt;/fill&gt;
+  &lt;fill&gt;&lt;patternFill patternType=&quot;solid&quot;&gt;&lt;fgColor rgb=&quot;FFFDFEFE&quot;/&gt;&lt;bgColor indexed=&quot;64&quot;/&gt;&lt;/patternFill&gt;&lt;/fill&gt;
+&lt;/fills&gt;
+&lt;borders count=&quot;6&quot;&gt;
+  &lt;border&gt;&lt;left/&gt;&lt;right/&gt;&lt;top/&gt;&lt;bottom/&gt;&lt;diagonal/&gt;&lt;/border&gt;
+  &lt;border&gt;&lt;left style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF596575&quot;/&gt;&lt;/left&gt;&lt;right style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF596575&quot;/&gt;&lt;/right&gt;&lt;top style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF596575&quot;/&gt;&lt;/top&gt;&lt;bottom style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF596575&quot;/&gt;&lt;/bottom&gt;&lt;diagonal/&gt;&lt;/border&gt;
+  &lt;border&gt;&lt;left style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFC7D1DC&quot;/&gt;&lt;/left&gt;&lt;right style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFC7D1DC&quot;/&gt;&lt;/right&gt;&lt;top style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFC7D1DC&quot;/&gt;&lt;/top&gt;&lt;bottom style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFC7D1DC&quot;/&gt;&lt;/bottom&gt;&lt;diagonal/&gt;&lt;/border&gt;
+  &lt;border&gt;&lt;left style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF333333&quot;/&gt;&lt;/left&gt;&lt;right style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF333333&quot;/&gt;&lt;/right&gt;&lt;top style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF333333&quot;/&gt;&lt;/top&gt;&lt;bottom style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FF333333&quot;/&gt;&lt;/bottom&gt;&lt;diagonal/&gt;&lt;/border&gt;
+  &lt;border&gt;&lt;left style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFCBD5E1&quot;/&gt;&lt;/left&gt;&lt;right style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFCBD5E1&quot;/&gt;&lt;/right&gt;&lt;top style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFCBD5E1&quot;/&gt;&lt;/top&gt;&lt;bottom style=&quot;thin&quot;&gt;&lt;color rgb=&quot;FFCBD5E1&quot;/&gt;&lt;/bottom&gt;&lt;diagonal/&gt;&lt;/border&gt;
+  &lt;border&gt;&lt;left/&gt;&lt;right/&gt;&lt;top/&gt;&lt;bottom style=&quot;medium&quot;&gt;&lt;color rgb=&quot;FF123B70&quot;/&gt;&lt;/bottom&gt;&lt;diagonal/&gt;&lt;/border&gt;
+&lt;/borders&gt;
+&lt;cellStyleXfs count=&quot;1&quot;&gt;&lt;xf numFmtId=&quot;0&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;0&quot;/&gt;&lt;/cellStyleXfs&gt;
+&lt;cellXfs count=&quot;19&quot;&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;0&quot; xfId=&quot;0&quot;/&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;1&quot; fillId=&quot;0&quot; borderId=&quot;3&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;2&quot; fillId=&quot;0&quot; borderId=&quot;3&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;3&quot; fillId=&quot;0&quot; borderId=&quot;5&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;left&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;4&quot; fillId=&quot;2&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;164&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyNumberFormat=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;right&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;165&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyNumberFormat=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;right&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;4&quot; fillId=&quot;2&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;4&quot; fillId=&quot;3&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;left&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;left&quot; vertical=&quot;top&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;6&quot; fillId=&quot;4&quot; borderId=&quot;2&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;0&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;left&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;7&quot; fillId=&quot;4&quot; borderId=&quot;2&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;9&quot; fillId=&quot;0&quot; borderId=&quot;3&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;8&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;0&quot; fillId=&quot;5&quot; borderId=&quot;4&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;left&quot; vertical=&quot;top&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;4&quot; fillId=&quot;3&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyFill=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;center&quot; vertical=&quot;center&quot;/&gt;&lt;/xf&gt;
+  &lt;xf numFmtId=&quot;0&quot; fontId=&quot;5&quot; fillId=&quot;0&quot; borderId=&quot;1&quot; xfId=&quot;0&quot; applyFont=&quot;1&quot; applyBorder=&quot;1&quot; applyAlignment=&quot;1&quot;&gt;&lt;alignment horizontal=&quot;left&quot; vertical=&quot;center&quot; wrapText=&quot;1&quot;/&gt;&lt;/xf&gt;
+&lt;/cellXfs&gt;
+&lt;cellStyles count=&quot;1&quot;&gt;&lt;cellStyle name=&quot;Normal&quot; xfId=&quot;0&quot; builtinId=&quot;0&quot;/&gt;&lt;/cellStyles&gt;
+&lt;/styleSheet&gt;`;
+}
+
+async function exportToExcel() {
+  try {
+    calculate();
+    const sheetRows = [];
+    const merges = [];
+    let tableHeaderRow = 0;
+    
+    const row = (cells, height = 20) =&gt; {
+      const arr = new Array(15).fill(null);
+      for (let i = 0; i &lt; Math.min(cells.length, 15); i++) {
+        arr[i] = cells[i];
+      }
+      sheetRows.push({ cells: arr, height });
+      return sheetRows.length;
+    };
+    
+    const merge = (r, c1, c2, styleId = null) =&gt; {
+      if (c2 &gt; c1) {
+        merges.push(`${columnName(c1)}${r}:${columnName(c2)}${r}`);
+        if (styleId !== null &amp;&amp; sheetRows[r - 1]) {
+          for (let col = c1; col &lt;= c2; col++) {
+            const idx = col - 1;
+            if (!sheetRows[r - 1].cells[idx]) {
+              sheetRows[r - 1].cells[idx] = { v: &#x27;&#x27;, s: styleId };
+            } else if (typeof sheetRows[r - 1].cells[idx] === &#x27;object&#x27;) {
+              sheetRows[r - 1].cells[idx].s = styleId;
+            }
+          }
+        }
+      }
+    };
+
+    const fx = (formula, cached, style = 6) =&gt; ({
+      formula,
+      cached: Number.isFinite(Number(cached)) ? Number(cached) : 0,
+      s: style
+    });
+
+    // 1. Header (Word Table 0 ke anuroop)
+    const r1 = row([{ v: $(&#x27;hCompany&#x27;).value || &#x27;RANJIT BUILDCON LIMITED.&#x27;, s: 1 }], 28);
+    merge(r1, 1, 15, 1);
+
+    const sub1 = [$(&#x27;hTenderName&#x27;).value, $(&#x27;hTenderNo&#x27;).value].filter(Boolean).join(&#x27; | &#x27;);
+    if (sub1) {
+      const r2 = row([{ v: sub1, s: 14 }], 18);
+      merge(r2, 1, 15, 14);
+    }
+
+    const r3 = row([{ v: &#x27;ELECTRICAL LOAD CHART CALCULATION&#x27;, s: 2 }], 24);
+    merge(r3, 1, 15, 2);
+
+    if ($(&#x27;hLocation&#x27;).value) {
+      const r4 = row([{ v: $(&#x27;hLocation&#x27;).value, s: 14 }], 18);
+      merge(r4, 1, 15, 14);
+    }
+
+    row(new Array(15).fill(null), 10);
+
+    const section = (title) =&gt; {
+      const r = row([{ v: title, s: 3 }], 24);
+      merge(r, 1, 15, 3);
+    };
+
+    // 2. Main Load Table
+    section(&#x27;ELECTRICAL LOAD DETAILS&#x27;);
+    const headers = [&#x27;SL.No&#x27;,&#x27;AREA / LOCATION&#x27;,&#x27;EQUIPMENT / Machine Name&#x27;,&#x27;LOAD TYPE&#x27;,&#x27;INDIVIDUAL LOAD&#x27;,&#x27;Unit&#x27;,&#x27;Qty&#x27;,&#x27;Total Connected Load (kW)&#x27;,&#x27;Maximum Demand (kW)&#x27;,&#x27;Operating Hours / Day&#x27;,&#x27;EST. ENERGY (kWh/day)&#x27;,&#x27;POWER FACTOR&#x27;,&#x27;DEMAND FACTOR %&#x27;,&#x27;CURRENT (A) per machine&#x27;,&#x27;BRANCH CABLE (per machine) &amp; VOLTAGE DROP&#x27;];
+    tableHeaderRow = row(headers.map(v =&gt; ({ v, s: 4 })), 40);
+
+    const domRows = [...document.querySelectorAll(&#x27;#rows tr&#x27;)];
+    const firstData = sheetRows.length + 1;
+
+    domRows.forEach((tr, i) =&gt; {
+      const type = tr.querySelector(&#x27;.type-select&#x27;)?.value || &#x27;Small&#x27;;
+      const load = Number(tr.querySelector(&#x27;.load-val&#x27;)?.value) || 0;
+      const unit = tr.querySelector(&#x27;.unit-select&#x27;)?.value || &#x27;kW&#x27;;
+      const qty = Number(tr.querySelector(&#x27;.qty-val&#x27;)?.value) || 0;
+      const dfRaw = tr.querySelector(&#x27;.df-val&#x27;)?.value?.trim() || &#x27;&#x27;;
+      const dfPct = dfRaw === &#x27;&#x27; ? (type === &#x27;Heavy&#x27; ? 60 : 80) : Number(dfRaw);
+      const df = Number.isFinite(dfPct) ? dfPct / 100 : 0;
+      const hrsRaw = tr.querySelector(&#x27;.hrs-val&#x27;)?.value ?? &#x27;&#x27;;
+      const pfRaw = tr.querySelector(&#x27;.pf-val&#x27;)?.value ?? &#x27;&#x27;;
+      const connected = numberFromText(tr.querySelector(&#x27;.connected&#x27;)?.textContent);
+      const demand = numberFromText(tr.querySelector(&#x27;.demand&#x27;)?.textContent);
+      const energy = numberFromText(tr.querySelector(&#x27;.energy&#x27;)?.textContent);
+      const current = numberFromText(tr.querySelector(&#x27;.current&#x27;)?.textContent);
+      const cableMat = tr.querySelector(&#x27;.cable-mat&#x27;)?.value || &#x27;&#x27;;
+      const cableLen = tr.querySelector(&#x27;.cable-len&#x27;)?.value || &#x27;Not entered&#x27;;
+      const cableInfo = tr.querySelector(&#x27;.cable-info&#x27;)?.textContent || &#x27;&#x27;;
+      const excelRow = sheetRows.length + 1;
+
+      const cells = [
+        { v: i + 1, s: 5 },
+        { v: tr.querySelector(&#x27;.area-val&#x27;)?.value || &#x27;&#x27;, s: 12 },
+        { v: tr.querySelector(&#x27;.equip-val&#x27;)?.value || &#x27;&#x27;, s: 12 },
+        { v: type, s: 5 },
+        { v: load, s: 6 },
+        { v: unit, s: 5 },
+        { v: qty, s: 5 },
+        fx(`IF(F${excelRow}=&quot;W&quot;,E${excelRow}/1000,E${excelRow})*G${excelRow}`, connected, 6),
+        fx(`H${excelRow}*M${excelRow}`, demand, 6),
+        { v: hrsRaw === &#x27;&#x27; ? &#x27;&#x27; : Number(hrsRaw), s: 5 },
+        fx(`IF(J${excelRow}=&quot;&quot;,0,I${excelRow}*J${excelRow})`, energy, 6),
+        { v: pfRaw === &#x27;&#x27; ? &#x27;&#x27; : Number(pfRaw), s: 5 },
+        { v: df, s: 7 },
+        { v: `${current.toFixed(2)} A`, s: 5 },
+        { v: `${cableMat}${cableMat ? &#x27; | &#x27; : &#x27;&#x27;}${cableLen} m\n${cableInfo}`, s: 10 }
+      ];
+      row(cells, 42);
+    });
+
+    const lastData = Math.max(firstData, firstData + domRows.length - 1);
+    const totalConnected = numberFromText($(&#x27;totalConnected&#x27;).textContent);
+    const totalDemand = numberFromText($(&#x27;totalDemand&#x27;).textContent);
+    const totalEnergy = numberFromText($(&#x27;totalEnergy&#x27;).textContent);
+    const totalDf = numberFromText($(&#x27;totalDF&#x27;).textContent) / 100;
+    const totalCurrent = numberFromText($(&#x27;totalCurrent&#x27;).textContent);
+
+    // Total Row
+    const totalCells = new Array(15).fill(null);
+    totalCells[0] = { v: &#x27;Total&#x27;, s: 8 };
+    totalCells[7] = fx(`SUM(H${firstData}:H${lastData})`, totalConnected, 6);
+    totalCells[8] = fx(`SUM(I${firstData}:I${lastData})`, totalDemand, 6);
+    totalCells[9] = { v: &#x27;—&#x27;, s: 5 };
+    totalCells[10] = fx(`SUM(K${firstData}:K${lastData})`, totalEnergy, 6);
+    totalCells[11] = { v: &#x27;—&#x27;, s: 5 };
+    totalCells[12] = { v: totalDf, s: 7 };
+    totalCells[13] = { v: `${totalCurrent.toFixed(2)} A`, s: 8 };
+    totalCells[14] = { v: &#x27;—&#x27;, s: 5 };
+    const totalRow = row(totalCells, 24);
+    merge(totalRow, 1, 7, 8);
+
+    // Design Margin Row
+    const margin = numberFromText($(&#x27;marginRow&#x27;).textContent);
+    const marginCells = new Array(15).fill(null);
+    marginCells[0] = { v: &#x27;Design Margin (additional load)&#x27;, s: 8 };
+    marginCells[7] = { v: &#x27;—&#x27;, s: 5 };
+    marginCells[8] = { v: `${margin.toFixed(3)} kW`, s: 8 };
+    marginCells[9] = { v: &#x27;—&#x27;, s: 5 };
+    marginCells[11] = { v: &#x27;User-defined design margin (assumed at unity PF)&#x27;, s: 12 };
+    const marginRow = row(marginCells, 22);
+    merge(marginRow, 1, 7, 8);
+    merge(marginRow, 10, 11, 5);
+    merge(marginRow, 12, 15, 12);
+
+    // Total Design Load Row
+    const design = numberFromText($(&#x27;designLoad&#x27;).textContent);
+    const designCells = new Array(15).fill(null);
+    designCells[0] = { v: &#x27;Total Design Load&#x27;, s: 8 };
+    designCells[7] = { v: &#x27;—&#x27;, s: 5 };
+    designCells[8] = { v: `${design.toFixed(3)} kW`, s: 8 };
+    designCells[9] = { v: &#x27;—&#x27;, s: 5 };
+    designCells[11] = { v: &#x27;Maximum Demand + Design Margin&#x27;, s: 12 };
+    const designRow = row(designCells, 22);
+    merge(designRow, 1, 7, 8);
+    merge(designRow, 10, 11, 5);
+    merge(designRow, 12, 15, 12);
+
+    row(new Array(15).fill(null), 10);
+
+    // 3. Summary Cards (Word Table 2 ki tarah 2x2 grid)
+    const scL1 = new Array(15).fill(null);
+    scL1[0] = { v: &#x27;TOTAL CONNECTED LOAD&#x27;, s: 11 };
+    scL1[7] = { v: &#x27;TOTAL MAXIMUM DEMAND&#x27;, s: 11 };
+    const rL1 = row(scL1, 16);
+    merge(rL1, 1, 7, 11);
+    merge(rL1, 8, 15, 11);
+
+    const scV1 = new Array(15).fill(null);
+    scV1[0] = { v: $(&#x27;cardConnected&#x27;).textContent, s: 13 };
+    scV1[7] = { v: $(&#x27;cardDemand&#x27;).textContent, s: 13 };
+    const rV1 = row(scV1, 24);
+    merge(rV1, 1, 7, 13);
+    merge(rV1, 8, 15, 13);
+
+    row(new Array(15).fill(null), 4);
+
+    const scL2 = new Array(15).fill(null);
+    scL2[0] = { v: &#x27;DESIGN LOAD&#x27;, s: 11 };
+    scL2[7] = { v: &#x27;ESTIMATED DAILY ENERGY&#x27;, s: 11 };
+    const rL2 = row(scL2, 16);
+    merge(rL2, 1, 7, 11);
+    merge(rL2, 8, 15, 11);
+
+    const scV2 = new Array(15).fill(null);
+    scV2[0] = { v: $(&#x27;cardDesign&#x27;).textContent, s: 13 };
+    scV2[7] = { v: $(&#x27;cardEnergy&#x27;).textContent, s: 13 };
+    const rV2 = row(scV2, 24);
+    merge(rV2, 1, 7, 13);
+    merge(rV2, 8, 15, 13);
+
+    row(new Array(15).fill(null), 10);
+
+    // 4. Requirements Table
+    section(&#x27;TRANSFORMER, DG SET &amp; MAIN FEEDER REQUIREMENT&#x27;);
+    const reqRows = [...document.querySelectorAll(&#x27;#reqTable tr&#x27;)];
+    reqRows.forEach(tr =&gt; {
+      const label = tr.querySelector(&#x27;th&#x27;)?.textContent.trim() || &#x27;&#x27;;
+      const value = tr.querySelector(&#x27;td&#x27;)?.textContent.trim() || &#x27;&#x27;;
+      const cells = new Array(15).fill(null);
+      cells[0] = { v: label, s: 9 };
+      cells[7] = { v: value, s: 18 };
+      const r = row(cells, 22);
+      merge(r, 1, 7, 9);
+      merge(r, 8, 15, 18);
+    });
+
+    row(new Array(15).fill(null), 10);
+
+    // 5. Position, Name and Signature
+    section(&#x27;POSITION, NAME AND SIGNATURE&#x27;);
+    const approvals = [...document.querySelectorAll(&#x27;.approval&#x27;)];
+    const starts = [1, 5, 9, 12], ends = [4, 8, 11, 15];
+
+    let rA = row(new Array(15).fill(null), 20);
+    approvals.forEach((a, i) =&gt; {
+      sheetRows[rA - 1].cells[starts[i] - 1] = { v: a.querySelector(&#x27;b&#x27;)?.textContent.trim() || &#x27;&#x27;, s: 17 };
+      merge(rA, starts[i], ends[i], 17);
+    });
+
+    rA = row(new Array(15).fill(null), 20);
+    approvals.forEach((a, i) =&gt; {
+      const inp = a.querySelectorAll(&#x27;input&#x27;);
+      sheetRows[rA - 1].cells[starts[i] - 1] = { v: inp[0]?.value || &#x27;&#x27;, s: 8 };
+      merge(rA, starts[i], ends[i], 8);
+    });
+
+    rA = row(new Array(15).fill(null), 22);
+    approvals.forEach((a, i) =&gt; {
+      const inp = a.querySelectorAll(&#x27;input&#x27;);
+      sheetRows[rA - 1].cells[starts[i] - 1] = { v: inp[1]?.value || &#x27;&#x27;, s: 5 };
+      merge(rA, starts[i], ends[i], 5);
+    });
+
+    rA = row(new Array(15).fill(null), 20);
+    approvals.forEach((a, i) =&gt; {
+      sheetRows[rA - 1].cells[starts[i] - 1] = { v: &#x27;________________________&#x27;, s: 5 };
+      merge(rA, starts[i], ends[i], 5);
+    });
+
+    rA = row(new Array(15).fill(null), 18);
+    approvals.forEach((a, i) =&gt; {
+      sheetRows[rA - 1].cells[starts[i] - 1] = { v: &#x27;Handwritten Signature&#x27;, s: 15 };
+      merge(rA, starts[i], ends[i], 15);
+    });
+
+    row(new Array(15).fill(null), 10);
+
+    // 6. Engineer Notes
+    section(&#x27;ENGINEER NOTES&#x27;);
+    const noteText = $(&#x27;engineerNotes&#x27;).value || &#x27;&#x27;;
+    const noteHeight = Math.max(50, Math.min(300, (noteText.split(&#x27;\n&#x27;).length + 1) * 16));
+    const notesCells = new Array(15).fill(null);
+    notesCells[0] = { v: noteText, s: 16 };
+    const notesRow = row(notesCells, noteHeight);
+    merge(notesRow, 1, 15, 16);
+
+    row(new Array(15).fill(null), 10);
+
+    // 7. Formula &amp; How It Works
+    section(&#x27;FORMULA &amp; HOW IT WORKS&#x27;);
+    const fheadCells = new Array(15).fill(null);
+    fheadCells[0] = { v: &#x27;FORMULA&#x27;, s: 4 };
+    fheadCells[5] = { v: &#x27;SL.NO&#x27;, s: 4 };
+    fheadCells[8] = { v: &#x27;HOW IT WORKS&#x27;, s: 4 };
+    const fhead = row(fheadCells, 24);
+    merge(fhead, 1, 5, 4);
+    merge(fhead, 6, 8, 4);
+    merge(fhead, 9, 15, 4);
+
+    document.querySelectorAll(&#x27;.formula-table tbody tr&#x27;).forEach(tr =&gt; {
+      const cellsText = [...tr.children].map(td =&gt; td.innerText.trim());
+      const fRowCells = new Array(15).fill(null);
+      fRowCells[0] = { v: cellsText[0] || &#x27;&#x27;, s: 10 };
+      fRowCells[5] = { v: cellsText[1] || &#x27;&#x27;, s: 8 };
+      fRowCells[8] = { v: cellsText[2] || &#x27;&#x27;, s: 10 };
+      const rr = row(fRowCells, 54);
+      merge(rr, 1, 5, 10);
+      merge(rr, 6, 8, 8);
+      merge(rr, 9, 15, 10);
+    });
+
+    const protocol = $(&#x27;protocolNote&#x27;)?.innerText?.trim() || &#x27;&#x27;;
+    if (protocol) {
+      row(new Array(15).fill(null), 6);
+      const prCells = new Array(15).fill(null);
+      prCells[0] = { v: protocol, s: 5 };
+      const pr = row(prCells, 20);
+      merge(pr, 1, 15, 5);
+    }
+
+    const xmlRows = sheetRows.map((r, idx) =&gt; {
+      const rowNum = idx + 1;
+      const cells = (r.cells || []).map((raw, j) =&gt; {
+        const col = j + 1, ref = columnName(col) + rowNum;
+        if (!raw) return `&lt;c r=&quot;${ref}&quot;/&gt;`;
+        const c = (typeof raw === &#x27;object&#x27; &amp;&amp; !Array.isArray(raw)) ? raw : { v: raw };
+        const style = (c.s !== undefined) ? ` s=&quot;${c.s}&quot;` : &#x27;&#x27;;
+        if (c.formula) {
+          return `&lt;c r=&quot;${ref}&quot;${style}&gt;&lt;f&gt;${xmlEscape(c.formula)}&lt;/f&gt;&lt;v&gt;${Number(c.cached) || 0}&lt;/v&gt;&lt;/c&gt;`;
+        }
+        const v = c.v;
+        if (v === null || v === undefined || v === &#x27;&#x27;) return `&lt;c r=&quot;${ref}&quot;${style}/&gt;`;
+        if (typeof v === &#x27;number&#x27; &amp;&amp; Number.isFinite(v)) return `&lt;c r=&quot;${ref}&quot;${style}&gt;&lt;v&gt;${v}&lt;/v&gt;&lt;/c&gt;`;
+        return `&lt;c r=&quot;${ref}&quot;${style} t=&quot;inlineStr&quot;&gt;&lt;is&gt;&lt;t xml:space=&quot;preserve&quot;&gt;${xmlEscape(v)}&lt;/t&gt;&lt;/is&gt;&lt;/c&gt;`;
+      }).join(&#x27;&#x27;);
+      return `&lt;row r=&quot;${rowNum}&quot; ht=&quot;${r.height || 20}&quot; customHeight=&quot;1&quot;&gt;${cells}&lt;/row&gt;`;
+    }).join(&#x27;&#x27;);
+
+    const mergeXml = merges.length ? `&lt;mergeCells count=&quot;${merges.length}&quot;&gt;${merges.map(m =&gt; `&lt;mergeCell ref=&quot;${m}&quot;/&gt;`).join(&#x27;&#x27;)}&lt;/mergeCells&gt;` : &#x27;&#x27;;
+    const colWidths = [7, 16, 23, 11, 13, 8, 7, 15, 15, 13, 16, 9, 12, 15, 44];
+    const colsXml = &#x27;&lt;cols&gt;&#x27; + colWidths.map((w, i) =&gt; `&lt;col min=&quot;${i + 1}&quot; max=&quot;${i + 1}&quot; width=&quot;${w}&quot; customWidth=&quot;1&quot;/&gt;`).join(&#x27;&#x27;) + &#x27;&lt;/cols&gt;&#x27;;
+    const pane = `&lt;sheetViews&gt;&lt;sheetView workbookViewId=&quot;0&quot; zoomScale=&quot;80&quot;&gt;&lt;pane ySplit=&quot;${tableHeaderRow}&quot; topLeftCell=&quot;A${tableHeaderRow + 1}&quot; activePane=&quot;bottomLeft&quot; state=&quot;frozen&quot;/&gt;&lt;/sheetView&gt;&lt;/sheetViews&gt;`;
+    const autoFilterXml = `&lt;autoFilter ref=&quot;A${tableHeaderRow}:O${tableHeaderRow}&quot;/&gt;`;
+
+    const sheetXml = `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;worksheet xmlns=&quot;http://schemas.openxmlformats.org/spreadsheetml/2006/main&quot;&gt;&lt;sheetPr&gt;&lt;pageSetUpPr fitToPage=&quot;1&quot; autoPageBreaks=&quot;1&quot;/&gt;&lt;/sheetPr&gt;&lt;dimension ref=&quot;A1:O${sheetRows.length}&quot;/&gt;${pane}&lt;sheetFormatPr defaultRowHeight=&quot;18&quot;/&gt;${colsXml}&lt;sheetData&gt;${xmlRows}&lt;/sheetData&gt;${autoFilterXml}${mergeXml}&lt;pageMargins left=&quot;0.25&quot; right=&quot;0.25&quot; top=&quot;0.4&quot; bottom=&quot;0.4&quot; header=&quot;0.15&quot; footer=&quot;0.15&quot;/&gt;&lt;pageSetup paperSize=&quot;8&quot; orientation=&quot;landscape&quot; fitToWidth=&quot;1&quot; fitToHeight=&quot;0&quot;/&gt;&lt;/worksheet&gt;`;
+
+    const files = [
+      { name: &#x27;[Content_Types].xml&#x27;, data: `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Types xmlns=&quot;http://schemas.openxmlformats.org/package/2006/content-types&quot;&gt;&lt;Default Extension=&quot;rels&quot; ContentType=&quot;application/vnd.openxmlformats-package.relationships+xml&quot;/&gt;&lt;Default Extension=&quot;xml&quot; ContentType=&quot;application/xml&quot;/&gt;&lt;Override PartName=&quot;/xl/workbook.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml&quot;/&gt;&lt;Override PartName=&quot;/xl/worksheets/sheet1.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml&quot;/&gt;&lt;Override PartName=&quot;/xl/styles.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml&quot;/&gt;&lt;Override PartName=&quot;/docProps/core.xml&quot; ContentType=&quot;application/vnd.openxmlformats-package.core-properties+xml&quot;/&gt;&lt;Override PartName=&quot;/docProps/app.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.extended-properties+xml&quot;/&gt;&lt;/Types&gt;` },
+      { name: &#x27;_rels/.rels&#x27;, data: `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Relationships xmlns=&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;&gt;&lt;Relationship Id=&quot;rId1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument&quot; Target=&quot;xl/workbook.xml&quot;/&gt;&lt;Relationship Id=&quot;rId2&quot; Type=&quot;http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties&quot; Target=&quot;docProps/core.xml&quot;/&gt;&lt;Relationship Id=&quot;rId3&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties&quot; Target=&quot;docProps/app.xml&quot;/&gt;&lt;/Relationships&gt;` },
+      { name: &#x27;xl/workbook.xml&#x27;, data: `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;workbook xmlns=&quot;http://schemas.openxmlformats.org/spreadsheetml/2006/main&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;&gt;&lt;bookViews&gt;&lt;workbookView xWindow=&quot;0&quot; yWindow=&quot;0&quot; windowWidth=&quot;18000&quot; windowHeight=&quot;9000&quot;/&gt;&lt;/bookViews&gt;&lt;sheets&gt;&lt;sheet name=&quot;Electrical Load Chart&quot; sheetId=&quot;1&quot; r:id=&quot;rId1&quot;/&gt;&lt;/sheets&gt;&lt;calcPr calcId=&quot;191029&quot; calcMode=&quot;auto&quot; fullCalcOnLoad=&quot;1&quot; forceFullCalc=&quot;1&quot;/&gt;&lt;/workbook&gt;` },
+      { name: &#x27;xl/_rels/workbook.xml.rels&#x27;, data: `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Relationships xmlns=&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;&gt;&lt;Relationship Id=&quot;rId1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet&quot; Target=&quot;worksheets/sheet1.xml&quot;/&gt;&lt;Relationship Id=&quot;rId2&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles&quot; Target=&quot;styles.xml&quot;/&gt;&lt;/Relationships&gt;` },
+      { name: &#x27;xl/styles.xml&#x27;, data: xlsxStylesXml() },
+      { name: &#x27;xl/worksheets/sheet1.xml&#x27;, data: sheetXml },
+      { name: &#x27;docProps/core.xml&#x27;, data: `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;cp:coreProperties xmlns:cp=&quot;http://schemas.openxmlformats.org/package/2006/metadata/core-properties&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;dc:title&gt;Electrical Load Chart Calculation&lt;/dc:title&gt;&lt;dc:creator&gt;Electrical Load Chart&lt;/dc:creator&gt;&lt;dc:subject&gt;Electrical Load Chart Calculation&lt;/dc:subject&gt;&lt;dcterms:created xsi:type=&quot;dcterms:W3CDTF&quot;&gt;${new Date().toISOString()}&lt;/dcterms:created&gt;&lt;/cp:coreProperties&gt;` },
+      { name: &#x27;docProps/app.xml&#x27;, data: `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Properties xmlns=&quot;http://schemas.openxmlformats.org/officeDocument/2006/extended-properties&quot; xmlns:vt=&quot;http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes&quot;&gt;&lt;Application&gt;Microsoft Excel&lt;/Application&gt;&lt;AppVersion&gt;16.0000&lt;/AppVersion&gt;&lt;/Properties&gt;` }
+    ];
+
+    const logoImages = [];
+    for (const [data, name, col] of [[logoLeftDataUrl, &#x27;Company Logo Left&#x27;, 0], [logoRightDataUrl, &#x27;Company Logo Right&#x27;, 14]]) {
+      const image = imageDataUrlToBytes(data);
+      if (image) logoImages.push({ ...image, name, col, id: logoImages.length + 1, relId: `rIdImage${logoImages.length + 1}` });
+    }
+
+    if (logoImages.length) {
+      const imageAnchors = logoImages.map(img =&gt; {
+        const colOff = img.col === 14 ? 1580000 : 0;
+        return `&lt;xdr:oneCellAnchor&gt;&lt;xdr:from&gt;&lt;xdr:col&gt;${img.col}&lt;/xdr:col&gt;&lt;xdr:colOff&gt;${colOff}&lt;/xdr:colOff&gt;&lt;xdr:row&gt;0&lt;/xdr:row&gt;&lt;xdr:rowOff&gt;0&lt;/xdr:rowOff&gt;&lt;/xdr:from&gt;&lt;xdr:ext cx=&quot;1016000&quot; cy=&quot;635000&quot;/&gt;&lt;xdr:pic&gt;&lt;xdr:nvPicPr&gt;&lt;xdr:cNvPr id=&quot;${img.id}&quot; name=&quot;${xmlEscape(img.name)}&quot;/&gt;&lt;xdr:cNvPicPr/&gt;&lt;/xdr:nvPicPr&gt;&lt;xdr:blipFill&gt;&lt;a:blip r:embed=&quot;${img.relId}&quot;/&gt;&lt;a:stretch&gt;&lt;a:fillRect/&gt;&lt;/a:stretch&gt;&lt;/xdr:blipFill&gt;&lt;xdr:spPr&gt;&lt;a:prstGeom prst=&quot;rect&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;/xdr:spPr&gt;&lt;/xdr:pic&gt;&lt;xdr:clientData/&gt;&lt;/xdr:oneCellAnchor&gt;`;
+      }).join(&#x27;&#x27;);
+      const drawing = `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;xdr:wsDr xmlns:xdr=&quot;http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing&quot; xmlns:a=&quot;http://schemas.openxmlformats.org/drawingml/2006/main&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;&gt;${imageAnchors}&lt;/xdr:wsDr&gt;`;
+      const drawingRels = `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Relationships xmlns=&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;&gt;${logoImages.map(img =&gt; `&lt;Relationship Id=&quot;${img.relId}&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/image&quot; Target=&quot;../media/image${img.id}.${img.ext}&quot;/&gt;`).join(&#x27;&#x27;)}&lt;/Relationships&gt;`;
+      const sheetRels = `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Relationships xmlns=&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;&gt;&lt;Relationship Id=&quot;rIdDrawing1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing&quot; Target=&quot;../drawings/drawing1.xml&quot;/&gt;&lt;/Relationships&gt;`;
+      
+      const sheetFile = files.find(file =&gt; file.name === &#x27;xl/worksheets/sheet1.xml&#x27;);
+      sheetFile.data = sheetFile.data.replace(&#x27;&lt;worksheet xmlns=&quot;http://schemas.openxmlformats.org/spreadsheetml/2006/main&quot;&gt;&#x27;, &#x27;&lt;worksheet xmlns=&quot;http://schemas.openxmlformats.org/spreadsheetml/2006/main&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;&gt;&#x27;).replace(&#x27;&lt;/worksheet&gt;&#x27;, &#x27;&lt;drawing r:id=&quot;rIdDrawing1&quot;/&gt;&lt;/worksheet&gt;&#x27;);
+      
+      const typesFile = files.find(file =&gt; file.name === &#x27;[Content_Types].xml&#x27;);
+      let types = typesFile.data.replace(&#x27;&lt;/Types&gt;&#x27;, &#x27;&lt;Override PartName=&quot;/xl/drawings/drawing1.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.drawing+xml&quot;/&gt;&lt;/Types&gt;&#x27;);
+      for (const ext of [...new Set(logoImages.map(img =&gt; img.ext))]) {
+        const mime = ext === &#x27;png&#x27; ? &#x27;image/png&#x27; : &#x27;image/jpeg&#x27;;
+        types = types.replace(&#x27;&lt;Default Extension=&quot;xml&quot; ContentType=&quot;application/xml&quot;/&gt;&#x27;, `&lt;Default Extension=&quot;xml&quot; ContentType=&quot;application/xml&quot;/&gt;&lt;Default Extension=&quot;${ext}&quot; ContentType=&quot;${mime}&quot;/&gt;`);
+      }
+      typesFile.data = types;
+      files.push({ name: &#x27;xl/drawings/drawing1.xml&#x27;, data: drawing }, { name: &#x27;xl/drawings/_rels/drawing1.xml.rels&#x27;, data: drawingRels }, { name: &#x27;xl/worksheets/_rels/sheet1.xml.rels&#x27;, data: sheetRels });
+      logoImages.forEach(img =&gt; files.push({ name: `xl/media/image${img.id}.${img.ext}`, data: img.bytes }));
+    }
+
+    const xlsx = zipStore(files);
+    const blob = new Blob([xlsx], { type: &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27; });
+    downloadBlob(blob, `Electrical_Load_Chart_V10_${new Date().toISOString().slice(0, 10)}.xlsx`);
+  } catch (error) {
+    console.error(&#x27;Excel export error:&#x27;, error);
+    alert(&#x27;Excel file create nahi ho payi. Details: &#x27; + (error?.message || error));
+  }
+}
+
+
+function docxRun(text, style={}) {
+  const size=Math.max(5,Number(style.fontSize)||8);
+  const color=(style.color||&#x27;182536&#x27;).replace(&#x27;#&#x27;,&#x27;&#x27;).toUpperCase();
+  const rPr=`&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Arial&quot; w:hAnsi=&quot;Arial&quot; w:eastAsia=&quot;Arial&quot;/&gt;&lt;w:sz w:val=&quot;${Math.round(size*2)}&quot;/&gt;&lt;w:color w:val=&quot;${color}&quot;/&gt;${style.bold?&#x27;&lt;w:b/&gt;&#x27;:&#x27;&#x27;}${style.italic?&#x27;&lt;w:i/&gt;&#x27;:&#x27;&#x27;}&lt;/w:rPr&gt;`;
+  return `&lt;w:r&gt;${rPr}&lt;w:t xml:space=&quot;preserve&quot;&gt;${xmlEscape(text)}&lt;/w:t&gt;&lt;/w:r&gt;`;
+}
+function docxParagraph(text, style={}) {
+  const align=style.align===&#x27;center&#x27;?&#x27;center&#x27;:style.align===&#x27;right&#x27;?&#x27;right&#x27;:style.align===&#x27;both&#x27;?&#x27;both&#x27;:&#x27;left&#x27;;
+  const before=Math.max(0,Math.round((style.before||0)*20));
+  const after=Math.max(0,Math.round((style.after===undefined?2:style.after)*20));
+  const line=style.line?`&lt;w:spacing w:before=&quot;${before}&quot; w:after=&quot;${after}&quot; w:line=&quot;${Math.round(style.line*20)}&quot; w:lineRule=&quot;auto&quot;/&gt;`:`&lt;w:spacing w:before=&quot;${before}&quot; w:after=&quot;${after}&quot;/&gt;`;
+  const pBdr=style.bottomBorder?`&lt;w:pBdr&gt;&lt;w:bottom w:val=&quot;single&quot; w:sz=&quot;14&quot; w:space=&quot;3&quot; w:color=&quot;${style.bottomBorder}&quot;/&gt;&lt;/w:pBdr&gt;`:&#x27;&#x27;;
+  const keep=style.keepNext?&#x27;&lt;w:keepNext/&gt;&#x27;:&#x27;&#x27;;
+  const pPr=`&lt;w:pPr&gt;&lt;w:jc w:val=&quot;${align}&quot;/&gt;${line}${pBdr}${keep}&lt;/w:pPr&gt;`;
+  const parts=String(text??&#x27;&#x27;).split(/\r?\n/);
+  let runs=&#x27;&#x27;;
+  parts.forEach((part,i)=&gt;{if(i&gt;0)runs+=&#x27;&lt;w:r&gt;&lt;w:br/&gt;&lt;/w:r&gt;&#x27;;if(part!==&#x27;&#x27;)runs+=docxRun(part,style);});
+  return `&lt;w:p&gt;${pPr}${runs||&#x27;&lt;w:r&gt;&lt;w:t xml:space=&quot;preserve&quot;&gt; &lt;/w:t&gt;&lt;/w:r&gt;&#x27;}&lt;/w:p&gt;`;
+}
+function docxImageRun(relId, name, cx, cy, id) {
+  return `&lt;w:r&gt;&lt;w:drawing&gt;&lt;wp:inline distT=&quot;0&quot; distB=&quot;0&quot; distL=&quot;0&quot; distR=&quot;0&quot;&gt;&lt;wp:extent cx=&quot;${cx}&quot; cy=&quot;${cy}&quot;/&gt;&lt;wp:docPr id=&quot;${id}&quot; name=&quot;${xmlEscape(name)}&quot;/&gt;&lt;wp:cNvGraphicFramePr&gt;&lt;a:graphicFrameLocks noChangeAspect=&quot;1&quot;/&gt;&lt;/wp:cNvGraphicFramePr&gt;&lt;a:graphic&gt;&lt;a:graphicData uri=&quot;http://schemas.openxmlformats.org/drawingml/2006/picture&quot;&gt;&lt;pic:pic&gt;&lt;pic:nvPicPr&gt;&lt;pic:cNvPr id=&quot;${id}&quot; name=&quot;${xmlEscape(name)}&quot;/&gt;&lt;pic:cNvPicPr/&gt;&lt;/pic:nvPicPr&gt;&lt;pic:blipFill&gt;&lt;a:blip r:embed=&quot;${relId}&quot;/&gt;&lt;a:stretch&gt;&lt;a:fillRect/&gt;&lt;/a:stretch&gt;&lt;/pic:blipFill&gt;&lt;pic:spPr&gt;&lt;a:xfrm&gt;&lt;a:off x=&quot;0&quot; y=&quot;0&quot;/&gt;&lt;a:ext cx=&quot;${cx}&quot; cy=&quot;${cy}&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=&quot;rect&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;/pic:spPr&gt;&lt;/pic:pic&gt;&lt;/a:graphicData&gt;&lt;/a:graphic&gt;&lt;/wp:inline&gt;&lt;/w:drawing&gt;&lt;/w:r&gt;`;
+}
+function docxImagePart(imgId, relId, name, docPrId) {
+  const src=$(imgId)?.src||&#x27;&#x27;;
+  const m=src.match(/^data:image\/(png|jpeg|jpg);base64,([A-Za-z0-9+/=]+)$/i);
+  if(!m) return null;
+  const ext=m[1].toLowerCase()===&#x27;png&#x27;?&#x27;png&#x27;:&#x27;jpg&#x27;;
+  const raw=atob(m[2]); const bytes=new Uint8Array(raw.length);
+  for(let i=0;i&lt;raw.length;i++) bytes[i]=raw.charCodeAt(i);
+  const cx=1016000, cy=635000; // 1.11 x 0.69 inches
+  return {relId,name,ext,bytes,paragraph:`&lt;w:p&gt;&lt;w:pPr&gt;&lt;w:jc w:val=&quot;center&quot;/&gt;&lt;w:spacing w:after=&quot;0&quot;/&gt;&lt;/w:pPr&gt;${docxImageRun(relId,name,cx,cy,docPrId)}&lt;/w:p&gt;`};
+}
+function docxCellXml(cell, width) {
+  const span=Math.max(1,cell.span||1);
+  const w=Math.max(1,width);
+  const style=cell.style||{};
+  const tcPr=`&lt;w:tcPr&gt;&lt;w:tcW w:w=&quot;${w}&quot; w:type=&quot;dxa&quot;/&gt;${span&gt;1?`&lt;w:gridSpan w:val=&quot;${span}&quot;/&gt;`:&#x27;&#x27;}${cell.shading?`&lt;w:shd w:val=&quot;clear&quot; w:color=&quot;auto&quot; w:fill=&quot;${cell.shading}&quot;/&gt;`:&#x27;&#x27;}&lt;w:vAlign w:val=&quot;${cell.valign||&#x27;center&#x27;}&quot;/&gt;&lt;/w:tcPr&gt;`;
+  let content=&#x27;&#x27;;
+  if(cell.xml) content=cell.xml;
+  else if(cell.paragraphs) content=cell.paragraphs.map(p=&gt;docxParagraph(p.text,p.style||{})).join(&#x27;&#x27;);
+  else content=docxParagraph(cell.text??&#x27;&#x27;,style);
+  return `&lt;w:tc&gt;${tcPr}${content}&lt;/w:tc&gt;`;
+}
+function docxTable(rows, widths, options={}) {
+  const total=widths.reduce((a,b)=&gt;a+b,0);
+  const color=options.borderColor||&#x27;596575&#x27;, size=options.borderSize||5;
+  const borders=`&lt;w:tblBorders&gt;&lt;w:top w:val=&quot;single&quot; w:sz=&quot;${size}&quot; w:color=&quot;${color}&quot;/&gt;&lt;w:left w:val=&quot;single&quot; w:sz=&quot;${size}&quot; w:color=&quot;${color}&quot;/&gt;&lt;w:bottom w:val=&quot;single&quot; w:sz=&quot;${size}&quot; w:color=&quot;${color}&quot;/&gt;&lt;w:right w:val=&quot;single&quot; w:sz=&quot;${size}&quot; w:color=&quot;${color}&quot;/&gt;&lt;w:insideH w:val=&quot;single&quot; w:sz=&quot;${size}&quot; w:color=&quot;${color}&quot;/&gt;&lt;w:insideV w:val=&quot;single&quot; w:sz=&quot;${size}&quot; w:color=&quot;${color}&quot;/&gt;&lt;/w:tblBorders&gt;`;
+  const pr=`&lt;w:tblPr&gt;&lt;w:tblW w:w=&quot;${total}&quot; w:type=&quot;dxa&quot;/&gt;&lt;w:tblInd w:w=&quot;0&quot; w:type=&quot;dxa&quot;/&gt;&lt;w:tblLayout w:type=&quot;fixed&quot;/&gt;${borders}&lt;w:tblCellMar&gt;&lt;w:top w:w=&quot;38&quot; w:type=&quot;dxa&quot;/&gt;&lt;w:left w:w=&quot;45&quot; w:type=&quot;dxa&quot;/&gt;&lt;w:bottom w:w=&quot;38&quot; w:type=&quot;dxa&quot;/&gt;&lt;w:right w:w=&quot;45&quot; w:type=&quot;dxa&quot;/&gt;&lt;/w:tblCellMar&gt;&lt;/w:tblPr&gt;`;
+  const grid=`&lt;w:tblGrid&gt;${widths.map(w=&gt;`&lt;w:gridCol w:w=&quot;${w}&quot;/&gt;`).join(&#x27;&#x27;)}&lt;/w:tblGrid&gt;`;
+  const trs=rows.map(rowObj=&gt;{
+    const cells=Array.isArray(rowObj)?rowObj:(rowObj.cells||[]);
+    const height=Array.isArray(rowObj)?0:(rowObj.height||0);
+    let col=0;
+    const inner=cells.map(cell=&gt;{
+      const span=Math.max(1,cell.span||1);
+      const width=widths.slice(col,col+span).reduce((a,b)=&gt;a+b,0);
+      col+=span;
+      return docxCellXml(cell,width);
+    }).join(&#x27;&#x27;);
+    return `&lt;w:tr&gt;&lt;w:trPr&gt;&lt;w:cantSplit/&gt;${height?`&lt;w:trHeight w:val=&quot;${height}&quot; w:hRule=&quot;atLeast&quot;/&gt;`:&#x27;&#x27;}&lt;/w:trPr&gt;${inner}&lt;/w:tr&gt;`;
+  }).join(&#x27;&#x27;);
+  return `&lt;w:tbl&gt;${pr}${grid}${trs}&lt;/w:tbl&gt;`;
+}
+function docxSection(title) {
+  return docxParagraph(title.toUpperCase(),{fontSize:9.5,bold:true,color:&#x27;123B70&#x27;,before:8,after:5,bottomBorder:&#x27;123B70&#x27;,keepNext:true});
+}
+function exportToWord() {
+  try {
+    calculate();
+    const val=id=&gt;$(id)?.value ?? &#x27;&#x27;;
+    const txt=id=&gt;$(id)?.textContent?.trim() ?? &#x27;&#x27;;
+    const PAGE_WIDTH=15800;
+    const files=[];
+    const imageParts=[];
+    const logoLeft=docxImagePart(&#x27;logoLeft&#x27;,&#x27;rIdImage1&#x27;,&#x27;Company Logo Left&#x27;,1);
+    const logoRight=docxImagePart(&#x27;logoRight&#x27;,&#x27;rIdImage2&#x27;,&#x27;Company Logo Right&#x27;,2);
+    if(logoLeft){imageParts.push(logoLeft);files.push({name:`word/media/logo-left.${logoLeft.ext}`,data:logoLeft.bytes});}
+    if(logoRight){imageParts.push(logoRight);files.push({name:`word/media/logo-right.${logoRight.ext}`,data:logoRight.bytes});}
+    const leftImage=logoLeft?logoLeft.paragraph:docxParagraph(&#x27;&#x27;);
+    const rightImage=logoRight?logoRight.paragraph:docxParagraph(&#x27;&#x27;);
+    const headingLines=[val(&#x27;hCompany&#x27;)||&#x27;RANJIT BUILDCON LIMITED.&#x27;,val(&#x27;hTenderName&#x27;),val(&#x27;hTenderNo&#x27;),&#x27;ELECTRICAL LOAD CHART CALCULATION&#x27;,val(&#x27;hLocation&#x27;)].filter(Boolean);
+    const headingParas=headingLines.map((line,i)=&gt;({text:line,style:{fontSize:i===0?15:i===3?12:8.5,bold:true,color:i===0?&#x27;123B70&#x27;:i===3?&#x27;B42318&#x27;:&#x27;182536&#x27;,align:&#x27;center&#x27;,after:1}}));
+    const headerTable=docxTable([{cells:[
+      {xml:leftImage},
+      {paragraphs:headingParas},
+      {xml:rightImage}
+    ]}], [1900,12000,1900],{borderColor:&#x27;333333&#x27;,borderSize:8});
+
+    const mainWidths=[632,1106,1580,948,948,711,632,1106,1106,790,1106,632,790,948,2765];
+    const headers=[&#x27;SL.No&#x27;,&#x27;AREA / LOCATION&#x27;,&#x27;EQUIPMENT / Machine Name&#x27;,&#x27;LOAD TYPE&#x27;,&#x27;INDIVIDUAL LOAD&#x27;,&#x27;Unit&#x27;,&#x27;Qty&#x27;,&#x27;Total Connected Load (kW)&#x27;,&#x27;Maximum Demand (kW)&#x27;,&#x27;Operating Hours / Day&#x27;,&#x27;EST. ENERGY (kWh/day)&#x27;,&#x27;POWER FACTOR&#x27;,&#x27;DEMAND FACTOR %&#x27;,&#x27;CURRENT (A) per machine&#x27;,&#x27;BRANCH CABLE (per machine) &amp; VOLTAGE DROP&#x27;];
+    const headerCells=headers.map(h=&gt;({text:h,style:{fontSize:6.1,bold:true,color:&#x27;123B70&#x27;,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;}));
+    const mainRows=[{cells:headerCells,height:620}];
+    const liveRows=[...document.querySelectorAll(&#x27;#rows tr&#x27;)];
+    liveRows.forEach((tr,i)=&gt;{
+      const get=s=&gt;tr.querySelector(s);
+      const type=get(&#x27;.type-select&#x27;)?.selectedOptions[0]?.textContent||&#x27;&#x27;;
+      const unit=get(&#x27;.unit-select&#x27;)?.selectedOptions[0]?.textContent||&#x27;&#x27;;
+      const mat=get(&#x27;.cable-mat&#x27;)?.selectedOptions[0]?.textContent||&#x27;&#x27;;
+      const len=get(&#x27;.cable-len&#x27;)?.value||&#x27;&#x27;;
+      const cableInfo=get(&#x27;.cable-info&#x27;)?.textContent||&#x27;&#x27;;
+      const values=[String(i+1),get(&#x27;.area-val&#x27;)?.value||&#x27;&#x27;,get(&#x27;.equip-val&#x27;)?.value||&#x27;&#x27;,type,get(&#x27;.load-val&#x27;)?.value||&#x27;&#x27;,unit,get(&#x27;.qty-val&#x27;)?.value||&#x27;&#x27;,get(&#x27;.connected&#x27;)?.textContent||&#x27;&#x27;,get(&#x27;.demand&#x27;)?.textContent||&#x27;&#x27;,get(&#x27;.hrs-val&#x27;)?.value||&#x27;&#x27;,get(&#x27;.energy&#x27;)?.textContent||&#x27;&#x27;,get(&#x27;.pf-val&#x27;)?.value||&#x27;&#x27;,get(&#x27;.df-val&#x27;)?.value||((type===&#x27;Heavy&#x27;)?&#x27;60&#x27;:&#x27;80&#x27;),get(&#x27;.current&#x27;)?.textContent||&#x27;&#x27;,`${mat}${len?&#x27; | &#x27;+len+&#x27; m&#x27;:&#x27;&#x27;}\n${cableInfo}`];
+      mainRows.push({cells:values.map((v,j)=&gt;({text:v,style:{fontSize:6.3,bold:[7,8,10,13].includes(j),align:[1,2,14].includes(j)?&#x27;left&#x27;:&#x27;center&#x27;}})),height:560});
+    });
+    mainRows.push({cells:[
+      {text:&#x27;Total&#x27;,span:7,style:{fontSize:7,bold:true,align:&#x27;right&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;totalConnected&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;totalDemand&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;totalEnergy&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;totalDF&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;totalCurrent&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;}
+    ]});
+    mainRows.push({cells:[
+      {text:&#x27;Design Margin (additional load)&#x27;,span:7,style:{fontSize:7,bold:true,align:&#x27;right&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;marginRow&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,span:2,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;User-defined design margin (assumed at unity PF)&#x27;,span:4,style:{fontSize:7,align:&#x27;left&#x27;},shading:&#x27;E5EBF3&#x27;}
+    ]});
+    mainRows.push({cells:[
+      {text:&#x27;Total Design Load&#x27;,span:7,style:{fontSize:7,bold:true,align:&#x27;right&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:txt(&#x27;designLoad&#x27;),style:{fontSize:7,bold:true,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;—&#x27;,span:2,style:{fontSize:7,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;Maximum Demand + Design Margin&#x27;,span:4,style:{fontSize:7,align:&#x27;left&#x27;},shading:&#x27;E5EBF3&#x27;}
+    ]});
+    const loadTable=docxTable(mainRows,mainWidths);
+
+    const summaryRows=[
+      {cells:[{paragraphs:[{text:&#x27;TOTAL CONNECTED LOAD&#x27;,style:{fontSize:7,bold:true,color:&#x27;5D6B7B&#x27;}},{text:txt(&#x27;cardConnected&#x27;),style:{fontSize:12,bold:true,color:&#x27;123B70&#x27;}}],shading:&#x27;FBFCFE&#x27;},{paragraphs:[{text:&#x27;TOTAL MAXIMUM DEMAND&#x27;,style:{fontSize:7,bold:true,color:&#x27;5D6B7B&#x27;}},{text:txt(&#x27;cardDemand&#x27;),style:{fontSize:12,bold:true,color:&#x27;123B70&#x27;}}],shading:&#x27;FBFCFE&#x27;}]},
+      {cells:[{paragraphs:[{text:&#x27;DESIGN LOAD&#x27;,style:{fontSize:7,bold:true,color:&#x27;5D6B7B&#x27;}},{text:txt(&#x27;cardDesign&#x27;),style:{fontSize:12,bold:true,color:&#x27;123B70&#x27;}}],shading:&#x27;FBFCFE&#x27;},{paragraphs:[{text:&#x27;ESTIMATED DAILY ENERGY&#x27;,style:{fontSize:7,bold:true,color:&#x27;5D6B7B&#x27;}},{text:txt(&#x27;cardEnergy&#x27;),style:{fontSize:12,bold:true,color:&#x27;123B70&#x27;}}],shading:&#x27;FBFCFE&#x27;}]}
+    ];
+    const summaryTable=docxTable(summaryRows,[7900,7900],{borderColor:&#x27;C7D1DC&#x27;});
+
+    const reqRows=[...document.querySelectorAll(&#x27;#reqTable tr&#x27;)].map(tr=&gt;{
+      const label=tr.querySelector(&#x27;th&#x27;)?.textContent.trim()||&#x27;&#x27;;const value=tr.querySelector(&#x27;td&#x27;)?.textContent.trim()||&#x27;&#x27;;
+      return {cells:[{text:label,style:{fontSize:7.2,bold:true,color:&#x27;123B70&#x27;,align:&#x27;left&#x27;},shading:&#x27;F4F7FB&#x27;},{text:value,style:{fontSize:7.2,bold:true,align:&#x27;left&#x27;}}]};
+    });
+    const reqTable=docxTable(reqRows,[6500,9300]);
+
+    const approvals=[...document.querySelectorAll(&#x27;.approval&#x27;)].map(a=&gt;{const inputs=a.querySelectorAll(&#x27;input&#x27;);return {title:a.querySelector(&#x27;b&#x27;)?.textContent.trim()||&#x27;&#x27;,designation:inputs[0]?.value||&#x27;&#x27;,name:inputs[1]?.value||&#x27;&#x27;};});
+    const approvalTable=docxTable([{height:1500,cells:approvals.map(a=&gt;({paragraphs:[
+      {text:a.title,style:{fontSize:8.2,bold:true,color:&#x27;123B70&#x27;,align:&#x27;center&#x27;,after:5}},
+      {text:a.designation,style:{fontSize:7.3,bold:true,align:&#x27;center&#x27;,after:4}},
+      {text:a.name,style:{fontSize:7.3,align:&#x27;center&#x27;,after:18}},
+      {text:&#x27;________________________&#x27;,style:{fontSize:7,align:&#x27;center&#x27;,color:&#x27;888888&#x27;,after:0}},
+      {text:&#x27;Handwritten Signature&#x27;,style:{fontSize:6,italic:true,align:&#x27;right&#x27;,color:&#x27;888888&#x27;,after:0}}
+    ]}))}],[3950,3950,3950,3950]);
+
+    const notesText=val(&#x27;engineerNotes&#x27;)||&#x27;&#x27;;
+    const notesTable=docxTable([{cells:[{text:notesText,style:{fontSize:7.3,align:&#x27;left&#x27;},valign:&#x27;top&#x27;}]}],[PAGE_WIDTH],{borderColor:&#x27;CBD5E1&#x27;});
+
+    const formulaWidths=[5530,3160,7110];
+    const formulaRows=[{cells:[
+      {text:&#x27;FORMULA&#x27;,style:{fontSize:7,bold:true,color:&#x27;123B70&#x27;,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;SL.NO&#x27;,style:{fontSize:7,bold:true,color:&#x27;123B70&#x27;,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;},
+      {text:&#x27;HOW IT WORKS&#x27;,style:{fontSize:7,bold:true,color:&#x27;123B70&#x27;,align:&#x27;center&#x27;},shading:&#x27;E5EBF3&#x27;}
+    ]}];
+    document.querySelectorAll(&#x27;.formula-table tbody tr&#x27;).forEach(tr=&gt;{
+      const cells=[...tr.children].map(td=&gt;(td.innerText||td.textContent).trim());
+      formulaRows.push({cells:cells.map((v,i)=&gt;({text:v,style:{fontSize:7,align:i===1?&#x27;center&#x27;:&#x27;left&#x27;,bold:i===0||i===1}}))});
+    });
+    const formulaTable=docxTable(formulaRows,formulaWidths);
+    const protocol=($(&#x27;protocolNote&#x27;)?.innerText||&#x27;&#x27;).trim();
+
+    const blocks=[headerTable,docxSection(&#x27;Electrical Load Details&#x27;),loadTable,summaryTable,docxSection(&#x27;Transformer, DG Set &amp; Main Feeder Requirement&#x27;),reqTable,docxSection(&#x27;Position, Name and Signature&#x27;),approvalTable,docxSection(&#x27;Engineer Notes&#x27;),notesTable,docxSection(&#x27;Formula &amp; How It Works&#x27;),formulaTable];
+    if(protocol) blocks.push(docxParagraph(protocol,{fontSize:7,after:4}));
+    const documentXml=`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;w:document xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:wp=&quot;http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing&quot; xmlns:a=&quot;http://schemas.openxmlformats.org/drawingml/2006/main&quot; xmlns:pic=&quot;http://schemas.openxmlformats.org/drawingml/2006/picture&quot;&gt;&lt;w:body&gt;${blocks.join(&#x27;&#x27;)}&lt;w:sectPr&gt;&lt;w:pgSz w:w=&quot;16838&quot; w:h=&quot;11906&quot; w:orient=&quot;landscape&quot;/&gt;&lt;w:pgMar w:top=&quot;340&quot; w:right=&quot;320&quot; w:bottom=&quot;360&quot; w:left=&quot;320&quot; w:header=&quot;180&quot; w:footer=&quot;180&quot; w:gutter=&quot;0&quot;/&gt;&lt;/w:sectPr&gt;&lt;/w:body&gt;&lt;/w:document&gt;`;
+    const rels=`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Relationships xmlns=&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;&gt;${imageParts.map(img=&gt;`&lt;Relationship Id=&quot;${img.relId}&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/image&quot; Target=&quot;media/${img.name.includes(&#x27;Left&#x27;)?&#x27;logo-left&#x27;:&#x27;logo-right&#x27;}.${img.ext}&quot;/&gt;`).join(&#x27;&#x27;)}&lt;/Relationships&gt;`;
+    const contentTypeDefaults=[&#x27;&lt;Default Extension=&quot;rels&quot; ContentType=&quot;application/vnd.openxmlformats-package.relationships+xml&quot;/&gt;&#x27;,&#x27;&lt;Default Extension=&quot;xml&quot; ContentType=&quot;application/xml&quot;/&gt;&#x27;];
+    if(imageParts.some(i=&gt;i.ext===&#x27;png&#x27;))contentTypeDefaults.push(&#x27;&lt;Default Extension=&quot;png&quot; ContentType=&quot;image/png&quot;/&gt;&#x27;);
+    if(imageParts.some(i=&gt;i.ext===&#x27;jpg&#x27;))contentTypeDefaults.push(&#x27;&lt;Default Extension=&quot;jpg&quot; ContentType=&quot;image/jpeg&quot;/&gt;&#x27;);
+    files.push(
+      {name:&#x27;[Content_Types].xml&#x27;,data:`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Types xmlns=&quot;http://schemas.openxmlformats.org/package/2006/content-types&quot;&gt;${contentTypeDefaults.join(&#x27;&#x27;)}&lt;Override PartName=&quot;/word/document.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml&quot;/&gt;&lt;Override PartName=&quot;/word/styles.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml&quot;/&gt;&lt;Override PartName=&quot;/docProps/core.xml&quot; ContentType=&quot;application/vnd.openxmlformats-package.core-properties+xml&quot;/&gt;&lt;Override PartName=&quot;/docProps/app.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.extended-properties+xml&quot;/&gt;&lt;/Types&gt;`},
+      {name:&#x27;_rels/.rels&#x27;,data:`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Relationships xmlns=&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;&gt;&lt;Relationship Id=&quot;rId1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument&quot; Target=&quot;word/document.xml&quot;/&gt;&lt;Relationship Id=&quot;rId2&quot; Type=&quot;http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties&quot; Target=&quot;docProps/core.xml&quot;/&gt;&lt;Relationship Id=&quot;rId3&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties&quot; Target=&quot;docProps/app.xml&quot;/&gt;&lt;/Relationships&gt;`},
+      {name:&#x27;word/_rels/document.xml.rels&#x27;,data:rels},
+      {name:&#x27;word/document.xml&#x27;,data:documentXml},
+      {name:&#x27;word/styles.xml&#x27;,data:`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;w:styles xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Arial&quot; w:hAnsi=&quot;Arial&quot;/&gt;&lt;w:sz w:val=&quot;16&quot;/&gt;&lt;/w:rPr&gt;&lt;/w:rPrDefault&gt;&lt;w:pPrDefault&gt;&lt;w:pPr&gt;&lt;w:spacing w:after=&quot;40&quot;/&gt;&lt;/w:pPr&gt;&lt;/w:pPrDefault&gt;&lt;/w:docDefaults&gt;&lt;w:style w:type=&quot;paragraph&quot; w:default=&quot;1&quot; w:styleId=&quot;Normal&quot;&gt;&lt;w:name w:val=&quot;Normal&quot;/&gt;&lt;w:qFormat/&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Arial&quot; w:hAnsi=&quot;Arial&quot;/&gt;&lt;w:sz w:val=&quot;16&quot;/&gt;&lt;/w:rPr&gt;&lt;/w:style&gt;&lt;/w:styles&gt;`},
+      {name:&#x27;docProps/core.xml&#x27;,data:`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;cp:coreProperties xmlns:cp=&quot;http://schemas.openxmlformats.org/package/2006/metadata/core-properties&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:dcterms=&quot;http://purl.org/dc/terms/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;dc:title&gt;Electrical Load Chart Calculation&lt;/dc:title&gt;&lt;dc:creator&gt;Electrical Load Chart&lt;/dc:creator&gt;&lt;dc:subject&gt;Electrical Load Chart Calculation&lt;/dc:subject&gt;&lt;dcterms:created xsi:type=&quot;dcterms:W3CDTF&quot;&gt;${new Date().toISOString()}&lt;/dcterms:created&gt;&lt;/cp:coreProperties&gt;`},
+      {name:&#x27;docProps/app.xml&#x27;,data:`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;Properties xmlns=&quot;http://schemas.openxmlformats.org/officeDocument/2006/extended-properties&quot; xmlns:vt=&quot;http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes&quot;&gt;&lt;Application&gt;Microsoft Word&lt;/Application&gt;&lt;AppVersion&gt;16.0000&lt;/AppVersion&gt;&lt;/Properties&gt;`}
+    );
+    const bytes=zipStore(files);
+    const blob=new Blob([bytes],{type:&#x27;application/vnd.openxmlformats-officedocument.wordprocessingml.document&#x27;});
+    downloadBlob(blob,`Electrical_Load_Chart_V10_${new Date().toISOString().slice(0,10)}.docx`);
+  } catch(error) {
+    console.error(&#x27;Word DOCX export error:&#x27;,error);
+    alert(&#x27;Word DOCX file create nahi ho payi. Details: &#x27;+(error?.message||error));
+  }
+}
+
+$(&#x27;engineerNotes&#x27;).addEventListener(&#x27;input&#x27;,function(){this.dataset.userEdited=&#x27;true&#x27;;});
+[&#x27;marginKW&#x27;,&#x27;feederLength&#x27;,&#x27;mainCableMat&#x27;,&#x27;dropCriteria&#x27;,&#x27;supply&#x27;,&#x27;branchAmpacityFactor&#x27;,&#x27;mainAmpacityFactor&#x27;,&#x27;dgLoadingPct&#x27;].forEach(id=&gt;{
+  $(id).addEventListener(&#x27;input&#x27;,calculate);$(id).addEventListener(&#x27;change&#x27;,calculate);
+});
+window.addEventListener(&#x27;load&#x27;,()=&gt;addRow());
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+    <script>
+      (function () {
+        const frame = document.getElementById('electricalLoadChartFrame');
+        if (!frame) return;
+        let resizeObserver = null;
+        const resizeFrame = function () {
+          try {
+            const doc = frame.contentDocument;
+            if (!doc || !doc.documentElement) return;
+            const bodyHeight = doc.body ? doc.body.scrollHeight : 0;
+            const docHeight = doc.documentElement.scrollHeight;
+            frame.style.height = (Math.max(bodyHeight, docHeight) + 24) + 'px';
+          } catch (error) {
+            // Keep the initial frame height if browser access is restricted.
+          }
+        };
+        frame.addEventListener('load', function () {
+          resizeFrame();
+          if (typeof ResizeObserver !== 'undefined') {
+            try {
+              const doc = frame.contentDocument;
+              resizeObserver = new ResizeObserver(resizeFrame);
+              if (doc && doc.documentElement) resizeObserver.observe(doc.documentElement);
+              if (doc && doc.body) resizeObserver.observe(doc.body);
+            } catch (error) {
+              // Initial sizing remains available without ResizeObserver.
+            }
+          }
+        });
+      })();
+    </script>
+  </section>
+
   <!-- SECTION 2A: HSE SAFETY FORMULAS & CALCULATORS (new section) -->
   <section id="hse-safety-section">
     <h2>🦺 HSE Safety Formula - Quick Reference Guide</h2>
