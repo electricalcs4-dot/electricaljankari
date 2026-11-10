@@ -7692,5 +7692,211 @@ function resetFormulaLibrary(){
   window.setTimeout(rebuildIndex, 1600);
 })();
 </script>
+
+<!-- Electrical Jankari Pro: Free bilingual voice + text helper (no external API) -->
+<style id="eip-free-assistant-styles">
+  /* Keep the assistant above the existing Instagram floating button */
+  #eip-free-assistant{position:fixed;right:20px;bottom:112px;z-index:99999;font-family:Arial,sans-serif;color:#172033}
+  #eip-free-assistant *{box-sizing:border-box}
+  #eip-chat-toggle{border:0;border-radius:999px;background:#0759b5;color:#fff;padding:14px 19px;font-weight:700;box-shadow:0 5px 20px #0003;cursor:pointer}
+  #eip-chat-panel{display:none;position:fixed;right:20px;bottom:170px;width:min(365px,calc(100vw - 28px));height:min(520px,calc(100vh - 205px));min-height:300px;background:#fff;border:1px solid #d7e0eb;border-radius:15px;box-shadow:0 10px 35px #0003;overflow:hidden;flex-direction:column}
+  #eip-chat-panel.eip-open{display:flex}
+  .eip-chat-head{background:#0759b5;color:#fff;padding:13px 15px;display:flex;justify-content:space-between;align-items:center}
+  .eip-chat-head small{display:block;opacity:.9;margin-top:3px}
+  .eip-chat-head button#eip-chat-close{
+    display:flex!important;align-items:center;justify-content:center;
+    flex:0 0 36px;width:36px!important;min-width:36px;height:36px;
+    margin:0!important;padding:0!important;border:1px solid rgba(255,255,255,.75)!important;
+    border-radius:50%;background:rgba(255,255,255,.16)!important;
+    color:#fff!important;font-size:26px;line-height:1;cursor:pointer;
+    box-shadow:none!important;
+  }
+  .eip-chat-head button#eip-chat-close:hover{background:rgba(255,255,255,.30)!important}
+  #eip-chat-log{padding:12px;overflow:auto;flex:1;background:#f5f8fc}
+  .eip-msg{max-width:90%;padding:9px 11px;border-radius:12px;margin:8px 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.45}
+  .eip-bot{background:#fff;border:1px solid #e1e7ef;margin-right:auto}
+  .eip-user{background:#dcecff;margin-left:auto}
+  .eip-chat-actions{display:flex;gap:7px;padding:9px 10px 0}
+  .eip-chat-actions button{border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:7px 9px;cursor:pointer;font-size:12px}
+  .eip-chat-compose{display:flex!important;flex-direction:row!important;align-items:stretch!important;gap:8px!important;padding:9px 10px 11px!important;background:#fff!important;width:100%!important;min-width:0!important}
+  #eip-chat-input{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;position:relative!important;z-index:2!important;width:0!important;min-width:0!important;max-width:none!important;flex:1 1 0%!important;height:42px!important;margin:0!important;border:1px solid #64748b!important;border-radius:9px!important;padding:10px!important;font:14px Arial,sans-serif!important;background:#fff!important;color:#172033!important;outline-offset:2px!important}
+  #eip-chat-input:focus{border-color:#0759b5!important;outline:2px solid #93c5fd!important}
+  #eip-chat-send{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;position:relative!important;z-index:2!important;flex:0 0 78px!important;width:78px!important;min-width:78px!important;max-width:78px!important;height:42px!important;margin:0!important;border:0!important;border-radius:9px!important;background:#0759b5!important;color:#fff!important;padding:0 12px!important;cursor:pointer!important}
+  #eip-chat-status{font-size:11px;color:#64748b;padding:0 12px 7px;background:#fff}
+  @media(max-width:480px){#eip-free-assistant{right:12px;bottom:108px}#eip-chat-panel{right:12px;bottom:160px;width:calc(100vw - 24px);height:min(520px,calc(100vh - 185px));min-height:280px}}
+</style>
+<div id="eip-free-assistant" aria-live="polite">
+  <section id="eip-chat-panel" aria-label="Electrical Jankari Pro Assistant">
+    <header class="eip-chat-head">
+      <div><strong>Electrical Jankari Pro Assistant</strong><small>हिंदी • English | Free voice & text helper</small></div>
+      <button type="button" id="eip-chat-close" aria-label="Close chat" title="Close assistant">✕</button>
+    </header>
+    <div id="eip-chat-log" role="log" aria-live="polite"></div>
+    <div class="eip-chat-actions">
+      <select id="eip-chat-voice-lang" aria-label="Voice language" style="border:1px solid #cbd5e1;border-radius:8px;padding:7px 5px;background:#fff;font-size:12px"><option value="hi-IN">हिंदी</option><option value="en-IN">English</option></select><button type="button" id="eip-chat-mic">🎙️ बोलें / Speak</button>
+      <button type="button" id="eip-chat-read">🔊 सुनें / Read</button>
+      <button type="button" id="eip-chat-stop">■ Stop</button>
+    </div>
+    <div id="eip-chat-status">माइक के लिए अनुमति दें। Voice सुविधा ब्राउज़र पर निर्भर है।</div>
+    <form class="eip-chat-compose" id="eip-chat-form">
+      <input id="eip-chat-input" autocomplete="off" placeholder="अपना सवाल लिखें / Type your question" aria-label="Your question">
+      <button id="eip-chat-send" type="submit">Send</button>
+    </form>
+  </section>
+  <button id="eip-chat-toggle" type="button" aria-expanded="false">💬 Ask Assistant</button>
+</div>
+<script id="eip-free-assistant-script">
+(function(){
+  'use strict';
+  const root=document.getElementById('eip-free-assistant');
+  if(!root || root.dataset.ready) return; root.dataset.ready='1';
+  const panel=root.querySelector('#eip-chat-panel'), toggle=root.querySelector('#eip-chat-toggle');
+  const log=root.querySelector('#eip-chat-log'), input=root.querySelector('#eip-chat-input'), status=root.querySelector('#eip-chat-status');
+  let lastReply='', recognition=null;
+  const add=(text,who)=>{const d=document.createElement('div');d.className='eip-msg '+(who==='user'?'eip-user':'eip-bot');d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;};
+  const hi=(x)=>/[अ-हऀ-ॿ]/.test(x);
+  function reply(q){
+    const hindi = /[\u0900-\u097f]/.test(q);
+    const say = (h,e) => hindi ? h : e;
+    const raw = String(q || '').trim();
+    const normalizeAsk = value => String(value || '').toLocaleLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[०-९]/g, d => '०१२३४५६७८९'.indexOf(d))
+      .replace(/[^\p{L}\p{N}.%°Ωµμ²³/\-\s]/gu,' ')
+      .replace(/\s+/g,' ').trim();
+    const norm = normalizeAsk(raw);
+    if (/^(hi|hello|hey)(?:\s|$)|^(नमस्ते|हेलो|नमस्कार)(?:\s|$)/.test(norm))
+      return say('नमस्ते! Electrical, Mechanical, Heavy Lifting और HSE से जुड़ा सवाल पूछिए। आप हिंदी, English या Hinglish में लिख सकते हैं।', 'Hello! Ask about Electrical, Mechanical, Heavy Lifting, or HSE in Hindi, English, or Hinglish.');
+
+    // Domain vocabulary: normalize common Hindi/Roman-Hindi variants to the words used in the site.
+    const aliasGroups = [
+      ['ohm','ohms law resistance voltage current','ओम'], ['bijli','electricity electrical power','बिजली'],
+      ['karant','current ampere amps','करंट'], ['voltej','voltage volt','वोल्टेज'],
+      ['pratirodh','resistance ohm','प्रतिरोध'], ['shakti','power watt kw','शक्ति'],
+      ['taar','wire cable conductor','तार'], ['kebal','cable conductor','केबल'],
+      ['motor','motor rpm torque slip efficiency','मोटर'], ['transformer','transformer kva winding','ट्रांसफार्मर'],
+      ['earth','earthing grounding earthpit','अर्थिंग'], ['suraksha','safety hse hazard risk','सुरक्षा'],
+      ['aag','fire extinguisher fireload','आग'], ['lift','lifting crane rigging sling hoisting','लिफ्टिंग'],
+      ['wajan','weight load mass','वजन'], ['bhar','load weight capacity','भार'],
+      ['rassi','sling rope wire rope','रस्सी'], ['angle','sling angle inclination','एंगल'],
+      ['garmi','heat stress wbgt temperature','गर्मी'], ['shor','noise dose decibel','शोर'],
+      ['chot','injury incident accident','चोट'], ['formula','formula equation calculation','सूत्र'],
+      ['hisab','calculation calculator formula','हिसाब'], ['ganana','calculation calculator','गणना']
+    ];
+    const words = norm.split(' ').filter(w => w.length > 1 && !/^(kya|hai|hain|ka|ki|ke|ko|me|mein|se|batao|bataiye|please|what|is|the|a|an|to|in|of|how|does|do|tell|about|can|you|calculate|find|show|for|and|का|की|के|को|में|है|हैं|क्या|बताओ|बताइए|करो|करें|मुझे|कितना|कैसे)$/.test(w));
+    const expanded = new Set(words);
+    aliasGroups.forEach(group => {
+      const joined = group.join(' ');
+      if (group.some(term => norm.includes(term))) joined.split(' ').forEach(w => { if(w.length>1) expanded.add(w); });
+    });
+
+    // Collect the main document and all accessible same-origin/srcdoc frames recursively.
+    const docs=[], seenDocs=new Set();
+    function collect(doc){
+      if(!doc || seenDocs.has(doc)) return;
+      seenDocs.add(doc); docs.push(doc);
+      try { doc.querySelectorAll('iframe').forEach(frame => { try { if(frame.contentDocument) collect(frame.contentDocument); } catch(_){} }); } catch(_){}
+    }
+    collect(document);
+    const blocks=[], seen=new Set();
+    const selector='h1,h2,h3,h4,h5,h6,p,li,tr,td,th,article,.card,.fl-card,.fl-eq,.fl-grid,.fl-note,.fl-intro,.formula-text,.example,.safety-alert,.calc-guidance,.hse-example,.hse-note,.hse-table,.doc-table,label,option,summary,details,[data-search],[aria-label]';
+    docs.forEach(doc=>{
+      try {
+        doc.querySelectorAll(selector).forEach(el=>{
+          const text=String(el.textContent||'').replace(/\s+/g,' ').trim();
+          if(text.length<8 || text.length>5200) return;
+          const n=normalizeAsk(text); if(!n || seen.has(n)) return; seen.add(n);
+          blocks.push({el,text,n,doc,kind:el.matches('option')?'calculator/formula option':'website content'});
+        });
+      } catch(_){}
+    });
+
+    // Score partial matches instead of requiring every word; exact phrases and technical terms rank higher.
+    const ranked=blocks.map(b=>{
+      let matched=0, score=0;
+      expanded.forEach(w=>{
+        if(w.length<2) return;
+        if(b.n.includes(w)){matched++; score += Math.min(w.length,9) >= 5 ? 3 : 1.5;}
+        else if(w.length>=5 && b.n.split(' ').some(x=>x.startsWith(w.slice(0,Math.max(4,w.length-2))))){matched++;score+=1;}
+      });
+      if(norm.length>4 && b.n.includes(norm)) score+=12;
+      if(words.length && matched) score += 7*matched/Math.max(1,words.length);
+      if(b.el.matches('h1,h2,h3,h4,h5,h6,option,.fl-card,.card')) score+=2;
+      if(b.text.length<900) score+=1;
+      return {...b,score,matched};
+    }).filter(b=>b.matched>0).sort((a,b)=>b.score-a.score);
+
+    // Safe, explicit arithmetic for common conversions; all other calculations remain with the site's verified calculator.
+    const numberAfter = (re) => { const m=norm.match(re); return m ? Number(m[1]) : NaN; };
+    let m;
+    if ((m=norm.match(/([0-9]+(?:\.[0-9]+)?)\s*hp\b/)) && /(kw|kilowatt|किलोवाट)/.test(norm)) {
+      const hp=Number(m[1]), kw=hp*0.746;
+      return say(`${hp} HP = ${kw.toFixed(3)} kW (लगभग)।`, `${hp} HP = ${kw.toFixed(3)} kW (approximately).`);
+    }
+    if ((m=norm.match(/([0-9]+(?:\.[0-9]+)?)\s*kw\b/)) && /(hp|horse ?power)/.test(norm)) {
+      const kw=Number(m[1]), hp=kw/0.746;
+      return say(`${kw} kW = ${hp.toFixed(3)} HP (लगभग)।`, `${kw} kW = ${hp.toFixed(3)} HP (approximately).`);
+    }
+
+    if(!ranked.length || ranked[0].score < 2.5){
+      return say('इस सवाल के लिए वेबसाइट में पर्याप्त मेल खाती जानकारी नहीं मिली। कृपया मशीन/कैलकुलेटर का नाम, input values और units लिखें। मैं गलत engineering value अनुमान से नहीं दूँगा।', 'I could not find enough matching information on the website for this question. Please include the equipment or calculator name, input values, and units. I will not guess an engineering result.');
+    }
+
+    // If a calculator option matches, open that exact existing calculator in its original module.
+    const bestOption=ranked.find(b=>b.el && b.el.tagName==='OPTION' && b.el.closest('select'));
+    if(bestOption){
+      try {
+        const sel=bestOption.el.closest('select');
+        sel.value=bestOption.el.value;
+        sel.dispatchEvent(new Event('input',{bubbles:true}));
+        sel.dispatchEvent(new Event('change',{bubbles:true}));
+        const frame=bestOption.doc!==document ? Array.from(document.querySelectorAll('iframe')).find(f=>{try{return f.contentDocument===bestOption.doc}catch(_){return false}}) : null;
+        if(frame){frame.scrollIntoView({behavior:'smooth',block:'start'});bestOption.el.scrollIntoView({behavior:'smooth',block:'center'});}
+        else sel.scrollIntoView({behavior:'smooth',block:'center'});
+      } catch(_){}
+    } else {
+      try {
+        const target=ranked[0].el;
+        const frame=ranked[0].doc!==document ? Array.from(document.querySelectorAll('iframe')).find(f=>{try{return f.contentDocument===ranked[0].doc}catch(_){return false}}) : null;
+        if(frame) frame.scrollIntoView({behavior:'smooth',block:'start'});
+        target.scrollIntoView({behavior:'smooth',block:'center'});
+        const old=target.style.outline; target.style.outline='3px solid #f59e0b'; setTimeout(()=>target.style.outline=old,2200);
+      } catch(_){}
+    }
+
+    const unique=[];
+    ranked.forEach(b=>{
+      const title=(b.el.closest('.fl-card,.card')?.querySelector('h1,h2,h3,h4,h5,h6')?.textContent||b.el.textContent||'').trim().slice(0,120);
+      const key=normalizeAsk(title); if(!key || unique.some(x=>x.key===key)) return;
+      unique.push({key,b,title});
+    });
+    const top=unique.slice(0,3);
+    const excerpts=top.map((x,i)=>`${i+1}. ${x.b.text.slice(0,Math.min(620,x.b.text.length))}${x.b.text.length>620?'…':''}`).join('\n\n');
+    const source=ranked[0].doc===document?'मुख्य वेबसाइट':(ranked[0].doc.title||'Embedded website module');
+    const calculationNote = /(calculate|calculation|गणना|कितना|निकाल|result|amp|kw|kva|rpm|ton|tonne|kg|mm|meter|मीटर|लोड|करंट|वोल्ट|torque|risk|wbgt|noise|sling|tension)/i.test(raw)
+      ? say('\n\nगणना: संबंधित वेबसाइट calculator को खोल दिया है। कृपया उसके सभी input और units भरें। इस प्रश्न के दिए गए मानों पर अलग से परिणाम तभी दूँगा जब सही formula और सभी आवश्यक inputs स्पष्ट हों।', '\n\nCalculation: I opened the matching website calculator. Enter all required inputs and units. I will provide a separate numeric result only when the formula and all required inputs are clear.')
+      : '';
+    return say(`वेबसाइट के ${source} में सबसे संबंधित जानकारी मिली:\n\n${excerpts}${calculationNote}`, `Most relevant information found in ${source}:\n\n${excerpts}${calculationNote}`);
+  }
+  function answer(q){if(!q.trim())return;add(q,'user');lastReply=reply(q);add(lastReply,'bot');}
+  toggle.addEventListener('click',()=>{panel.classList.add('eip-open');toggle.setAttribute('aria-expanded','true');toggle.style.display='none';if(!log.childElementCount)add('नमस्ते! अपना सवाल हिंदी या English में लिखें या माइक दबाकर बोलें।\\nHello! Type in Hindi or English, or tap the microphone.','bot');input.focus();});
+  root.querySelector('#eip-chat-close').addEventListener('click',()=>{panel.classList.remove('eip-open');toggle.style.display='block';toggle.setAttribute('aria-expanded','false');});
+  root.querySelector('#eip-chat-form').addEventListener('submit',e=>{e.preventDefault();answer(input.value);input.value='';});
+  root.querySelector('#eip-chat-read').addEventListener('click',()=>{if(!lastReply)return; if(!('speechSynthesis' in window)){status.textContent='इस ब्राउज़र में Text-to-Speech उपलब्ध नहीं है।';return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(lastReply);u.lang=hi(lastReply)?'hi-IN':'en-IN';speechSynthesis.speak(u);});
+  root.querySelector('#eip-chat-stop').addEventListener('click',()=>{if('speechSynthesis' in window)speechSynthesis.cancel();if(recognition)recognition.stop();});
+  root.querySelector('#eip-chat-mic').addEventListener('click',()=>{
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){status.textContent='इस ब्राउज़र में Voice Input समर्थित नहीं है। Chrome में या टाइप करके प्रयास करें।';return;}
+    if(recognition){recognition.stop();recognition=null;}
+    recognition=new SR();recognition.lang=root.querySelector('#eip-chat-voice-lang').value;recognition.continuous=false;recognition.interimResults=false;
+    status.textContent=root.querySelector('#eip-chat-voice-lang').value==='hi-IN'?'सुन रहा हूँ… हिंदी में बोलें।':'Listening… speak in English.';
+    recognition.onresult=e=>{const q=e.results[0][0].transcript;input.value=q;answer(q);input.value='';status.textContent='आपका सवाल प्राप्त हुआ।';};
+    recognition.onerror=e=>{status.textContent='Voice Input समस्या: '+e.error+'. आप सवाल टाइप कर सकते हैं।';};
+    recognition.onend=()=>{if(status.textContent==='सुन रहा हूँ… हिंदी में बोलें।'||status.textContent==='Listening… speak in English.')status.textContent='माइक बंद है / Microphone is off.';};
+    try{recognition.start();}catch(e){status.textContent='माइक शुरू नहीं हो सका। पेज refresh करके अनुमति जाँचें।';}
+  });
+})();
+</script>
+
 </body>
 </html>
