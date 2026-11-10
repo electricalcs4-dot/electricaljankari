@@ -66,13 +66,49 @@
     display: flex; align-items: center; justify-content: center; z-index: 1000; transition: transform 0.3s;
   }
   .ig-float:hover { transform: scale(1.1); }
+
+
+  /* Full-website search module (added without editing existing website content) */
+  .header { display: grid; grid-template-columns: minmax(0, 1fr) minmax(270px, 320px); align-items: center; column-gap: 24px; }
+  .header-brand { min-width: 0; text-align: center; }
+  .site-search { position: relative; z-index: 1200; width: 100%; min-width: 0; text-align: left; }
+  .site-search-form { display: flex; align-items: stretch; gap: 7px; margin: 0; width: 100%; }
+  .site-search #siteSearchInput { flex: 1 1 auto; width: 100%; min-width: 0; margin: 0; padding: 12px 13px; border: 2px solid #ff9900; border-radius: 7px; background: #ffffff; color: #222; font-size: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.16); }
+  .site-search #siteSearchInput:focus { outline: 3px solid rgba(255,153,0,0.25); border-color: #ff9900; }
+  .site-search #siteSearchButton { flex: 0 0 54px; width: 54px; min-width: 54px; margin: 0; padding: 0 10px; border: 0; border-radius: 7px; background: #ff9900; color: #111; font-size: 21px; font-weight: 800; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.16); }
+  .site-search #siteSearchButton:hover { background: #e68a00; color: #fff; }
+  .site-search-results { position: absolute; top: calc(100% + 8px); right: 0; width: min(560px, calc(100vw - 32px)); max-height: min(66vh, 570px); overflow-y: auto; padding: 8px; border: 1px solid #cbd5e1; border-top: 4px solid #ff9900; border-radius: 9px; background: #fff; color: #222; box-shadow: 0 10px 28px rgba(0,0,0,0.25); }
+  .site-search-results[hidden] { display: none !important; }
+  .site-search-count { padding: 5px 8px 9px; color: #0044cc; font-size: 12px; font-weight: 800; border-bottom: 1px solid #e5e7eb; }
+  .site-search-list { display: block; }
+  .site-search .site-search-result { display: block; width: 100%; margin: 0; padding: 10px 9px; border: 0; border-bottom: 1px solid #edf0f3; border-radius: 4px; background: #fff; color: #222; text-align: left; cursor: pointer; white-space: normal; }
+  .site-search .site-search-result:hover, .site-search .site-search-result:focus { background: #eef5fa; outline: 2px solid #ff9900; outline-offset: -2px; }
+  .site-search-result-title { display: block; color: #0044cc; font-size: 14px; line-height: 1.4; font-weight: 800; }
+  .site-search-result-detail { display: block; margin-top: 3px; color: #667085; font-size: 11px; line-height: 1.4; font-weight: 500; }
+  .site-search-empty { padding: 13px 9px; color: #555; font-size: 13px; }
+  @media (max-width: 900px) {
+    .header { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
+    .site-search { width: min(100%, 560px); margin: 0 auto; }
+    .site-search-results { left: 0; right: 0; width: 100%; }
+  }
 </style>
 </head>
 <body>
 
-<div class="header">
+<div class="header"><div class="header-brand">
   <div class="top-bar">💡Electrical Jankari Pro⚡</div>
   <div class="main-title">सही जानकारी, एडवांस इंजीनियरिंग टिप्स, सुरक्षा प्रोटोकॉल और कैलकुलेटर BY KUNAL KUMAR</div>
+  </div>
+  <div class="site-search" role="search" aria-label="पूरी वेबसाइट में खोजें">
+    <form class="site-search-form" id="siteSearchForm" autocomplete="off">
+      <input id="siteSearchInput" type="search" placeholder="पूरी वेबसाइट में खोजें…" aria-label="पूरी वेबसाइट में खोजें" aria-controls="siteSearchResults">
+      <button id="siteSearchButton" type="submit" aria-label="Search">🔍</button>
+    </form>
+    <div class="site-search-results" id="siteSearchResults" hidden>
+      <div class="site-search-count" id="siteSearchCount" aria-live="polite"></div>
+      <div class="site-search-list" id="siteSearchList" role="listbox"></div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
@@ -7255,5 +7291,406 @@ function resetFormulaLibrary(){
   }
 </script>
 
+<script>
+(function () {
+  'use strict';
+
+  const form = document.getElementById('siteSearchForm');
+  const input = document.getElementById('siteSearchInput');
+  const resultsBox = document.getElementById('siteSearchResults');
+  const countBox = document.getElementById('siteSearchCount');
+  const listBox = document.getElementById('siteSearchList');
+  if (!form || !input || !resultsBox || !listBox) return;
+
+  let searchIndex = [];
+  let visibleResults = [];
+
+  function cleanText(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function normalize(value) {
+    return cleanText(value).toLocaleLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function shortText(value, maxLength) {
+    const text = cleanText(value);
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength - 1).trimEnd() + '…';
+  }
+
+  function closestContext(element, doc, frame) {
+    const blocks = ['article', 'section', '.fl-category', '.card', '.safety-alert', '.calc-guidance', '.master-sheet'];
+    for (const selector of blocks) {
+      const block = element.closest(selector);
+      if (block) {
+        const heading = block.querySelector('h1,h2,h3,h4,h5,h6,.section-title');
+        if (heading && cleanText(heading.textContent)) return shortText(heading.textContent, 110);
+        if (block.id) return block.id.replace(/[-_]/g, ' ');
+      }
+    }
+    if (frame) return frame.title || 'Embedded website section';
+    return 'Electrical Jankari Pro';
+  }
+
+  function addItem(item) {
+    if (!item || !item.target) return;
+    item.title = shortText(item.title, 145);
+    item.description = shortText(item.description || '', 125);
+    item.searchText = normalize([item.title, item.description, item.fullText || '', item.extraText || ''].join(' '));
+    if (!item.searchText) return;
+    item.priority = Number(item.priority) || 40;
+    searchIndex.push(item);
+  }
+
+  function indexDocument(doc, frame) {
+    if (!doc || !doc.body) return;
+    const framePrefix = frame ? (frame.title + ' · ') : '';
+
+    // Headings, sections, formula cards, tables and explanatory text throughout the page.
+    const contentSelectors = [
+      'h1,h2,h3,h4,h5,h6',
+      'article',
+      '.fl-card',
+      '.card',
+      '.safety-alert',
+      '.calc-guidance',
+      '.formula-text',
+      '.hse-example',
+      '.hse-note',
+      '.section-title',
+      'p',
+      'li',
+      'tr',
+      'label',
+      'button',
+      'summary',
+      'div,span,strong,b,em,small,legend,caption,dt,dd,figcaption,[role=heading],[title],[aria-label]'
+    ].join(',');
+
+    doc.querySelectorAll(contentSelectors).forEach(function (element) {
+      const text = cleanText(element.innerText || element.textContent);
+      if (!text || text.length < 3) return;
+      if (element.closest('script,style,noscript,template')) return;
+      if (element.tagName === 'DIV') {
+        const directText = Array.from(element.childNodes).some(node => node.nodeType === 3 && cleanText(node.nodeValue));
+        const semanticClass = /title|heading|label|caption|note|summary|formula|metric|result|value|status/i.test(String(element.className || ''));
+        if (!directText && !semanticClass) return;
+      }
+
+      let kind = 'text';
+      let priority = 42;
+      let title = text;
+      if (/^H[1-6]$/.test(element.tagName)) {
+        kind = 'heading'; priority = 100;
+      } else if (element.matches('article,.fl-card')) {
+        kind = 'article'; priority = 78;
+        const heading = element.querySelector('h1,h2,h3,h4,h5,h6,strong');
+        if (heading) title = cleanText(heading.textContent);
+      } else if (element.matches('tr')) {
+        kind = 'table row'; priority = 62;
+        const cells = Array.from(element.querySelectorAll('th,td')).slice(0, 2).map(cell => cleanText(cell.textContent));
+        if (cells.length) title = cells.filter(Boolean).join(' — ') || text;
+      } else if (element.matches('label')) {
+        kind = 'field'; priority = 58;
+      } else if (element.matches('button')) {
+        kind = 'action'; priority = 48;
+      } else if (element.matches('.card,.safety-alert,.calc-guidance,.formula-text,.hse-example,.hse-note,.section-title')) {
+        kind = 'section'; priority = 66;
+        const heading = element.querySelector('h1,h2,h3,h4,h5,h6,strong');
+        if (heading) title = cleanText(heading.textContent);
+      } else if (element.matches('li')) {
+        kind = 'list item'; priority = 48;
+      } else if (element.matches('p')) {
+        kind = 'description'; priority = 44;
+      }
+
+      const description = framePrefix + closestContext(element, doc, frame);
+      addItem({
+        target: element,
+        doc: doc,
+        frame: frame || null,
+        kind: kind,
+        title: title,
+        description: description,
+        fullText: text,
+        priority: priority
+      });
+    });
+
+    // Every dropdown choice is independently searchable and opens that exact choice.
+    doc.querySelectorAll('select').forEach(function (select) {
+      const selectLabel = cleanText(
+        (select.closest('label') && select.closest('label').textContent) ||
+        (select.id && doc.querySelector('label[for="' + select.id.replace(/"/g, '') + '"]') && doc.querySelector('label[for="' + select.id.replace(/"/g, '') + '"]').textContent) ||
+        select.getAttribute('aria-label') ||
+        select.id.replace(/[-_]/g, ' ') ||
+        'Dropdown option'
+      );
+      const description = framePrefix + selectLabel;
+      Array.from(select.options || []).forEach(function (option) {
+        const label = cleanText(option.textContent);
+        if (!label || !option.value || option.disabled) return;
+        addItem({
+          target: select,
+          option: option,
+          select: select,
+          doc: doc,
+          frame: frame || null,
+          kind: 'option',
+          title: label,
+          description: description,
+          fullText: label + ' ' + selectLabel,
+          priority: 112
+        });
+      });
+    });
+
+    // Searchable input names/placeholders help find the relevant form controls.
+    doc.querySelectorAll('input[aria-label],input[placeholder],textarea[aria-label],textarea[placeholder]').forEach(function (field) {
+      const label = cleanText(field.getAttribute('aria-label') || field.getAttribute('placeholder') || field.name || field.id);
+      if (!label) return;
+      addItem({
+        target: field,
+        doc: doc,
+        frame: frame || null,
+        kind: 'input field',
+        title: label,
+        description: framePrefix + closestContext(field, doc, frame),
+        fullText: label,
+        priority: 52
+      });
+    });
+
+    // Give each embedded application a direct searchable entry as well.
+    if (frame) {
+      addItem({
+        target: frame,
+        doc: doc,
+        frame: frame,
+        kind: 'website module',
+        title: frame.title || 'Embedded module',
+        description: 'Electrical Jankari Pro · Website module',
+        fullText: doc.title || '',
+        priority: 75
+      });
+    }
+  }
+
+  function rebuildIndex() {
+    searchIndex = [];
+    indexDocument(document, null);
+    document.querySelectorAll('iframe').forEach(function (frame) {
+      try {
+        const childDoc = frame.contentDocument;
+        if (childDoc && childDoc.body) indexDocument(childDoc, frame);
+      } catch (error) {
+        // The parent page remains searchable if a browser blocks an embedded frame.
+      }
+    });
+    if (input.value.trim()) runSearch(input.value);
+  }
+
+  function scoreItem(item, query, tokens) {
+    const text = item.searchText;
+    if (!text) return -1;
+    let matched = 0;
+    tokens.forEach(function (token) { if (text.includes(token)) matched += 1; });
+    if (matched !== tokens.length) return -1;
+    let score = item.priority;
+    if (text.includes(query)) score += 90;
+    if (normalize(item.title).startsWith(query)) score += 18;
+    score += matched * 6;
+    return score;
+  }
+
+  function renderResults(results, query) {
+    listBox.innerHTML = '';
+    visibleResults = results;
+    if (!results.length) {
+      countBox.textContent = 'कोई परिणाम नहीं मिला';
+      const empty = document.createElement('div');
+      empty.className = 'site-search-empty';
+      empty.textContent = 'दूसरा शब्द लिखकर खोजें।';
+      listBox.appendChild(empty);
+      resultsBox.hidden = false;
+      return;
+    }
+
+    countBox.textContent = results.length + ' परिणाम · “' + query + '”';
+    results.forEach(function (item, index) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'site-search-result';
+      button.setAttribute('role', 'option');
+      button.setAttribute('data-result-index', String(index));
+      const title = document.createElement('span');
+      title.className = 'site-search-result-title';
+      title.textContent = item.title;
+      const detail = document.createElement('span');
+      detail.className = 'site-search-result-detail';
+      detail.textContent = item.description + ' · ' + item.kind;
+      button.appendChild(title);
+      button.appendChild(detail);
+      listBox.appendChild(button);
+    });
+    resultsBox.hidden = false;
+  }
+
+  function runSearch(rawQuery) {
+    const query = normalize(rawQuery);
+    if (!query) {
+      resultsBox.hidden = true;
+      listBox.innerHTML = '';
+      visibleResults = [];
+      countBox.textContent = '';
+      return;
+    }
+    const tokens = query.split(' ').filter(Boolean);
+    const ranked = [];
+    searchIndex.forEach(function (item) {
+      const score = scoreItem(item, query, tokens);
+      if (score >= 0) ranked.push({ item: item, score: score });
+    });
+    ranked.sort(function (a, b) { return b.score - a.score; });
+
+    const seen = new Set();
+    const selected = [];
+    for (const entry of ranked) {
+      const item = entry.item;
+      const key = normalize(item.title) + '|' + normalize(item.description) + '|' + item.kind;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      selected.push(item);
+      if (selected.length >= 14) break;
+    }
+    renderResults(selected, cleanText(rawQuery));
+  }
+
+  function revealHiddenView(item) {
+    if (!item.frame || !item.target) return;
+    const win = item.doc && item.doc.defaultView;
+    if (!win) return;
+    const sheet = item.target.closest('.master-sheet');
+    if (!sheet) return;
+
+    if (sheet.id === 'view-formula-library') {
+      const categoryBlock = item.target.closest('.fl-category');
+      const category = categoryBlock && categoryBlock.id ? categoryBlock.id.replace(/^fl-cat-/, '') : 'all';
+      if (typeof win.openFormulaLibrary === 'function') {
+        win.openFormulaLibrary(category);
+      } else if (typeof win.switchScreenView === 'function') {
+        win.switchScreenView(sheet.id);
+      }
+      return;
+    }
+
+    let isHidden = false;
+    try { isHidden = win.getComputedStyle(sheet).display === 'none'; } catch (error) {}
+    if (isHidden && typeof win.switchScreenView === 'function') {
+      win.switchScreenView(sheet.id);
+    }
+  }
+
+  function focusResult(item) {
+    if (!item) return;
+    resultsBox.hidden = true;
+    input.blur();
+    const frame = item.frame;
+
+    revealHiddenView(item);
+
+    const finishFocus = function () {
+      if (item.option && item.select) {
+        item.select.value = item.option.value;
+        item.select.dispatchEvent(new Event('input', { bubbles: true }));
+        item.select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      if (frame) {
+        try {
+          const childWindow = item.doc.defaultView;
+          const targetRect = item.target.getBoundingClientRect();
+          const innerOffset = targetRect.top + (childWindow ? childWindow.scrollY : 0);
+          const frameRect = frame.getBoundingClientRect();
+          const pageTop = frameRect.top + window.scrollY + innerOffset;
+          window.scrollTo({ top: Math.max(0, pageTop - 92), behavior: 'smooth' });
+          item.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (error) {
+          frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        item.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      try {
+        const oldOutline = item.target.style.outline;
+        const oldOffset = item.target.style.outlineOffset;
+        item.target.style.outline = '3px solid #ff9900';
+        item.target.style.outlineOffset = '3px';
+        window.setTimeout(function () {
+          item.target.style.outline = oldOutline;
+          item.target.style.outlineOffset = oldOffset;
+        }, 2200);
+      } catch (error) {}
+    };
+
+    window.setTimeout(finishFocus, frame ? 280 : 40);
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!searchIndex.length) rebuildIndex();
+    runSearch(input.value);
+  });
+
+  input.addEventListener('input', function () {
+    runSearch(input.value);
+  });
+
+  listBox.addEventListener('click', function (event) {
+    const resultButton = event.target.closest('[data-result-index]');
+    if (!resultButton) return;
+    const result = visibleResults[Number(resultButton.getAttribute('data-result-index'))];
+    focusResult(result);
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest('.site-search')) resultsBox.hidden = true;
+  });
+
+  input.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      resultsBox.hidden = true;
+      input.blur();
+    }
+    if (event.key === 'ArrowDown' && visibleResults.length) {
+      event.preventDefault();
+      const first = listBox.querySelector('button');
+      if (first) first.focus();
+    }
+  });
+
+  listBox.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      resultsBox.hidden = true;
+      input.focus();
+    }
+  });
+
+  document.querySelectorAll('iframe').forEach(function (frame) {
+    frame.addEventListener('load', function () { window.setTimeout(rebuildIndex, 120); });
+  });
+
+  rebuildIndex();
+  window.setTimeout(rebuildIndex, 500);
+  window.setTimeout(rebuildIndex, 1600);
+})();
+</script>
 </body>
 </html>
